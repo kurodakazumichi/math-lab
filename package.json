@@ -1,0 +1,16 @@
+{
+  "name": "math-lab",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/kurodakazumichi/math-lab.git",
+  "author": "kazumichi kuroda <kazumichi-kuroda@nekonecode.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^25.1.2",
+    "@types/node": "^13.7.0",
+    "jest": "^25.1.0",
+    "parcel": "^1.12.4",
+    "ts-jest": "^25.2.0",
+    "typescript": "^3.7.5"
+  }
+}
