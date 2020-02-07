@@ -13,4 +13,7 @@ module.exports = {
   },
 
   testRegex: "\\.spec\\.ts$",
+  moduleNameMapper: {
+    "^~/(.+)": "<rootDir>/src/$1"
+  }
 }

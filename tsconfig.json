@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
     "rootDir": "./src",
+    "baseUrl": "./src/",
+    "paths": {"~/*":["*"]},
     "module": "commonjs",
     "target": "es5",
     "noImplicitAny": true,
@@ -24,6 +26,5 @@
   ],
   "exclude": [
     "node_modules",
-    "src/**/*.spec.ts",
   ]
 }
