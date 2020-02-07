@@ -12,5 +12,11 @@
     "parcel": "^1.12.4",
     "ts-jest": "^25.2.0",
     "typescript": "^3.7.5"
+  },
+  "scripts": {
+    "test": "jest --watch",
+    "test:cover": "jest --coverage",
+    "build": "rm -rf ./build && parcel build ./src/index.ts --out-dir=build;",
+    "build:no-map"    : "rm -rf ./build && parcel build ./src/index.ts --out-dir=build --no-source-maps"
   }
 }
