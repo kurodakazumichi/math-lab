@@ -1,3 +1,5 @@
+import * as Util from '~/util';
+
 /******************************************************************************
  * ２次関数
  * このクラスは以下の２次関数の式から組み立てている
@@ -26,14 +28,14 @@ export default class Quadratic
   // getter / setter
   //---------------------------------------------------------------------------
   /** aの操作 */
-  get a() { return (this._a === 0)? 0 : this._a; }
+  get a() { return Util.unifySign(this._a); }
   set a(v) { 
     this._a = Number(v);
     this.initAPQ(this._a, this._p, this._q);
   }
 
   /** bの操作 */
-  get b() { return (this._b === 0)? 0 : this._b; }
+  get b() { return Util.unifySign(this._b); }
   set b(v) {
     this._b = Number(v);
     this._p = Quadratic.calcP_By_ab(this.a, this.b);
@@ -41,14 +43,14 @@ export default class Quadratic
   }
 
   /** cの操作 */
-  get c() { return (this._c === 0)? 0 :this._c; }
+  get c() { return Util.unifySign(this._c); }
   set c(v) {
     this._c = Number(v);
     this._q = Quadratic.calcQ_By_abc(this.a, this.b, this.c);
   }
 
   /** pの操作 */
-  get p() { return (this._p === 0)? 0 : this._p; }
+  get p() { return Util.unifySign(this._p); }
   set p(v) {
     this._p = Number(v);
     this._b = Quadratic.calcB_By_ap(this.a, this.p);
@@ -56,7 +58,7 @@ export default class Quadratic
   }
 
   /** ｑの操作 */
-  get q() { return (this._q === 0)? 0 : this._q; }
+  get q() { return Util.unifySign(this._q); }
   set q(v) {
     this._q = Number(v);
     this._c = Quadratic.calcC_By_pq(this.a, this.p, this.q);
@@ -340,8 +342,8 @@ export default class Quadratic
 
     // 解を求める
     const deno = 2 * a;
-    const x1 = (-b - Math.sqrt(d)) / deno;
-    const x2 = (-b + Math.sqrt(d)) / deno;
+    const x1 = Util.unifySign((-b - Math.sqrt(d)) / deno);
+    const x2 = Util.unifySign((-b + Math.sqrt(d)) / deno);
 
     // D = 0の時、重解になる
     if (d === 0) return [x1];
