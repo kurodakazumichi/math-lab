@@ -146,19 +146,13 @@ export default class Quadratic
 
   /** 無効 */
   get isInvalid() {
-    const { a } = this;
-    if (isNaN(a)) return true;
-    if (Infinity == Math.abs(a)) return true;
-    return false;
+    return !Quadratic.isValidA(this.a);
   }
 
   /** 頂点を持っている(定まっているかどうか) */
   get hasApex() {
     const { p, q } = this;
-    if (isNaN(p) || isNaN(q)) return false;
-    if (Infinity === Math.abs(p)) return false;
-    if (Infinity === Math.abs(q)) return false;
-    return true;
+    return Quadratic.hasApex(p, q);
   }
 
   /** 最大値 */
@@ -176,30 +170,13 @@ export default class Quadratic
   /** 判別式(b^2 - 4ac) */
   get discriminant() {
     const { a, b, c } = this;
-    return (b**2) - (4*a*c);
+    return Quadratic.discriminant(a, b, c);
   }
 
   /** 解(解の公式から求める) */
   get solution() {
-    const { a, b } = this;
-    const d = this.discriminant;
-
-    // a が 0の場合は定義なし
-    if (a === 0) return undefined;
-
-    // D < 0の時、解はない
-    if (d < 0) return [];
-
-    // 解を求める
-    const deno = 2 * a;
-    const x1 = (-b - Math.sqrt(d)) / deno;
-    const x2 = (-b + Math.sqrt(d)) / deno;
-
-    // D = 0の時、重解になる
-    if (d === 0) return [x1];
-
-    // D > 0の時、異なる２点を共有する
-    return [Math.min(x1, x2), Math.max(x1, x2)];
+    const { a, b, c } = this;
+    return Quadratic.solution(a, b, c);
   }
 
   //---------------------------------------------------------------------------
@@ -229,7 +206,6 @@ export default class Quadratic
   /** y=a(x-p)^2 + q 形式のLatex文字列 */
   toStringOfLatexAPQ(fixed = 1) {
     if (this.isInvalid) return "none";
-    if (!this.hasApex)  return "none";
     const a = this.a.toFixed(fixed);
     const p = this.p.toFixed(fixed);
     const q = this.q.toFixed(fixed);
@@ -252,9 +228,11 @@ export default class Quadratic
   {
     const { a } = this;
     if (this.isInvalid) return "";
-    if (a < 0) return "上に凸";
-    if (0 < a) return "下に凸";
-    return "水平線";
+    if (a < 0){
+      return "上に凸";
+    } else {
+      return "下に凸";
+    }
   }
 
   /** 二次関数に関する文字列 */
@@ -329,5 +307,49 @@ export default class Quadratic
     const b = this.calcB_By_x1y1_x2y2_x3y3(x1, y1, x2, y2, x3, y3);
     const c = y1 + (-a*(x1*x1) - b*x1);
     return c;
+  }
+
+  /** 判別式(b^2 - 4ac) */
+  static discriminant(a:number, b:number, c:number) {
+    return (b**2) - (4*a*c);
+  }
+
+  /** 解(解の公式から求める) */
+  static solution(a:number, b:number, c:number) {
+
+    const d = Quadratic.discriminant(a, b, c);
+
+    // a が 0の場合は定義なし
+    if (a === 0) return undefined;
+
+    // D < 0の時、解はない
+    if (d < 0) return [];
+
+    // 解を求める
+    const deno = 2 * a;
+    const x1 = (-b - Math.sqrt(d)) / deno;
+    const x2 = (-b + Math.sqrt(d)) / deno;
+
+    // D = 0の時、重解になる
+    if (d === 0) return [x1];
+
+    // D > 0の時、異なる２点を共有する
+    return [Math.min(x1, x2), Math.max(x1, x2)];
+  }
+
+  /** 傾き(a)が有効かどうか */
+  static isValidA(a:number) {
+    if (a === 0) return false;
+    if (isNaN(a)) return false;
+    if (Infinity == Math.abs(a)) return false;
+    return true;
+  }
+
+  /** 頂点を持っている(定まっているかどうか) */
+  static  hasApex(p:number, q:number) {
+    if (isNaN(p) || isNaN(q)) return false;
+    if (Infinity === Math.abs(p)) return false;
+    if (Infinity === Math.abs(q)) return false;
+    return true;
   }
 }
