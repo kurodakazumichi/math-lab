@@ -19,6 +19,24 @@ describe('Test of static in Quadratic.', () => {
       })
     })
   })
+
+  describe.each`
+  a    | b   | c    | d    | e   | f   | result
+  ${1} |${0} |${0}  |${-1} |${0} |${0} |${{count:1, points:[0, 0]}}
+  ${0} |${0} |${0}  |${-1} |${0} |${0} |${{count:0, points:[]}}
+  ${1} |${0} |${1}  |${-1} |${0} |${0} |${{count:0, points:[]}}
+  ${1} |${0} |${-1} |${-1} |${0} |${1} |${{count:2, points:[-Math.sqrt(1), 0, Math.sqrt(1), 0]}}
+  `(`Test of intersect()`, ({a, b, c, d, e, f, result}) => {
+
+    describe(`initAPQ(${a}, ${b}, ${c}) intersect initAPQ(${d}, ${e}, ${f})`, () => {
+      it(``, () => {
+        const fa = new Quadratic().initAPQ(a, b, c);
+        const fb = new Quadratic().initAPQ(d, e, f);
+        expect(Quadratic.intersect(fa, fb)).toEqual(result);
+      })
+    });
+
+  })
 })  
 
 describe('Test of Quadratic', () => 

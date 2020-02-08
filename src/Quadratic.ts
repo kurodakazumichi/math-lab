@@ -392,4 +392,38 @@ export default class Quadratic
     return (d < 0);
   }
 
+  /**
+   * ２つの２次関数が交差する点を求める 
+   */
+  static intersect(a:Quadratic, b:Quadratic) 
+  {
+    // 返却用のデータを定義
+    const result:{count:number, points:number[]} = {
+      count:0,
+      points:[]
+    };
+
+    // 無効な２次式は扱わないものとする
+    if (a.isInvalid || b.isInvalid) return result;
+    
+    // ２つの２次式から新たな２次式を作る
+    const c = new Quadratic().initABC(a.a - b.a, a.b - b.b, a.c - b.c);
+
+    // 解の公式から交わるxの座標を求める
+    const px = c.solution;
+
+
+
+    // 解なしの場合は交わらない
+    if (px === undefined || px.length === 0) return result;
+
+    // 解が存在する場合は解の数だけ座標を計算して結果を返す
+    px.map((x) => {
+      result.count++;
+      result.points.push(x, a.fx(x));
+    })
+
+    return result;
+  }
+
 }
