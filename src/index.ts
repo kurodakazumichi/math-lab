@@ -3,6 +3,7 @@
  * 全てのクラスをwindow.MyMath空間にバンドルする。
  *****************************************************************************/
 import Vector2 from "./Vector2";
+import Quadratic from "./Quadratic";
 
 interface GlobalWindow {
   MyMath: any;
@@ -11,6 +12,7 @@ declare var window: GlobalWindow;
 
 if (typeof window !== "undefined"){
   window.MyMath = {
-    Vector2: Vector2,
+    Quadratic: Quadratic,
+    Vector2  : Vector2,
   }
 }
