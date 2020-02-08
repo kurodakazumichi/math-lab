@@ -374,6 +374,40 @@ describe('Test of Quadratic', () =>
     })
   })
 
+  describe.each`
+  a     | b      | c     | result
+  ${0}  | ${0}   | ${0}  | ${false}
+  ${1}  | ${0}   | ${0}  | ${false}
+  ${-1} | ${0}   | ${0}  | ${false}
+  ${-1} | ${0}   | ${1}  | ${false}
+  ${1}  | ${0}   | ${1}  | ${true}
+  `(`Quadratic is positive definite?`, ({a, b, c, result}) => {
+    describe(`initABC(${a}, ${b}, ${c}).isPositiveDefinite`, () => {
+      const f = new Quadratic().initABC(a, b, c);
+      it(`is ${result}`, () => { 
+        expect(f.isPositiveDefinite).toEqual(result); 
+      })
+    })
+  })
+
+  describe.each`
+  a     | b      | c     | result
+  ${0}  | ${0}   | ${0}  | ${false}
+  ${1}  | ${0}   | ${0}  | ${false}
+  ${1}  | ${0}   | ${1}  | ${false}
+  ${-1} | ${0}   | ${0}  | ${false}
+  ${-1} | ${0}   | ${1}  | ${false}
+  ${-1} | ${2}   | ${-2} | ${true}
+  `(`Quadratic is negative definite?`, ({a, b, c, result}) => {
+    describe(`initABC(${a}, ${b}, ${c}).isNegativeDefinite`, () => {
+      const f = new Quadratic().initABC(a, b, c);
+      it(`is ${result}`, () => { 
+        expect(f.isNegativeDefinite).toEqual(result); 
+      })
+    })
+  })
+
+
   //---------------------------------------------------------------------------
   // 文字列
   //---------------------------------------------------------------------------

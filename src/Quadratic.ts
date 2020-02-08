@@ -179,6 +179,19 @@ export default class Quadratic
     return Quadratic.solution(a, b, c);
   }
 
+  /** 正の定符号かどうか */
+  get isPositiveDefinite() {
+    const { a, b, c } = this;
+    return Quadratic.isPositiveDefinite(a, b, c);
+  }
+
+
+  /** 負の定符号かどうか */
+  get isNegativeDefinite() {
+    const { a, b, c } = this;
+    return Quadratic.isNegativeDefinite(a, b, c);
+  }
+
   //---------------------------------------------------------------------------
   // 文字列
   //---------------------------------------------------------------------------
@@ -352,4 +365,29 @@ export default class Quadratic
     if (Infinity === Math.abs(q)) return false;
     return true;
   }
+
+  /** 
+   * ２次関数が正の定符号であるか 
+   * ①放物線は下に凸(0 < a)でなければいけない
+   * ②判別式の結果が0未満でなければいけない(x軸との共有点を持たない)
+   */
+  static isPositiveDefinite(a:number, b:number, c:number) {
+    if (!Quadratic.isValidA(a)) return false;
+    if (a < 0) return false;
+    const d = Quadratic.discriminant(a, b, c);
+    return (d < 0);
+  }
+
+  /** 
+   * ２次関数が負の定符号であるか 
+   * ①放物線は上に凸(a < 0)でなければいけない
+   * ②判別式の結果が0未満でなければいけない(x軸との共有点を持たない)
+   */
+  static isNegativeDefinite(a:number, b:number, c:number) {
+    if (!Quadratic.isValidA(a)) return false;
+    if (0 < a) return false;
+    const d = Quadratic.discriminant(a, b, c);
+    return (d < 0);
+  }
+
 }
