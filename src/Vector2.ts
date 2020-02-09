@@ -64,6 +64,8 @@ export default class Vector2
   //---------------------------------------------------------------------------
   /** 加法 */
   static add(v1:Vector2, v2:Vector2)  {
-    return new Vector2(v1.x, v1.y).add(v2);
+    return v1.clone().add(v2);
+  }
+
   }
 }

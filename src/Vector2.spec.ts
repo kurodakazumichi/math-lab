@@ -98,7 +98,7 @@ describe('Test of Vector2', () => {
       const v2 = new Vector2(b.x, b.y);
       const v3 = Vector2.add(v1, v2);
 
-      it(`v${v1.toString()} add v${v2.toString()} = ${v3.toString()}`, () => {
+      it(`Vector2.add(v1, v2) = ${v3.toString()}`, () => {
         expect(v3.x).toBe(result.x);
         expect(v3.y).toBe(result.y);
       })
