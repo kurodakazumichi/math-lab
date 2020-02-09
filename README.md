@@ -1,7 +1,8 @@
 # math-lab
-開発はTypeScriptで行い、開発時はjestによって動作確認を行うスタイルのプロジェクト。
-バンドル化にはparcelを使用する。
-最終的にjQueryのように`script`タグで読み込めるようなライブラリを吐き出してぇ。
+- 開発はTypeScriptで行い、開発時はjestによって動作確認を行うスタイルのプロジェクト。
+- バンドル化にはparcelを使用する。
+- 最終的にjQueryのように`script`タグで読み込めるようなライブラリを吐き出してぇ。
+
 という時のためのプロジェクト設定方法
 
 ※このプロジェクト自体は数学勉強用のための俺俺ライブラリを作っている例
@@ -49,17 +50,19 @@ yarn add -D typescript jest ts-jest parcel @types/jest @types/node
 
 ##$ 環境構築手順 その③ tsconfig.json
 typescriptの設定ファイルである`tsconfig.json`を作成する。
+
 詳しくは`./tsconfig.json`を参照のこと
 
 ### 環境構築手順 その④ jest.config.json
-jestの設定ファイルである`jest.config.js`を作成する。
+jestの設定ファイルである`jest.config.js`を作成する。  
 typescript使う設定などをしている.
+
 詳しくは`./jest.config.js`を参照のこと
 
 ### 環境構築手順 その⑤ バンドル用のindex.tsを作る
-たくさんのプログラムを最終的に１つにまとめるためのファイルを作る
-
+たくさんのプログラムを最終的に１つにまとめるためのファイルを作る  
 このプロジェクトでは`./src/index.ts`がその役目をはたす。
+
 詳しくは`./src/index.ts`を参照のこと
 
 ### 環境構築手順 その⑥ 便利コマンドを定義
