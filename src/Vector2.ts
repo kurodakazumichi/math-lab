@@ -26,6 +26,13 @@ export default class Vector2
     return this;
   }
 
+  /** 逆ベクトル */
+  inverse() {
+    this.x *= -1;
+    this.y *= -1;
+    return this;
+  }
+
   /** 零ベクトルかどうか */
   get isZero() {
     return (this.x === 0 && this.y === 0);
@@ -67,5 +74,8 @@ export default class Vector2
     return v1.clone().add(v2);
   }
 
+  /** 逆ベクトル */
+  static inverse(v:Vector2) {
+    return v.clone().inverse();
   }
 }

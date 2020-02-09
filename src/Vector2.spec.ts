@@ -38,6 +38,24 @@ describe('Test of Vector2', () => {
   })
 
   //---------------------------------------------------------------------------
+  // 逆ベクトル
+  describe.each`
+  v1 | v2 
+  ${new Vector2(0, 0)}  | ${new Vector2(0, 0)}
+  ${new Vector2(1, 1)}  | ${new Vector2(-1, -1)}
+  ${new Vector2(-1, 1)} | ${new Vector2(1, -1)}
+  `
+  (`Test of Vector2.inverse`, ({v1, v2}) => {
+    const inv = v1.inverse();
+    it(`instance of v1.inverse() is equal instance of v1`, () => {
+      expect(inv === v1).toBeTruthy();
+    })
+    it(`v1.inverse() = ${v2.toString()}`, () => {
+      expect(inv.equal(v2)).toBeTruthy();
+    })
+  })
+
+  //---------------------------------------------------------------------------
   // 零ベクトル
   describe.each`
   v1 | result
@@ -111,7 +129,23 @@ describe('Test of Vector2', () => {
       })
     })
 
-
+    //---------------------------------------------------------------------------
+    // 逆ベクトル
+    describe.each`
+    v1 | v2 
+    ${new Vector2(0, 0)}  | ${new Vector2(0, 0)}
+    ${new Vector2(1, 1)}  | ${new Vector2(-1, -1)}
+    ${new Vector2(-1, 1)} | ${new Vector2(1, -1)}
+    `
+    (`Test of Vector2.inverse`, ({v1, v2}) => {
+      const inv = Vector2.inverse(v1);
+      it(`Vector2.inverse(v1) is not equal instance of v1`, () => {
+        expect(inv === v1).toBeFalsy();
+      })
+      it(`Vector2.inverse(v1) = ${v2.toString()}`, () => {
+        expect(inv.equal(v2)).toBeTruthy();
+      })
+    })
 
   })
 
