@@ -36,4 +36,9 @@ export default class Vector2
       y: this.y/magnitude
     };
   }
+
+  /** テキスト化 */
+  toString() {
+    return `(${this.x}, ${this.y})`;
+  }
 }

@@ -21,4 +21,17 @@ describe('Test of Vector2', () => {
     })
   })
 
+  //---------------------------------------------------------------------------
+  // ベクトルのテキスト化
+  describe.each`
+  v | result
+  ${new Vector2(0, 0)} | ${"(0, 0)"}
+  ${new Vector2(1, 1)} | ${"(1, 1)"}
+  `
+  (`Test of Vector2.toString`, ({v, result}) => {
+    it(`v.toString() is ${result}`, () => {
+      expect(v.toString()).toBe(result);
+    })
+  })
+
 });
