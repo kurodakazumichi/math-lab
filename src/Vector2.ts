@@ -14,6 +14,11 @@ export default class Vector2
     this.y = y;
   }
 
+  /** 相等 */
+  equal(v:Vector2) {
+    return (this.x === v.x && this.y === v.y);
+  }
+
   /** 大きさ */
   get magnitude() {
     const {x, y} = this;
