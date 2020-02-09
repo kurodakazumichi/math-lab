@@ -38,6 +38,24 @@ describe('Test of Vector2', () => {
   })
 
   //---------------------------------------------------------------------------
+  // ベクトルの減法
+  describe.each`
+  v1 | v2 | result
+  ${new Vector2(0, 0)}  | ${new Vector2(0, 0)} | ${new Vector2(0, 0)}
+  ${new Vector2(1, 1)}  | ${new Vector2(0, 0)} | ${new Vector2(1, 1)}
+  ${new Vector2(-1, 1)} | ${new Vector2(1, 2)} | ${new Vector2(-2, -1)}
+  `
+  (`Test of Vector2.sub`, ({v1, v2, result}) => {
+    const sub = v1.sub(v2);
+    it(`v1.sub(v2) return instance of v1`, () => {
+      expect(sub === v1).toBeTruthy();
+    })
+    it(`v1.sub(v2) = ${result.toString()}`, () => {
+      expect(sub.equal(result)).toBeTruthy();
+    })
+  })
+
+  //---------------------------------------------------------------------------
   // 逆ベクトル
   describe.each`
   v1 | v2 
@@ -117,6 +135,31 @@ describe('Test of Vector2', () => {
       const v3 = Vector2.add(v1, v2);
 
       it(`Vector2.add(v1, v2) = ${v3.toString()}`, () => {
+        expect(v3.x).toBe(result.x);
+        expect(v3.y).toBe(result.y);
+      })
+
+      it(`v1 and v2 is not changed`, () => {
+        expect(v1.x).toBe(a.x);
+        expect(v1.y).toBe(a.y);
+        expect(v2.x).toBe(b.x);
+        expect(v2.y).toBe(b.y);
+      })
+    })
+
+    //---------------------------------------------------------------------------
+    // ベクトルの減法
+    describe.each`
+    a              | b             | result
+    ${{x:0, y:0}}  | ${{x:0, y:0}} | ${{x:0, y:0}}
+    ${{x:1, y:1}}  | ${{x:2, y:3}} | ${{x:-1, y:-2}}
+    `
+    (`Test of Vector2.sub`, ({a, b, result}) => {
+      const v1 = new Vector2(a.x, a.y);
+      const v2 = new Vector2(b.x, b.y);
+      const v3 = Vector2.sub(v1, v2);
+
+      it(`Vector2.sub(v1, v2) = ${v3.toString()}`, () => {
         expect(v3.x).toBe(result.x);
         expect(v3.y).toBe(result.y);
       })

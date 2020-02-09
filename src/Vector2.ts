@@ -26,6 +26,13 @@ export default class Vector2
     return this;
   }
 
+  /** 減法 */
+  sub(v:Vector2) {
+    this.x -= v.x;
+    this.y -= v.y;
+    return this;
+  }
+
   /** 逆ベクトル */
   inverse() {
     this.x *= -1;
@@ -72,6 +79,11 @@ export default class Vector2
   /** 加法 */
   static add(v1:Vector2, v2:Vector2)  {
     return v1.clone().add(v2);
+  }
+
+  /** 減法 */
+  static sub(v1:Vector2, v2:Vector2) {
+    return v1.clone().sub(v2);
   }
 
   /** 逆ベクトル */
