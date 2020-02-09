@@ -26,6 +26,11 @@ export default class Vector2
     return this;
   }
 
+  /** 零ベクトルかどうか */
+  get isZero() {
+    return (this.x === 0 && this.y === 0);
+  }
+
   /** 大きさ */
   get magnitude() {
     const {x, y} = this;

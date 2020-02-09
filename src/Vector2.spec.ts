@@ -38,6 +38,19 @@ describe('Test of Vector2', () => {
   })
 
   //---------------------------------------------------------------------------
+  // 零ベクトル
+  describe.each`
+  v1 | result
+  ${new Vector2(0, 0)} | ${true}
+  ${new Vector2(1, 1)} | ${false}
+  `
+  (`Test of Vector2.isZero`, ({v1, result}) => {
+    it(`v1.isZero} = ${result}`, () => {
+      expect(v1.isZero).toBe(result);
+    })
+  })
+
+  //---------------------------------------------------------------------------
   // ベクトルのテキスト化
   describe.each`
   v | result
