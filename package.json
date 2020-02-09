@@ -17,6 +17,6 @@
     "test": "jest --watch",
     "test:cover": "jest --coverage",
     "build": "rm -rf ./build && parcel build ./src/index.ts --out-dir=build --no-source-maps",
-    "build:map"    : "rm -rf ./build && parcel build ./src/index.ts --out-dir=build"
+    "build:map": "rm -rf ./build && parcel build ./src/index.ts --out-dir=build"
   }
 }
