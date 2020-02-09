@@ -42,13 +42,13 @@ cd hoge
 yarn init
 ```
 
-##$ 環境構築手順 その② 使用するパッケージ
+## 環境構築手順 その② 使用するパッケージ
 ```bash
 # 必要なパッケージを入れる
 yarn add -D typescript jest ts-jest parcel @types/jest @types/node
 ```
 
-##$ 環境構築手順 その③ tsconfig.json
+### 環境構築手順 その③ tsconfig.json
 typescriptの設定ファイルである`tsconfig.json`を作成する。
 
 詳しくは`./tsconfig.json`を参照のこと
