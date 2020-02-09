@@ -49,6 +49,11 @@ export default class Vector2
     };
   }
 
+  /** 複製 */
+  clone() {
+    return new Vector2(this.x, this.y);
+  }
+
   /** テキスト化 */
   toString() {
     return `(${this.x}, ${this.y})`;

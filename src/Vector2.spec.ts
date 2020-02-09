@@ -51,6 +51,24 @@ describe('Test of Vector2', () => {
   })
 
   //---------------------------------------------------------------------------
+  // 複製
+  describe.each`
+  v
+  ${new Vector2(0, 0)} 
+  ${new Vector2(1, 1)} 
+  `
+  (`Test of Vector2.clone`, ({v}) => {
+    const clone = v.clone();
+    it (`v.clone().xy is equal origin vector xy.`, () => {
+      expect(clone.x).toBe(v.x);
+      expect(clone.y).toBe(v.y);
+    })
+    it(`instance of v is not instance of v.clone()`, () => {
+      expect(v === clone).toBe(false);
+    })
+  })
+
+  //---------------------------------------------------------------------------
   // ベクトルのテキスト化
   describe.each`
   v | result
