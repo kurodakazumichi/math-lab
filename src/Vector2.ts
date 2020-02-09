@@ -9,7 +9,7 @@ export default class Vector2
   /** y成分 */
   y:number = 0;
 
-  constructor(x = 0, y = 0) {
+  constructor(x:number = 0, y:number = 0) {
     this.x = x;
     this.y = y;
   }
@@ -17,6 +17,13 @@ export default class Vector2
   /** 相等 */
   equal(v:Vector2) {
     return (this.x === v.x && this.y === v.y);
+  }
+
+  /** 加法 */
+  add(v:Vector2) {
+    this.x += v.x;
+    this.y += v.y;
+    return this;
   }
 
   /** 大きさ */
@@ -40,5 +47,13 @@ export default class Vector2
   /** テキスト化 */
   toString() {
     return `(${this.x}, ${this.y})`;
+  }
+
+  //---------------------------------------------------------------------------
+  // Static
+  //---------------------------------------------------------------------------
+  /** 加法 */
+  static add(v1:Vector2, v2:Vector2)  {
+    return new Vector2(v1.x, v1.y).add(v2);
   }
 }
