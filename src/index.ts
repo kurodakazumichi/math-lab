@@ -5,6 +5,7 @@
  * 正直このやり方は正しくない気はするが、結果的に同じだからいいよね
  * と思ってやってしまっている。
  *****************************************************************************/
+import * as Util from "./util";
 import Vector2 from "./Vector2";
 import Quadratic from "./Quadratic";
 
@@ -15,7 +16,8 @@ declare var window: GlobalWindow;
 
 if (typeof window !== "undefined"){
   window.MyMath = {
-    Quadratic: Quadratic,
-    Vector2  : Vector2,
+    Util,
+    Quadratic,
+    Vector2,
   }
 }
