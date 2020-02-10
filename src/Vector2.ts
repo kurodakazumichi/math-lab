@@ -42,9 +42,7 @@ export default class Vector2
 
   /** 逆ベクトル */
   inverse() {
-    this.x *= -1;
-    this.y *= -1;
-    return this;
+    return this.times(-1);
   }
 
   /** 零ベクトルかどうか */
