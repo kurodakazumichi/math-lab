@@ -89,6 +89,22 @@ describe('Test of Vector2', () => {
   })
 
   //---------------------------------------------------------------------------
+  // ベクトルの正規化
+  describe.each`
+  v1 | result
+  ${new Vector2(0, 0)}    | ${new Vector2(0, 0)}
+  ${new Vector2(10, 0)}   | ${new Vector2(1, 0)}
+  ${new Vector2(-10, 0)}  | ${new Vector2(-1, 0)}
+  ${new Vector2(1, 1)}    | ${new Vector2(1/Math.sqrt(2), 1/Math.sqrt(2))}
+  ${new Vector2(3, 4)}    | ${new Vector2(3/5, 4/5)}
+  `
+  (`Test of Vector2.normalize`, ({v1, result}) => {
+    it(`v1.normalize = ${result}`, () => {
+      expect(v1.normalize).toEqual(result);
+    })
+  })
+
+  //---------------------------------------------------------------------------
   // 複製
   describe.each`
   v
