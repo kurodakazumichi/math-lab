@@ -33,6 +33,13 @@ export default class Vector2
     return this;
   }
 
+  /** 実数倍 */
+  times(k:number) {
+    this.x *= k;
+    this.y *= k;
+    return this;
+  }
+
   /** 逆ベクトル */
   inverse() {
     this.x *= -1;
@@ -84,6 +91,11 @@ export default class Vector2
   /** 減法 */
   static sub(v1:Vector2, v2:Vector2) {
     return v1.clone().sub(v2);
+  }
+
+  /** 実数倍 */
+  static times(v:Vector2, k:number) {
+    return v.clone().times(k);
   }
 
   /** 逆ベクトル */

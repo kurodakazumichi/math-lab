@@ -56,6 +56,24 @@ describe('Test of Vector2', () => {
   })
 
   //---------------------------------------------------------------------------
+  // 実数倍
+  describe.each`
+  v | scalar | result
+  ${new Vector2(1, 1)} | ${0}  | ${new Vector2(0, 0)}
+  ${new Vector2(1, 1)} | ${2}  | ${new Vector2(2, 2)}
+  ${new Vector2(1, 1)} | ${-1} | ${new Vector2(-1, -1)}
+  `
+  (`Test of Vector2.times`, ({v, scalar, result}) => {
+    const times = v.times(scalar);
+    it(`instance of v.times() is equal instance of v`, () => {
+      expect(times === v).toBeTruthy();
+    })
+    it(`v.times() = ${result.toString()}`, () => {
+      expect(times.equal(result)).toBeTruthy();
+    })
+  })
+
+  //---------------------------------------------------------------------------
   // 逆ベクトル
   describe.each`
   v1 | v2 
@@ -169,6 +187,24 @@ describe('Test of Vector2', () => {
         expect(v1.y).toBe(a.y);
         expect(v2.x).toBe(b.x);
         expect(v2.y).toBe(b.y);
+      })
+    })
+
+    //---------------------------------------------------------------------------
+    // 実数倍
+    describe.each`
+    v | scalar | result
+    ${new Vector2(1, 1)} | ${0}  | ${new Vector2(0, 0)}
+    ${new Vector2(1, 1)} | ${2}  | ${new Vector2(2, 2)}
+    ${new Vector2(1, 1)} | ${-1} | ${new Vector2(-1, -1)}
+    `
+    (`Test of Vector2.times`, ({v, scalar, result}) => {
+      const times = Vector2.times(v, scalar);
+      it(`Vector2.times(v, ${scalar}) is not equal instance of v`, () => {
+        expect(times === v).toBeFalsy();
+      })
+      it(`Vector2.times(v1, ${scalar}) = ${result.toString()}`, () => {
+        expect(times.equal(result)).toBeTruthy();
       })
     })
 
