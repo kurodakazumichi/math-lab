@@ -52,10 +52,12 @@ export default class Vector2
 
     if (magnitude == 0) return {x:0, y:0}
 
-    return {
+    const v = {
       x: this.x/magnitude,
       y: this.y/magnitude
     };
+
+    return new Vector2(v.x, v.y);
   }
 
   /** 複製 */
