@@ -105,6 +105,21 @@ describe('Test of Vector2', () => {
   })
 
   //---------------------------------------------------------------------------
+  // ベクトルの大きさ
+  describe.each`
+  v1 | result
+  ${new Vector2(0, 0)}   | ${0}
+  ${new Vector2(1, 1)}   | ${Math.sqrt(2)}
+  ${new Vector2(-1, -1)} | ${Math.sqrt(2)}
+  ${new Vector2(3, 4)}   | ${5}
+  `
+  (`Test of Vector2.magnitude`, ({v1, result}) => {
+    it(`v1.magnitude = ${result}`, () => {
+      expect(v1.magnitude).toBe(result);
+    })
+  })
+
+  //---------------------------------------------------------------------------
   // 複製
   describe.each`
   v
