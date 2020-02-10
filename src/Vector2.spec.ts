@@ -246,6 +246,20 @@ describe('Test of Vector2', () => {
       })
     })
 
+    //---------------------------------------------------------------------------
+    // ベクトルが平行かどうか
+    describe.each`
+    v1 | v2 | result
+    ${new Vector2(0, 0)}   | ${new Vector2(0, 0)} | ${true}
+    ${new Vector2(1, 1)}   | ${new Vector2(2, 2)} | ${true}
+    ${new Vector2(-1, -1)} | ${new Vector2(2, 2)} | ${true}
+    ${new Vector2(1, 0)}   | ${new Vector2(0, 1)} | ${false}
+    `
+    (`Test of Vector2.isParallel`, ({v1, v2, result}) => {
+      it(`Vector2.isParallel(v1, v2) = ${result}`, () => {
+        expect(Vector2.isParallel(v1, v2)).toBe(result);
+      })
+    })
 
 
   })
