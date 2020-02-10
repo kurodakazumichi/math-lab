@@ -226,6 +226,29 @@ describe('Test of Vector2', () => {
       })
     })
 
+    //---------------------------------------------------------------------------
+    // 基本ベクトル
+    describe(`Test of basic vector2`, () => {
+      it(`Vector2.zero is (0, 0)`, () => { 
+        expect(Vector2.zero).toEqual(new Vector2(0, 0)); 
+      })
+      it(`Vector2.one is (1, 1)`, () => { 
+        expect(Vector2.one).toEqual(new Vector2(1, 1)); 
+      })
+      it(`Vector2.up is (0, 1)`, () => { 
+        expect(Vector2.up).toEqual(new Vector2(0, 1)); 
+      })
+      it(`Vector2.down is (0, -1)`, () => { 
+        expect(Vector2.down).toEqual(new Vector2(0, -1)); 
+      })
+      it(`Vector2.left is (-1, 0)`, () => { 
+        expect(Vector2.left).toEqual(new Vector2(-1, 0)); 
+      })
+      it(`Vector2.right is (1, 0)`, () => { 
+        expect(Vector2.right).toEqual(new Vector2(1, 0)); 
+      })
+    })
+
   })
 
 });

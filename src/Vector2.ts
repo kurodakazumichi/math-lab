@@ -100,4 +100,24 @@ export default class Vector2
   static inverse(v:Vector2) {
     return v.clone().inverse();
   }
+
+  // 基本ベクトル
+  static get zero() {
+    return new Vector2(0, 0);
+  }
+  static get one() {
+    return new Vector2(1, 1);
+  }
+  static get up() {
+    return new Vector2(0, 1);
+  }
+  static get down() {
+    return new Vector2(0, -1);
+  }
+  static get left() {
+    return new Vector2(-1, 0);
+  }
+  static get right() {
+    return new Vector2(1, 0);
+  }
 }
