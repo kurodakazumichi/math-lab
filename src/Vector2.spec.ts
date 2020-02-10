@@ -1,3 +1,4 @@
+import * as  Util from '~/util';
 import Vector2 from '~/Vector2';
 
 describe('Test of Vector2', () => {
@@ -307,8 +308,25 @@ describe('Test of Vector2', () => {
       })
     })
 
-
-
+    //---------------------------------------------------------------------------
+    // ２つのベクトルがなす角
+    describe.each`
+    v1 | v2 | result
+    ${Vector2.zero}  | ${Vector2.zero}                 | ${NaN}
+    ${Vector2.zero}  | ${Vector2.one}                  | ${NaN}
+    ${Vector2.one}   | ${Vector2.one}                  | ${0}
+    ${Vector2.right} | ${Vector2.one}                  | ${Util.deg2rad(45)}
+    ${Vector2.right} | ${new Vector2(1, Math.sqrt(3))} | ${Util.deg2rad(60)}
+    ${Vector2.right} | ${Vector2.up}                   | ${Util.deg2rad(90)}
+    ${Vector2.left}  | ${Vector2.one}                  | ${Util.deg2rad(135)}
+    ${Vector2.left}  | ${Vector2.right}                | ${Util.deg2rad(180)}
+    ${Vector2.left}  | ${new Vector2(1, -1)}           | ${Util.deg2rad(135)}
+    `
+    (`Test of Vector2.angle`, ({v1, v2, result}) => {
+      it(`Vector2.angle(v1, v2) = ${result.toFixed(5)}`, () => {
+        expect(Vector2.angle(v1, v2).toFixed(5)).toBe(result.toFixed(5));
+      })
+    })
   })
 
 });

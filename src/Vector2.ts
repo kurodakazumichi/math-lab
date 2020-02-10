@@ -132,5 +132,13 @@ export default class Vector2
     return dot;
   }
 
+  /** ２つのベクトルがなす角 */
+  static angle(v1:Vector2, v2:Vector2) {
+    const nemu = Vector2.dot(v1, v2);
+    const deno = v1.magnitude * v2.magnitude;
+    const cos  = nemu / deno;
+    return Math.acos(cos);
+  }
+
 
 }
