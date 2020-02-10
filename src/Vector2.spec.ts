@@ -278,6 +278,22 @@ describe('Test of Vector2', () => {
     })
 
     //---------------------------------------------------------------------------
+    // ベクトルが垂直かどうか
+    describe.each`
+    v1 | v2 | result
+    ${Vector2.up}   | ${Vector2.left}       | ${true}
+    ${Vector2.up}   | ${Vector2.right}      | ${true}
+    ${Vector2.up}   | ${Vector2.down}       | ${false}
+    ${Vector2.one}  | ${Vector2.zero}       | ${true}
+    ${Vector2.one}  | ${new Vector2(-1, 1)} | ${true}
+    `
+    (`Test of Vector2.isVertical`, ({v1, v2, result}) => {
+      it(`Vector2.isVertical(v1, v2) = ${result}`, () => {
+        expect(Vector2.isVertical(v1, v2)).toBe(result);
+      })
+    })
+
+    //---------------------------------------------------------------------------
     // ベクトルの内積
     describe.each`
     v1 | v2 | result
