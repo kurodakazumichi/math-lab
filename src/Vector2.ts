@@ -122,6 +122,10 @@ export default class Vector2
     return (t === 0);
   }
 
+  static dot(v1:Vector2, v2:Vector2) {
+    const dot = v1.x * v2.x + v1.y * v2.y;
+    return dot;
+  }
 
 
 }

@@ -261,6 +261,21 @@ describe('Test of Vector2', () => {
       })
     })
 
+    //---------------------------------------------------------------------------
+    // ベクトルの内積
+    describe.each`
+    v1 | v2 | result
+    ${new Vector2(0, 0)}   | ${new Vector2(0, 0)} | ${0}
+    ${new Vector2(1, 1)}   | ${new Vector2(2, 0)} | ${2}
+    ${new Vector2(2, 0)}   | ${new Vector2(1, 1)} | ${2}
+    `
+    (`Test of Vector2.dot`, ({v1, v2, result}) => {
+      it(`Vector2.isdot(v1, v2) = ${result}`, () => {
+        expect(Vector2.dot(v1, v2)).toBe(result);
+      })
+    })
+
+
 
   })
 
