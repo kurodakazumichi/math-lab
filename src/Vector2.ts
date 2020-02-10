@@ -127,6 +127,7 @@ export default class Vector2
     return (Vector2.dot(v1, v2) === 0);
   }
 
+  /** 内積 */
   static dot(v1:Vector2, v2:Vector2) {
     const dot = v1.x * v2.x + v1.y * v2.y;
     return dot;
