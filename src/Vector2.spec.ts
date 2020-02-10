@@ -99,7 +99,7 @@ describe('Test of Vector2', () => {
   ${new Vector2(1, 1)} | ${false}
   `
   (`Test of Vector2.isZero`, ({v1, result}) => {
-    it(`v1.isZero} = ${result}`, () => {
+    it(`v1.isZero = ${result}`, () => {
       expect(v1.isZero).toBe(result);
     })
   })
