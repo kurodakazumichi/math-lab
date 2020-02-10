@@ -40,16 +40,6 @@ export default class Vector2
     return this;
   }
 
-  /** 逆ベクトル */
-  inverse() {
-    return this.times(-1);
-  }
-
-  /** 零ベクトルかどうか */
-  get isZero() {
-    return (this.x === 0 && this.y === 0);
-  }
-
   /** 大きさ */
   get magnitude() {
     const {x, y} = this;
@@ -81,26 +71,6 @@ export default class Vector2
   //---------------------------------------------------------------------------
   // Static
   //---------------------------------------------------------------------------
-  /** 加法 */
-  static add(v1:Vector2, v2:Vector2)  {
-    return v1.clone().add(v2);
-  }
-
-  /** 減法 */
-  static sub(v1:Vector2, v2:Vector2) {
-    return v1.clone().sub(v2);
-  }
-
-  /** 実数倍 */
-  static times(v:Vector2, k:number) {
-    return v.clone().times(k);
-  }
-
-  /** 逆ベクトル */
-  static inverse(v:Vector2) {
-    return v.clone().inverse();
-  }
-
   // 基本ベクトル
   static get zero() {
     return new Vector2(0, 0);
@@ -120,4 +90,37 @@ export default class Vector2
   static get right() {
     return new Vector2(1, 0);
   }
+
+  /** 加法 */
+  static add(v1:Vector2, v2:Vector2)  {
+    return v1.clone().add(v2);
+  }
+
+  /** 減法 */
+  static sub(v1:Vector2, v2:Vector2) {
+    return v1.clone().sub(v2);
+  }
+
+  /** 実数倍 */
+  static times(v:Vector2, k:number) {
+    return v.clone().times(k);
+  }
+
+  /** 逆ベクトル */
+  static inverse(v:Vector2) {
+    return v.clone().times(-1);
+  }
+
+  /** 零ベクトルかどうか */
+  static isZero(v:Vector2) {
+    return (v.x === 0 && v.y === 0);
+  }
+
+  /** 平行かどうか */
+  // static isParallel(v1:Vector2, v2:Vector2) {
+    
+  // }
+
+
+
 }

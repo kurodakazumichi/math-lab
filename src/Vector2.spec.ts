@@ -74,37 +74,6 @@ describe('Test of Vector2', () => {
   })
 
   //---------------------------------------------------------------------------
-  // 逆ベクトル
-  describe.each`
-  v1 | v2 
-  ${new Vector2(0, 0)}  | ${new Vector2(0, 0)}
-  ${new Vector2(1, 1)}  | ${new Vector2(-1, -1)}
-  ${new Vector2(-1, 1)} | ${new Vector2(1, -1)}
-  `
-  (`Test of Vector2.inverse`, ({v1, v2}) => {
-    const inv = v1.inverse();
-    it(`instance of v1.inverse() is equal instance of v1`, () => {
-      expect(inv === v1).toBeTruthy();
-    })
-    it(`v1.inverse() = ${v2.toString()}`, () => {
-      expect(inv.equal(v2)).toBeTruthy();
-    })
-  })
-
-  //---------------------------------------------------------------------------
-  // 零ベクトル
-  describe.each`
-  v1 | result
-  ${new Vector2(0, 0)} | ${true}
-  ${new Vector2(1, 1)} | ${false}
-  `
-  (`Test of Vector2.isZero`, ({v1, result}) => {
-    it(`v1.isZero = ${result}`, () => {
-      expect(v1.isZero).toBe(result);
-    })
-  })
-
-  //---------------------------------------------------------------------------
   // ベクトルの大きさ
   describe.each`
   v1 | result
@@ -153,6 +122,29 @@ describe('Test of Vector2', () => {
   //---------------------------------------------------------------------------
   // Static
   describe('Static', () => {
+
+    //---------------------------------------------------------------------------
+    // 基本ベクトル
+    describe(`Test of basic vector2`, () => {
+      it(`Vector2.zero is (0, 0)`, () => { 
+        expect(Vector2.zero).toEqual(new Vector2(0, 0)); 
+      })
+      it(`Vector2.one is (1, 1)`, () => { 
+        expect(Vector2.one).toEqual(new Vector2(1, 1)); 
+      })
+      it(`Vector2.up is (0, 1)`, () => { 
+        expect(Vector2.up).toEqual(new Vector2(0, 1)); 
+      })
+      it(`Vector2.down is (0, -1)`, () => { 
+        expect(Vector2.down).toEqual(new Vector2(0, -1)); 
+      })
+      it(`Vector2.left is (-1, 0)`, () => { 
+        expect(Vector2.left).toEqual(new Vector2(-1, 0)); 
+      })
+      it(`Vector2.right is (1, 0)`, () => { 
+        expect(Vector2.right).toEqual(new Vector2(1, 0)); 
+      })
+    })
 
     //-------------------------------------------------------------------------
     // ベクトルの加法
@@ -242,27 +234,19 @@ describe('Test of Vector2', () => {
     })
 
     //---------------------------------------------------------------------------
-    // 基本ベクトル
-    describe(`Test of basic vector2`, () => {
-      it(`Vector2.zero is (0, 0)`, () => { 
-        expect(Vector2.zero).toEqual(new Vector2(0, 0)); 
-      })
-      it(`Vector2.one is (1, 1)`, () => { 
-        expect(Vector2.one).toEqual(new Vector2(1, 1)); 
-      })
-      it(`Vector2.up is (0, 1)`, () => { 
-        expect(Vector2.up).toEqual(new Vector2(0, 1)); 
-      })
-      it(`Vector2.down is (0, -1)`, () => { 
-        expect(Vector2.down).toEqual(new Vector2(0, -1)); 
-      })
-      it(`Vector2.left is (-1, 0)`, () => { 
-        expect(Vector2.left).toEqual(new Vector2(-1, 0)); 
-      })
-      it(`Vector2.right is (1, 0)`, () => { 
-        expect(Vector2.right).toEqual(new Vector2(1, 0)); 
+    // 零ベクトル
+    describe.each`
+    v1 | result
+    ${new Vector2(0, 0)} | ${true}
+    ${new Vector2(1, 1)} | ${false}
+    `
+    (`Test of Vector2.isZero`, ({v1, result}) => {
+      it(`Vector2.isZero(v1) = ${result}`, () => {
+        expect(Vector2.isZero(v1)).toBe(result);
       })
     })
+
+
 
   })
 
