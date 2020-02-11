@@ -135,6 +135,12 @@ export default class Vector2
     return dot;
   }
 
+  /** 外積 */
+  static cross(v1:Vector2, v2:Vector2) {
+    const cross = v1.x * v2.y - v2.x * v1.y;
+    return cross;
+  }
+
   /** ２つのベクトルがなす角 */
   static angle(v1:Vector2, v2:Vector2) {
     const nemu = Vector2.dot(v1, v2);
