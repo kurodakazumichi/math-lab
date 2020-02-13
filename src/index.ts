@@ -21,3 +21,5 @@ if (typeof window !== "undefined"){
     Vector2,
   }
 }
+
+export default { Util, Vector2, Quadratic }
