@@ -22,4 +22,4 @@ if (typeof window !== "undefined"){
   }
 }
 
-export default { Util, Vector2, Quadratic }
+export { Util, Vector2, Quadratic }
