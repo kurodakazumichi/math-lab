@@ -1,7 +1,7 @@
 {
   "name": "math-lab",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "repository": "https://github.com/kurodakazumichi/math-lab.git",
   "author": "kazumichi kuroda <kazumichi-kuroda@nekonecode.com>",
   "license": "MIT",
@@ -17,6 +17,7 @@
     "test": "jest --watch",
     "test:cover": "jest --coverage",
     "build": "rm -rf ./build && parcel build ./src/index.ts --out-dir=build --no-source-maps",
-    "build:map": "rm -rf ./build && parcel build ./src/index.ts --out-dir=build"
+    "build:map": "rm -rf ./build && parcel build ./src/index.ts --out-dir=build",
+    "build:tsc": "rm -rf && tsc"
   }
 }
