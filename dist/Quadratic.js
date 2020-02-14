@@ -7,7 +7,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var Util = __importStar(require("~/util"));
+var Util = __importStar(require("./Util"));
 var Quadratic = (function () {
     function Quadratic() {
         this._a = 0;

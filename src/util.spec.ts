@@ -1,4 +1,4 @@
-import * as Util from '~/Util';
+import * as Util from './Util';
 
 describe('Test of Util', () => {
 

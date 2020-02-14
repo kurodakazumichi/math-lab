@@ -1,4 +1,4 @@
-import Quadratic from '~/Quadratic';
+import Quadratic from './Quadratic';
 
 //-----------------------------------------------------------------------------
 // static 

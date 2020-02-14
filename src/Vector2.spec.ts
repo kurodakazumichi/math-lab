@@ -1,5 +1,5 @@
-import * as  Util from '~/util';
-import Vector2 from '~/Vector2';
+import * as  Util from './util';
+import Vector2 from './Vector2';
 
 describe('Test of Vector2', () => {
 
