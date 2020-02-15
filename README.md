@@ -25,6 +25,7 @@
 ├── src            ... ソースコード
 |    └── index.ts  ... バンドルのためのts    
 ├── build          ... バンドルされたjsが入る
+├── dist           ... トランスパイルされたjsとtsの型定義ファイル
 ├── jest.config.js ... jestの設定
 ├── tsconfig.json  ... tsの設定
 └── yarn.lock
@@ -95,3 +96,8 @@ typescript使う設定などをしている.
 5. おわり。
 
 詳しくは`./src`を参考のこと
+
+### 追記
+
+他のTypeScriptプロジェクトに`yarn add`して使うための設定を追加。
+`yarn build:tsc`とすることで`dist`にトランスパイルしたコードが生成される。
