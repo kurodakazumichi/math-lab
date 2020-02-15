@@ -21,7 +21,7 @@ var Quadratic = (function () {
         get: function () { return Util.unifySign(this._a); },
         set: function (v) {
             this._a = Number(v);
-            this.initAPQ(this._a, this._p, this._q);
+            this.initABC(this._a, this._b, this._c);
         },
         enumerable: true,
         configurable: true

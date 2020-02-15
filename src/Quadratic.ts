@@ -31,7 +31,7 @@ export default class Quadratic
   get a() { return Util.unifySign(this._a); }
   set a(v) { 
     this._a = Number(v);
-    this.initAPQ(this._a, this._p, this._q);
+    this.initABC(this._a, this._b, this._c);
   }
 
   /** bの操作 */
