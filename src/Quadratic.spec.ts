@@ -253,6 +253,37 @@ describe('Test of Quadratic', () =>
     })
   })
 
+  describe.each`
+  a      | b    | c    | points
+  ${0}   | ${0} | ${0} |${[]}  
+  ${1}   | ${0} | ${0} |${[-2, 4, -1, 1, 0, 0, 1, 1, 2, 4]}  
+  `(`Test of getPoints()`, ({a, b, c, points}) => {
+    describe(`getPoints(-2, 2, 1)`, () => {
+
+      const p = new Quadratic()
+        .initGeneralForm(a, b, c)
+        .getPoints(-2, 2, 1);
+
+      it(`points = ${points}`, () => { expect(p).toEqual(points); })
+    })
+  })
+
+  describe.each`
+  a      | b    | c    | points
+  ${0}   | ${0} | ${0} |${[]}  
+  ${1}   | ${0} | ${0} |${[-2, 0, 2, 0]}  
+  ${1}   | ${1} | ${3} |${[-2, 1, 2, 5]}  
+  `(`Test of getPointsOfSlopeAtYTangent()`, ({a, b, c, points}) => {
+    describe(`getPointsOfSlopeAtYTangent(-2, 2)`, () => {
+
+      const p = new Quadratic()
+        .initGeneralForm(a, b, c)
+        .getPointsOfSlopeAtYTangent(-2, 2);
+
+      it(`points = ${points}`, () => { expect(p).toEqual(points); })
+    })
+  })
+
   //---------------------------------------------------------------------------
   // 導出項目
   //---------------------------------------------------------------------------

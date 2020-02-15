@@ -121,6 +121,29 @@ export default class Quadratic
     return a * ((x - p) * (x - p)) + q;
   }
 
+  /** 放物線の座標リスト */
+  getPoints(fromX:number, toX:number, step:number) 
+  {
+    if (this.isInvalid) return [];
+
+    const p:number[] = [];
+
+    for(let x = fromX; x <= toX; x+=step) {
+      p.push(x, this.fx(x));
+    }
+
+    return p;    
+  }
+
+  /** Y接線における傾きを表す直線の座標リスト */
+  getPointsOfSlopeAtYTangent(fromX:number, toX:number) 
+  {
+    if (this.isInvalid) return [];
+    const y1 = this.b * fromX + this.c;
+    const y2 = this.b * toX   + this.c;
+    return [fromX, y1, toX, y2];
+  }
+
   //---------------------------------------------------------------------------
   // 導出項目
   //---------------------------------------------------------------------------
