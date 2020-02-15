@@ -2,12 +2,11 @@ import * as Util from './Util';
 
 /******************************************************************************
  * ２次関数
- * このクラスは以下の２次関数の式から組み立てている
- * y = a(x-p)^2 + q
- * y = ax^2 + bx + c
+ * y = ax^2 + bx + c の一般形を基準とする
  *
- * a は 放物線の傾き
- * (p, q)は頂点になる。
+ * aは放物線の開き具合
+ * bはy切片における接線の傾き
+ * cはy切片
  *****************************************************************************/
 export default class Quadratic 
 {
@@ -16,12 +15,8 @@ export default class Quadratic
   private _b:number = 0;
   private _c:number = 0;
 
-  /** y = a(x - p)^2 + q とした際のp, q */
-  private _p:number = 0;
-  private _q:number = 0;
-
   constructor() {
-    this._a = this._b = this._c = this._p = this._q = 0;
+    this._a = this._b = this._c = 0;
   }
 
   //---------------------------------------------------------------------------
@@ -29,39 +24,24 @@ export default class Quadratic
   //---------------------------------------------------------------------------
   /** aの操作 */
   get a() { return Util.unifySign(this._a); }
-  set a(v) { 
-    this._a = Number(v);
-    this.initABC(this._a, this._b, this._c);
-  }
+  set a(v) { this._a = Number(v); }
 
   /** bの操作 */
   get b() { return Util.unifySign(this._b); }
-  set b(v) {
-    this._b = Number(v);
-    this._p = Quadratic.calcP_By_ab(this.a, this.b);
-    this._q = Quadratic.calcQ_By_abc(this.a, this.b, this.c);
-  }
+  set b(v) { this._b = Number(v); }
 
   /** cの操作 */
   get c() { return Util.unifySign(this._c); }
-  set c(v) {
-    this._c = Number(v);
-    this._q = Quadratic.calcQ_By_abc(this.a, this.b, this.c);
+  set c(v) { this._c = Number(v); }
+
+  /** pの導出 */
+  get p() { 
+    return Util.unifySign(Quadratic.calcP_By_ab(this.a, this.b))
   }
 
-  /** pの操作 */
-  get p() { return Util.unifySign(this._p); }
-  set p(v) {
-    this._p = Number(v);
-    this._b = Quadratic.calcB_By_ap(this.a, this.p);
-    this._c = Quadratic.calcC_By_pq(this.a, this.p, this.q);
-  }
-
-  /** ｑの操作 */
-  get q() { return Util.unifySign(this._q); }
-  set q(v) {
-    this._q = Number(v);
-    this._c = Quadratic.calcC_By_pq(this.a, this.p, this.q);
+  /** ｑの導出 */
+  get q() { 
+    return Util.unifySign(Quadratic.calcQ_By_abc(this.a, this.b, this.c));
   }
 
   //---------------------------------------------------------------------------
@@ -72,8 +52,6 @@ export default class Quadratic
    */
   initABC(a:number, b:number, c:number) {
     this._a = a, this._b = b, this._c = c;
-    this._p = Quadratic.calcP_By_ab(a, b);
-    this._q = Quadratic.calcQ_By_abc(a, b, c);
     return this;
   }
 
@@ -84,7 +62,7 @@ export default class Quadratic
    * @param {*} q 
    */
   initAPQ(a:number, p:number, q:number) {
-    this._a = a, this._p = p, this._q = q;
+    this._a = a;
     this._b = Quadratic.calcB_By_ap(a, p);
     this._c = Quadratic.calcC_By_pq(a, p, q);
     return this;
@@ -361,7 +339,7 @@ export default class Quadratic
   }
 
   /** 頂点を持っている(定まっているかどうか) */
-  static  hasApex(p:number, q:number) {
+  static hasApex(p:number, q:number) {
     if (isNaN(p) || isNaN(q)) return false;
     if (Infinity === Math.abs(p)) return false;
     if (Infinity === Math.abs(q)) return false;

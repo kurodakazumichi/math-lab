@@ -49,8 +49,8 @@ describe('Test of Quadratic', () =>
     it (`f.a == 0`, () => { expect(f.a).toBe(0); })
     it (`f.b == 0`, () => { expect(f.b).toBe(0); })
     it (`f.c == 0`, () => { expect(f.c).toBe(0); })
-    it (`f.d == 0`, () => { expect(f.p).toBe(0); })
-    it (`f.e == 0`, () => { expect(f.q).toBe(0); })
+    it (`f.d == 0`, () => { expect(f.p).toBe(NaN); })
+    it (`f.e == 0`, () => { expect(f.q).toBe(NaN); })
   })
 
   //---------------------------------------------------------------------------
@@ -62,8 +62,8 @@ describe('Test of Quadratic', () =>
     it (`is a=0`, () => { expect(f.a).toBe(0); })
     it (`is b=0`, () => { expect(f.b).toBe(0); })
     it (`is c=0`, () => { expect(f.c).toBe(0); })
-    it (`is p=0`, () => { expect(f.p).toBe(0); })
-    it (`is q=0`, () => { expect(f.q).toBe(0); })
+    it (`is p=0`, () => { expect(f.p).toBe(NaN); })
+    it (`is q=0`, () => { expect(f.q).toBe(NaN); })
   })
 
   describe('initABC(0, 0, 0)', () => {
@@ -160,15 +160,15 @@ describe('Test of Quadratic', () =>
   // change properity
   //---------------------------------------------------------------------------
   describe.each`
-  a       | p     | q     | b      | c
-  ${-1}   | ${1}  | ${1}  | ${2}   | ${0} 
-  ${0}    | ${1}  | ${1}  | ${0}   | ${1}
-  ${2}    | ${1}  | ${1}  | ${-4}  | ${3}
+  a       | p            | q            | b    | c
+  ${-1}   | ${0.5}       | ${1.25}      | ${1} | ${1} 
+  ${2}    | ${-0.25}     | ${7/8}         | ${1} | ${1}
+  ${0}    | ${-Infinity} | ${-Infinity} | ${1} | ${1}
   `(`Test of setter a`, ({a, b, c, p, q}) => {
     
     describe(`When a changed from 1 to ${a}, related property is changed `, () => {
       const f = new Quadratic();
-      f.initAPQ(1, 1, 1);
+      f.initABC(1, 1, 1);
       f.a = a;
 
       it (`f.a is ${a}`, () => { expect(f.a).toBe(a); })
@@ -210,46 +210,6 @@ describe('Test of Quadratic', () =>
       const f = new Quadratic();
       f.initAPQ(1, 1, 1);
       f.c = c;
-
-      it (`f.a is ${a}`, () => { expect(f.a).toBe(a); })
-      it (`f.b is ${b}`, () => { expect(f.b).toBe(b); })
-      it (`f.c is ${c}`, () => { expect(f.c).toBe(c); })
-      it (`f.p is ${p}`, () => { expect(f.p).toBe(p); })
-      it (`f.q is ${q}`, () => { expect(f.q).toBe(q); })
-    })
-  })
-
-  describe.each`
-  p     |q     |a       |b       |c
-  ${-1} |${1}  |${1}    |${2}   |${2}
-  ${0}  |${1}  |${1}    |${0}   |${1}
-  ${2}  |${1}  |${1}    |${-4}  |${5}
-  `(`Test of setter p`, ({b, a, c, p, q}) => {
-    
-    describe(`When p changed from 1 to ${p}, related property is changed `, () => {
-      const f = new Quadratic();
-      f.initAPQ(1, 1, 1);
-      f.p = p;
-
-      it (`f.a is ${a}`, () => { expect(f.a).toBe(a); })
-      it (`f.b is ${b}`, () => { expect(f.b).toBe(b); })
-      it (`f.c is ${c}`, () => { expect(f.c).toBe(c); })
-      it (`f.p is ${p}`, () => { expect(f.p).toBe(p); })
-      it (`f.q is ${q}`, () => { expect(f.q).toBe(q); })
-    })
-  })
-
-  describe.each`
-  q     |p     |a       |b      |c
-  ${-1} |${1}  |${1}    |${-2}  |${0}
-  ${0}  |${1}  |${1}    |${-2}  |${1}
-  ${2}  |${1}  |${1}    |${-2}  |${3}
-  `(`Test of setter p`, ({b, a, c, p, q}) => {
-    
-    describe(`When q changed from 1 to ${q}, related property is changed `, () => {
-      const f = new Quadratic();
-      f.initAPQ(1, 1, 1);
-      f.q = q;
 
       it (`f.a is ${a}`, () => { expect(f.a).toBe(a); })
       it (`f.b is ${b}`, () => { expect(f.b).toBe(b); })
@@ -322,17 +282,15 @@ describe('Test of Quadratic', () =>
   });
 
   describe.each`
-  p           | q     |result
-  ${0}        | ${0}        |${true}
-  ${NaN}      | ${0}        |${false}
-  ${Infinity} | ${0}        |${false}
-  ${0}        | ${NaN}      |${false}
-  ${0}        | ${Infinity} |${false}
-  `(`Test of hasApex`, ({p, q, result}) => {
-    const f = new Quadratic().initAPQ(1, 1, 1);
-    f.p = p, f.q = q;
+  a | b| c |result
+  ${0} | ${0} | ${0}        | ${false}
+  ${0} | ${1} | ${0}        | ${false}
+  ${1} | ${0} | ${Infinity} | ${false}
+  ${1} | ${0} | ${0}        | ${true}
+  `(`Test of hasApex`, ({a, b, c, result}) => {
+    const f = new Quadratic().initABC(a, b, c);
 
-    it(`is ${result} when (p, q) = (${p}, ${q}).`, () => { 
+    it(`is ${result} when (a, b, c) = (${a}, ${b}, ${c}).`, () => { 
       expect(f.hasApex).toBe(result);
     })
   });
