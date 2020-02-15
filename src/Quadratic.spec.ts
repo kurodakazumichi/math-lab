@@ -28,10 +28,10 @@ describe('Test of static in Quadratic.', () => {
   ${1} |${0} |${-1} |${-1} |${0} |${1} |${{count:2, points:[-Math.sqrt(1), 0, Math.sqrt(1), 0]}}
   `(`Test of intersect()`, ({a, b, c, d, e, f, result}) => {
 
-    describe(`initAPQ(${a}, ${b}, ${c}) intersect initAPQ(${d}, ${e}, ${f})`, () => {
+    describe(`initStandardForm(${a}, ${b}, ${c}) intersect initStandardForm(${d}, ${e}, ${f})`, () => {
       it(``, () => {
-        const fa = new Quadratic().initAPQ(a, b, c);
-        const fb = new Quadratic().initAPQ(d, e, f);
+        const fa = new Quadratic().initStandardForm(a, b, c);
+        const fb = new Quadratic().initStandardForm(d, e, f);
         expect(Quadratic.intersect(fa, fb)).toEqual(result);
       })
     });
@@ -56,9 +56,9 @@ describe('Test of Quadratic', () =>
   //---------------------------------------------------------------------------
   // initialize
   //---------------------------------------------------------------------------
-  describe('initAPQ(0, 0, 0)', () => {
+  describe('initStandardForm(0, 0, 0)', () => {
     const f = new Quadratic();
-    f.initAPQ(0, 0, 0);
+    f.initStandardForm(0, 0, 0);
     it (`is a=0`, () => { expect(f.a).toBe(0); })
     it (`is b=0`, () => { expect(f.b).toBe(0); })
     it (`is c=0`, () => { expect(f.c).toBe(0); })
@@ -66,9 +66,9 @@ describe('Test of Quadratic', () =>
     it (`is q=0`, () => { expect(f.q).toBe(NaN); })
   })
 
-  describe('initABC(0, 0, 0)', () => {
+  describe('initGeneralForm(0, 0, 0)', () => {
     const f = new Quadratic();
-    f.initABC(0, 0, 0);
+    f.initGeneralForm(0, 0, 0);
     it (`is a=0`  , () => { expect(f.a).toBe(0); })
     it (`is b=0`  , () => { expect(f.b).toBe(0); })
     it (`is c=0`  , () => { expect(f.c).toBe(0); })
@@ -85,11 +85,11 @@ describe('Test of Quadratic', () =>
   ${2}    | ${1}  | ${0}  | ${-4}  | ${2}
   ${-1}   | ${0}  | ${-3} | ${0}   | ${-3}
   ${2}    | ${1}  | ${3}  | ${-4}  | ${5}
-  `(`Test of initAPQ or initABC`, ({a, p, q, b, c}) => {
+  `(`Test of initStandardForm or initGeneralForm`, ({a, p, q, b, c}) => {
 
-    describe(`initAPQ(${a}, ${p}, ${q})`,() => {
+    describe(`initStandardForm(${a}, ${p}, ${q})`,() => {
       const f = new Quadratic();
-      f.initAPQ(a, p, q);
+      f.initStandardForm(a, p, q);
       it (`is a=${a}`, () => { expect(f.a).toBe(a); })
       it (`is b=${b}`, () => { expect(f.b).toBe(b); })
       it (`is c=${c}`, () => { expect(f.c).toBe(c); })
@@ -97,9 +97,9 @@ describe('Test of Quadratic', () =>
       it (`is q=${q}`, () => { expect(f.q).toBe(q); })
     })
 
-    describe(`initABC(${a}, ${b}, ${c})`, () => {
+    describe(`initGeneralForm(${a}, ${b}, ${c})`, () => {
       const f = new Quadratic();
-      f.initABC(a, b, c);
+      f.initGeneralForm(a, b, c);
       it (`is a=${a}`, () => { expect(f.a).toBe(a); })
       it (`is b=${b}`, () => { expect(f.b).toBe(b); })
       it (`is c=${c}`, () => { expect(f.c).toBe(c); })
@@ -183,7 +183,7 @@ describe('Test of Quadratic', () =>
     
     describe(`When a changed from 1 to ${a}, related property is changed `, () => {
       const f = new Quadratic();
-      f.initABC(1, 1, 1);
+      f.initGeneralForm(1, 1, 1);
       f.a = a;
 
       it (`f.a is ${a}`, () => { expect(f.a).toBe(a); })
@@ -203,7 +203,7 @@ describe('Test of Quadratic', () =>
     
     describe(`When b changed from 1 to ${b}, related property is changed `, () => {
       const f = new Quadratic();
-      f.initAPQ(1, 1, 1);
+      f.initStandardForm(1, 1, 1);
       f.b = b;
 
       it (`f.a is ${a}`, () => { expect(f.a).toBe(a); })
@@ -223,7 +223,7 @@ describe('Test of Quadratic', () =>
     
     describe(`When c changed from 1 to ${c}, related property is changed `, () => {
       const f = new Quadratic();
-      f.initAPQ(1, 1, 1);
+      f.initStandardForm(1, 1, 1);
       f.c = c;
 
       it (`f.a is ${a}`, () => { expect(f.a).toBe(a); })
@@ -247,8 +247,8 @@ describe('Test of Quadratic', () =>
   ${2}   | ${3} | ${4} |${-1} |${36}
   ${NaN} | ${0} | ${0} |${0}  |${0}
   `(`Test of fx()`, ({a, p, q, x, y}) => {
-    describe(`initAPQ(${a}, ${p}, ${q}).f(${x})`, () => {
-      const f = new Quadratic().initAPQ(a, p, q);
+    describe(`initStandardForm(${a}, ${p}, ${q}).f(${x})`, () => {
+      const f = new Quadratic().initStandardForm(a, p, q);
       it(`fx(${x}) = ${y}`, () => { expect(f.fx(x)).toBe(y); })
     })
   })
@@ -263,8 +263,8 @@ describe('Test of Quadratic', () =>
   ${-1} | ${-3} | ${4}
   `
   (`Test of apex`, ({a, p, q}) => {
-    describe(`initAPQ(${a}, ${p}, ${q}).apex`, () => {
-      const f = new Quadratic().initAPQ(a, p, q);
+    describe(`initStandardForm(${a}, ${p}, ${q}).apex`, () => {
+      const f = new Quadratic().initStandardForm(a, p, q);
       it(`is (${p}, ${q})`, () => { expect(f.apex).toEqual({x:p, y:q}); })
     })
   })
@@ -276,8 +276,8 @@ describe('Test of Quadratic', () =>
   ${-1} | ${-3} | ${4}
   `
   (`Test of axis`, ({a, p, q}) => {
-    describe(`initAPQ(${a}, ${p}, ${q}).axis`, () => {
-      const f = new Quadratic().initAPQ(a, p, q);
+    describe(`initStandardForm(${a}, ${p}, ${q}).axis`, () => {
+      const f = new Quadratic().initStandardForm(a, p, q);
       it(`is x = ${p}`, () => { expect(f.axis).toBe(p); })
     })
   })
@@ -303,7 +303,7 @@ describe('Test of Quadratic', () =>
   ${1} | ${0} | ${Infinity} | ${false}
   ${1} | ${0} | ${0}        | ${true}
   `(`Test of hasApex`, ({a, b, c, result}) => {
-    const f = new Quadratic().initABC(a, b, c);
+    const f = new Quadratic().initGeneralForm(a, b, c);
 
     it(`is ${result} when (a, b, c) = (${a}, ${b}, ${c}).`, () => { 
       expect(f.hasApex).toBe(result);
@@ -316,8 +316,8 @@ describe('Test of Quadratic', () =>
   ${0}  | ${-3} | ${4} | ${undefined}
   ${1}  | ${0}  | ${0} | ${undefined}
   `(`Test of max`, ({a, p, q, max}) => {
-    describe(`initAPQ(${a}, ${p}, ${q}).max`, () => {
-      const f = new Quadratic().initAPQ(a, p, q);
+    describe(`initStandardForm(${a}, ${p}, ${q}).max`, () => {
+      const f = new Quadratic().initStandardForm(a, p, q);
       it(`is max = ${p}`, () => { expect(f.max).toBe(max); })
     })
   })
@@ -328,8 +328,8 @@ describe('Test of Quadratic', () =>
   ${0}  | ${-3} | ${4} | ${undefined}
   ${1}  | ${0}  | ${0} | ${0}
   `(`Test of min`, ({a, p, q, min}) => {
-    describe(`initAPQ(${a}, ${p}, ${q}).max`, () => {
-      const f = new Quadratic().initAPQ(a, p, q);
+    describe(`initStandardForm(${a}, ${p}, ${q}).max`, () => {
+      const f = new Quadratic().initStandardForm(a, p, q);
       it(`is min = ${p}`, () => { expect(f.min).toBe(min); })
     })
   })
@@ -340,8 +340,8 @@ describe('Test of Quadratic', () =>
   ${1} | ${-4} | ${4}  | ${"toBe"}
   ${1} | ${-4} | ${5}  | ${"toBeLessThan"}
   `(`Test of discriminant`, ({a, b, c, conditions}) => {
-    describe(`initABC(${a}, ${b}, ${c}).discriminant`, () => {
-      const f = new Quadratic().initABC(a, b, c);
+    describe(`initGeneralForm(${a}, ${b}, ${c}).discriminant`, () => {
+      const f = new Quadratic().initGeneralForm(a, b, c);
       it(`is ${conditions} 0`, () => { 
         const e:any = expect(f.discriminant);
         e[conditions](0)
@@ -359,8 +359,8 @@ describe('Test of Quadratic', () =>
   ${-2} | ${1}   | ${-1} | ${[]}
   ${0}  | ${0}   | ${0}  | ${undefined}
   `(`Test of solution`, ({a, b, c, solution}) => {
-    describe(`initABC(${a}, ${b}, ${c}).solution`, () => {
-      const f = new Quadratic().initABC(a, b, c);
+    describe(`initGeneralForm(${a}, ${b}, ${c}).solution`, () => {
+      const f = new Quadratic().initGeneralForm(a, b, c);
       it(`is ${solution}`, () => { expect(f.solution).toEqual(solution); })
     })
   })
@@ -373,8 +373,8 @@ describe('Test of Quadratic', () =>
   ${-1} | ${0}   | ${1}  | ${false}
   ${1}  | ${0}   | ${1}  | ${true}
   `(`Quadratic is positive definite?`, ({a, b, c, result}) => {
-    describe(`initABC(${a}, ${b}, ${c}).isPositiveDefinite`, () => {
-      const f = new Quadratic().initABC(a, b, c);
+    describe(`initGeneralForm(${a}, ${b}, ${c}).isPositiveDefinite`, () => {
+      const f = new Quadratic().initGeneralForm(a, b, c);
       it(`is ${result}`, () => { 
         expect(f.isPositiveDefinite).toEqual(result); 
       })
@@ -390,8 +390,8 @@ describe('Test of Quadratic', () =>
   ${-1} | ${0}   | ${1}  | ${false}
   ${-1} | ${2}   | ${-2} | ${true}
   `(`Quadratic is negative definite?`, ({a, b, c, result}) => {
-    describe(`initABC(${a}, ${b}, ${c}).isNegativeDefinite`, () => {
-      const f = new Quadratic().initABC(a, b, c);
+    describe(`initGeneralForm(${a}, ${b}, ${c}).isNegativeDefinite`, () => {
+      const f = new Quadratic().initGeneralForm(a, b, c);
       it(`is ${result}`, () => { 
         expect(f.isNegativeDefinite).toEqual(result); 
       })
@@ -427,9 +427,9 @@ describe('Test of Quadratic', () =>
   ${NaN}      |${0}|${0}| ${"なし"}
   ${Infinity} |${0}|${0}| ${"なし"}
   `(`Test of toStringOfAxis()`, ({a, b, c, result}) => {
-    const f = new Quadratic().initABC(a, b, c);
+    const f = new Quadratic().initGeneralForm(a, b, c);
 
-    it(`is "${result}" when initABC(${a}, ${b}, ${c}).`, () => { 
+    it(`is "${result}" when initGeneralForm(${a}, ${b}, ${c}).`, () => { 
       expect(f.toStringOfAxis(1)).toBe(result); 
       expect(f.toStringOfAxis()).toBe(result); 
     })
@@ -443,9 +443,9 @@ describe('Test of Quadratic', () =>
   ${NaN}      |${0}|${0} | ${"なし"}
   ${Infinity} |${0}|${0} | ${"なし"}
   `(`Test of toStringOfAxis()`, ({a, b, c, result}) => {
-    const f = new Quadratic().initABC(a, b, c);
+    const f = new Quadratic().initGeneralForm(a, b, c);
 
-    it(`is "${result}" when initABC(${a}, ${b}, ${c}).`, () => { 
+    it(`is "${result}" when initGeneralForm(${a}, ${b}, ${c}).`, () => { 
       expect(f.toStringOfApex(1)).toBe(result); 
       expect(f.toStringOfApex()).toBe(result); 
     })
@@ -459,9 +459,9 @@ describe('Test of Quadratic', () =>
   ${NaN}      |${0} |${0} | ${"none"}
   ${Infinity} |${0} |${0} | ${"none"}
   `(`Test of toStringOfLatexAPQ()`, ({a, b, c, result}) => {
-    const f = new Quadratic().initABC(a, b, c);
+    const f = new Quadratic().initGeneralForm(a, b, c);
 
-    it(`is "${result}" when initABC(${a}, ${b}, ${c}).`, () => { 
+    it(`is "${result}" when initGeneralForm(${a}, ${b}, ${c}).`, () => { 
       expect(f.toStringOfLatexAPQ(1)).toBe(result); 
       expect(f.toStringOfLatexAPQ()).toBe(result); 
     })
@@ -475,9 +475,9 @@ describe('Test of Quadratic', () =>
   ${NaN}      |${0} |${0} | ${"none"}
   ${Infinity} |${0} |${0} | ${"none"}
   `(`Test of toStringOfLatexABC()`, ({a, b, c, result}) => {
-    const f = new Quadratic().initABC(a, b, c);
+    const f = new Quadratic().initGeneralForm(a, b, c);
 
-    it(`is "${result}" when initABC(${a}, ${b}, ${c}).`, () => { 
+    it(`is "${result}" when initGeneralForm(${a}, ${b}, ${c}).`, () => { 
       expect(f.toStringOfLatexABC(1)).toBe(result); 
       expect(f.toStringOfLatexABC()).toBe(result); 
     })
@@ -505,9 +505,9 @@ describe('Test of Quadratic', () =>
   ${NaN}      |${0} |${0} | ${"{a:NaN, b:0, c:0, p:NaN, q:NaN}"}
   ${Infinity} |${0} |${0} | ${"{a:Infinity, b:0, c:0, p:0, q:NaN}"}
   `(`Test of toString()`, ({a, b, c, result}) => {
-    const f = new Quadratic().initABC(a, b, c);
+    const f = new Quadratic().initGeneralForm(a, b, c);
 
-    it(`is "${result}" when initABC(${a}, ${b}, ${c}).`, () => { 
+    it(`is "${result}" when initGeneralForm(${a}, ${b}, ${c}).`, () => { 
       expect(f.toString()).toBe(result); 
     })
   });
@@ -523,7 +523,7 @@ describe('Test of Quadratic', () =>
   `
   (`直角二等辺三角形に内接する長方形の最大の面積を計算`, ({l, x, max}) => {
     describe(`1辺が${l}cmの直角二等右辺三角形の場合`, () => {
-      const f = new Quadratic().initABC(-1, l, 0);
+      const f = new Quadratic().initGeneralForm(-1, l, 0);
   
       it(`1辺が${x}cmの時、面積が${max}cm2で最大となる`, () => {
         expect(f.apex.x).toBe(x);
@@ -539,7 +539,7 @@ describe('Test of Quadratic', () =>
   `
   (`直角三角形の面積が最大となる場合の３辺の長さ`, ({t, x, y, s, max}) => {
     describe(`直角を挟む2辺の長さの和が${t}の三角形について`, () => {
-      const f = new Quadratic().initABC(-0.5, t/2, 0);
+      const f = new Quadratic().initGeneralForm(-0.5, t/2, 0);
 
       const ans = {
         x  : f.apex.x,

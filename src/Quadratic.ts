@@ -48,20 +48,19 @@ export default class Quadratic
   // 初期化
   //---------------------------------------------------------------------------
   /**
+   * 一般形
    * y = ax^2 + bx + cの式で初期化する
    */
-  initABC(a:number, b:number, c:number) {
+  initGeneralForm(a:number, b:number, c:number) {
     this._a = a, this._b = b, this._c = c;
     return this;
   }
 
   /**
+   * 標準形
    * y = a(x - p)^2 + qの式で初期化する
-   * @param {*} a 
-   * @param {*} p 
-   * @param {*} q 
    */
-  initAPQ(a:number, p:number, q:number) {
+  initStandardForm(a:number, p:number, q:number) {
     this._a = a;
     this._b = Quadratic.calcB_By_ap(a, p);
     this._c = Quadratic.calcC_By_pq(a, p, q);
@@ -84,7 +83,7 @@ export default class Quadratic
    */
   initByApexAndPassPoint(p:number, q:number, x:number, y:number) {
     const a = Quadratic.calcA_By_pqxy(p, q, x, y);
-    this.initAPQ(a, p, q);
+    this.initStandardForm(a, p, q);
     return this;
   }
 
@@ -95,7 +94,7 @@ export default class Quadratic
     const a = Quadratic.calcA_By_axixX_x1y1_x2y2(axisX, x1, y1, x2, y2);
     const q = Quadratic.calcQ_By_axixX_x1y1_x2y2(axisX, x1, y1, x2, y2);
     const p = axisX;
-    this.initAPQ(a, p, q);
+    this.initStandardForm(a, p, q);
     return this;
   }
 
@@ -106,7 +105,7 @@ export default class Quadratic
     const a = Quadratic.calcA_By_x1y1_x2y2_x3y3(x1, y1, x2, y2, x3, y3);
     const b = Quadratic.calcB_By_x1y1_x2y2_x3y3(x1, y1, x2, y2, x3, y3);
     const c = Quadratic.calcC_By_x1y1_x2y2_x3y3(x1, y1, x2, y2, x3, y3);
-    this.initABC(a, b, c);
+    this.initGeneralForm(a, b, c);
     return this;
   }
 
@@ -264,9 +263,19 @@ export default class Quadratic
     return -2 * a * p;
   }
 
+  /** a, s, t要素からbを求める */
+  static calcB_By_ast(a:number, s:number, t:number) {
+    return (-a*t) + (-a*s);
+  }
+
   /** a, p, q要素からcを求める */
   static calcC_By_pq(a:number, p:number, q:number) {
     return a * p**2 + q;
+  }
+
+  /** a, s, t要素からcを求める */
+  static calcC_By_ast(a:number, s:number, t:number) {
+    return a * s * t;
   }
 
   /** 頂点pqと通過する１点xyから傾きを計算する */
@@ -396,7 +405,7 @@ export default class Quadratic
     if (a.isInvalid || b.isInvalid) return result;
     
     // ２つの２次式から新たな２次式を作る
-    const c = new Quadratic().initABC(a.a - b.a, a.b - b.b, a.c - b.c);
+    const c = new Quadratic().initGeneralForm(a.a - b.a, a.b - b.b, a.c - b.c);
 
     // 解の公式から交わるxの座標を求める
     const px = c.solution;
