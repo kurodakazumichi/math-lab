@@ -88,6 +88,22 @@ var Quadratic = (function () {
         var _d = this, a = _d.a, p = _d.p, q = _d.q;
         return a * ((x - p) * (x - p)) + q;
     };
+    Quadratic.prototype.getPoints = function (fromX, toX, step) {
+        if (this.isInvalid)
+            return [];
+        var p = [];
+        for (var x = fromX; x <= toX; x += step) {
+            p.push(x, this.fx(x));
+        }
+        return p;
+    };
+    Quadratic.prototype.getPointsOfSlopeAtYTangent = function (fromX, toX) {
+        if (this.isInvalid)
+            return [];
+        var y1 = this.b * fromX + this.c;
+        var y2 = this.b * toX + this.c;
+        return [fromX, y1, toX, y2];
+    };
     Object.defineProperty(Quadratic.prototype, "apex", {
         get: function () {
             return { x: this.p, y: this.q };

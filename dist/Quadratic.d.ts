@@ -18,6 +18,8 @@ export default class Quadratic {
     initByAxisAnd2PassPoints(axisX: number, x1: number, y1: number, x2: number, y2: number): this;
     initBy3PassPoints(x1: number, y1: number, x2: number, y2: number, x3: number, y3: number): this;
     fx(x: number): number;
+    getPoints(fromX: number, toX: number, step: number): number[];
+    getPointsOfSlopeAtYTangent(fromX: number, toX: number): number[];
     get apex(): {
         x: number;
         y: number;
