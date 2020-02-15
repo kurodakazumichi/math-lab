@@ -109,6 +109,21 @@ describe('Test of Quadratic', () =>
   });
 
   describe.each`
+  a     | s     | t     | b     | c      
+  ${0}  | ${0}  | ${0}  | ${0}  | ${0}  
+  ${1}  | ${0}  | ${1}  | ${-1} | ${0} 
+  ${2}  | ${2}  | ${-2} | ${0}  | ${-8}   
+  `(`Test of initFactorizationForm()`, ({a, s, t, b, c}) => {
+    describe(`initFactorizationForm(${a}, ${s}, ${t})`, () => {
+      const f = new Quadratic().initFactorizationForm(a, s, t);
+
+      it(`is a=${a}`, () => { expect(f.a).toBe(a); });
+      it(`is b=${b}`, () => { expect(f.b).toBe(b); });
+      it(`is c=${c}`, () => { expect(f.c).toBe(c); });
+    })
+  })
+
+  describe.each`
   p     | q     | x     | y     | a      | b     | c 
   ${1}  | ${5}  | ${0}  | ${3}  | ${-2}  | ${4}  | ${3}
   ${1}  | ${5}  | ${-1} | ${7}  | ${0.5} | ${-1} | ${5.5}

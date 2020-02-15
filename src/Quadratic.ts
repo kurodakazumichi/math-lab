@@ -68,6 +68,17 @@ export default class Quadratic
     return this;
   }
 
+  /** 
+   * 因数分解形
+   * y = a(x-t)(x-s)の式で初期化する
+   */
+  initFactorizationForm(a:number, s:number, t:number) {
+    this._a = a;
+    this._b = Quadratic.calcB_By_ast(a, s, t);
+    this._c = Quadratic.calcC_By_ast(a, s, t);
+    return this;
+  }
+
   /**
    * 頂点(p, q)と通過する１点(x, y)の情報を元に初期化する 
    */
