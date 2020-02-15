@@ -13,86 +13,73 @@ var Quadratic = (function () {
         this._a = 0;
         this._b = 0;
         this._c = 0;
-        this._p = 0;
-        this._q = 0;
-        this._a = this._b = this._c = this._p = this._q = 0;
+        this._a = this._b = this._c = 0;
     }
     Object.defineProperty(Quadratic.prototype, "a", {
         get: function () { return Util.unifySign(this._a); },
-        set: function (v) {
-            this._a = Number(v);
-            this.initABC(this._a, this._b, this._c);
-        },
+        set: function (v) { this._a = Number(v); },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(Quadratic.prototype, "b", {
         get: function () { return Util.unifySign(this._b); },
-        set: function (v) {
-            this._b = Number(v);
-            this._p = Quadratic.calcP_By_ab(this.a, this.b);
-            this._q = Quadratic.calcQ_By_abc(this.a, this.b, this.c);
-        },
+        set: function (v) { this._b = Number(v); },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(Quadratic.prototype, "c", {
         get: function () { return Util.unifySign(this._c); },
-        set: function (v) {
-            this._c = Number(v);
-            this._q = Quadratic.calcQ_By_abc(this.a, this.b, this.c);
-        },
+        set: function (v) { this._c = Number(v); },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(Quadratic.prototype, "p", {
-        get: function () { return Util.unifySign(this._p); },
-        set: function (v) {
-            this._p = Number(v);
-            this._b = Quadratic.calcB_By_ap(this.a, this.p);
-            this._c = Quadratic.calcC_By_pq(this.a, this.p, this.q);
+        get: function () {
+            return Util.unifySign(Quadratic.calcP_By_ab(this.a, this.b));
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(Quadratic.prototype, "q", {
-        get: function () { return Util.unifySign(this._q); },
-        set: function (v) {
-            this._q = Number(v);
-            this._c = Quadratic.calcC_By_pq(this.a, this.p, this.q);
+        get: function () {
+            return Util.unifySign(Quadratic.calcQ_By_abc(this.a, this.b, this.c));
         },
         enumerable: true,
         configurable: true
     });
-    Quadratic.prototype.initABC = function (a, b, c) {
+    Quadratic.prototype.initGeneralForm = function (a, b, c) {
         this._a = a, this._b = b, this._c = c;
-        this._p = Quadratic.calcP_By_ab(a, b);
-        this._q = Quadratic.calcQ_By_abc(a, b, c);
         return this;
     };
-    Quadratic.prototype.initAPQ = function (a, p, q) {
-        this._a = a, this._p = p, this._q = q;
+    Quadratic.prototype.initStandardForm = function (a, p, q) {
+        this._a = a;
         this._b = Quadratic.calcB_By_ap(a, p);
         this._c = Quadratic.calcC_By_pq(a, p, q);
         return this;
     };
+    Quadratic.prototype.initFactorizationForm = function (a, s, t) {
+        this._a = a;
+        this._b = Quadratic.calcB_By_ast(a, s, t);
+        this._c = Quadratic.calcC_By_ast(a, s, t);
+        return this;
+    };
     Quadratic.prototype.initByApexAndPassPoint = function (p, q, x, y) {
         var a = Quadratic.calcA_By_pqxy(p, q, x, y);
-        this.initAPQ(a, p, q);
+        this.initStandardForm(a, p, q);
         return this;
     };
     Quadratic.prototype.initByAxisAnd2PassPoints = function (axisX, x1, y1, x2, y2) {
         var a = Quadratic.calcA_By_axixX_x1y1_x2y2(axisX, x1, y1, x2, y2);
         var q = Quadratic.calcQ_By_axixX_x1y1_x2y2(axisX, x1, y1, x2, y2);
         var p = axisX;
-        this.initAPQ(a, p, q);
+        this.initStandardForm(a, p, q);
         return this;
     };
     Quadratic.prototype.initBy3PassPoints = function (x1, y1, x2, y2, x3, y3) {
         var a = Quadratic.calcA_By_x1y1_x2y2_x3y3(x1, y1, x2, y2, x3, y3);
         var b = Quadratic.calcB_By_x1y1_x2y2_x3y3(x1, y1, x2, y2, x3, y3);
         var c = Quadratic.calcC_By_x1y1_x2y2_x3y3(x1, y1, x2, y2, x3, y3);
-        this.initABC(a, b, c);
+        this.initGeneralForm(a, b, c);
         return this;
     };
     Quadratic.prototype.fx = function (x) {
@@ -243,8 +230,14 @@ var Quadratic = (function () {
     Quadratic.calcB_By_ap = function (a, p) {
         return -2 * a * p;
     };
+    Quadratic.calcB_By_ast = function (a, s, t) {
+        return (-a * t) + (-a * s);
+    };
     Quadratic.calcC_By_pq = function (a, p, q) {
         return a * Math.pow(p, 2) + q;
+    };
+    Quadratic.calcC_By_ast = function (a, s, t) {
+        return a * s * t;
     };
     Quadratic.calcA_By_pqxy = function (p, q, x, y) {
         var nume = y - q;
@@ -335,7 +328,7 @@ var Quadratic = (function () {
         };
         if (a.isInvalid || b.isInvalid)
             return result;
-        var c = new Quadratic().initABC(a.a - b.a, a.b - b.b, a.c - b.c);
+        var c = new Quadratic().initGeneralForm(a.a - b.a, a.b - b.b, a.c - b.c);
         var px = c.solution;
         if (px === undefined || px.length === 0)
             return result;

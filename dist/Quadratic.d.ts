@@ -2,8 +2,6 @@ export default class Quadratic {
     private _a;
     private _b;
     private _c;
-    private _p;
-    private _q;
     constructor();
     get a(): number;
     set a(v: number);
@@ -12,11 +10,10 @@ export default class Quadratic {
     get c(): number;
     set c(v: number);
     get p(): number;
-    set p(v: number);
     get q(): number;
-    set q(v: number);
-    initABC(a: number, b: number, c: number): this;
-    initAPQ(a: number, p: number, q: number): this;
+    initGeneralForm(a: number, b: number, c: number): this;
+    initStandardForm(a: number, p: number, q: number): this;
+    initFactorizationForm(a: number, s: number, t: number): this;
     initByApexAndPassPoint(p: number, q: number, x: number, y: number): this;
     initByAxisAnd2PassPoints(axisX: number, x1: number, y1: number, x2: number, y2: number): this;
     initBy3PassPoints(x1: number, y1: number, x2: number, y2: number, x3: number, y3: number): this;
@@ -44,7 +41,9 @@ export default class Quadratic {
     static calcP_By_ab(a: number, b: number): number;
     static calcQ_By_abc(a: number, b: number, c: number): number;
     static calcB_By_ap(a: number, p: number): number;
+    static calcB_By_ast(a: number, s: number, t: number): number;
     static calcC_By_pq(a: number, p: number, q: number): number;
+    static calcC_By_ast(a: number, s: number, t: number): number;
     static calcA_By_pqxy(p: number, q: number, x: number, y: number): number;
     static calcA_By_axixX_x1y1_x2y2(axisX: number, x1: number, y1: number, x2: number, y2: number): number;
     static calcQ_By_axixX_x1y1_x2y2(axisX: number, x1: number, y1: number, x2: number, y2: number): number;
