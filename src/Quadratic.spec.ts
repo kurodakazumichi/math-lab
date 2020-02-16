@@ -26,6 +26,8 @@ describe('Test of static in Quadratic.', () => {
   ${0} |${0} |${0}  |${-1} |${0} |${0} |${{count:0, points:[]}}
   ${1} |${0} |${1}  |${-1} |${0} |${0} |${{count:0, points:[]}}
   ${1} |${0} |${-1} |${-1} |${0} |${1} |${{count:2, points:[-Math.sqrt(1), 0, Math.sqrt(1), 0]}}
+  ${1} |${0} |${0}  |${1}  |${1} |${1} |${{count:1, points:[1, 1]}}
+  ${1} |${0} |${0}  |${1}  |${0} |${1} |${{count:0, points:[]}}
   `(`Test of intersect()`, ({a, b, c, d, e, f, result}) => {
 
     describe(`initStandardForm(${a}, ${b}, ${c}) intersect initStandardForm(${d}, ${e}, ${f})`, () => {

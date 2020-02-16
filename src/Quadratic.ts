@@ -426,6 +426,20 @@ export default class Quadratic
 
     // 無効な２次式は扱わないものとする
     if (a.isInvalid || b.isInvalid) return result;
+
+    // 放物線の開き具合が同じ場合は２次式が作れないのでそれはそれで処理する
+    if (a.a - b.a === 0) {
+      const nume = b.c - a.c;
+      const deno = a.b - b.b;
+
+      if (deno === 0) return result;
+
+      const x = nume / deno;
+      const y = a.fx(x);
+      
+      result.count = 1;
+      result.points.push(x, y);
+    }
     
     // ２つの２次式から新たな２次式を作る
     const c = new Quadratic().initGeneralForm(a.a - b.a, a.b - b.b, a.c - b.c);
