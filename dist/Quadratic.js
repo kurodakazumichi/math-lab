@@ -344,6 +344,17 @@ var Quadratic = (function () {
         };
         if (a.isInvalid || b.isInvalid)
             return result;
+        if (a.a - b.a === 0) {
+            var nume = b.c - a.c;
+            var deno = a.b - b.b;
+            if (deno === 0)
+                return result;
+            var x = nume / deno;
+            var y = a.fx(x);
+            result.count = 1;
+            result.points.push(x, y);
+            return result;
+        }
         var c = new Quadratic().initGeneralForm(a.a - b.a, a.b - b.b, a.c - b.c);
         var px = c.solution;
         if (px === undefined || px.length === 0)
