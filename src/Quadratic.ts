@@ -439,6 +439,7 @@ export default class Quadratic
       
       result.count = 1;
       result.points.push(x, y);
+      return result;
     }
     
     // ２つの２次式から新たな２次式を作る
@@ -446,8 +447,6 @@ export default class Quadratic
 
     // 解の公式から交わるxの座標を求める
     const px = c.solution;
-
-
 
     // 解なしの場合は交わらない
     if (px === undefined || px.length === 0) return result;
