@@ -92,6 +92,7 @@ var Quadratic = (function () {
         if (this.isInvalid)
             return [];
         var p = [];
+        toX += step * 0.1;
         for (var x = fromX; x <= toX; x += step) {
             p.push(x, this.fx(x));
         }

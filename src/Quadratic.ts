@@ -127,7 +127,8 @@ export default class Quadratic
     if (this.isInvalid) return [];
 
     const p:number[] = [];
-
+    // 小数点誤差対策
+    toX += step * 0.1;
     for(let x = fromX; x <= toX; x+=step) {
       p.push(x, this.fx(x));
     }
