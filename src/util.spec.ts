@@ -2,6 +2,20 @@ import * as Util from './Util';
 
 describe('Test of Util', () => {
 
+  //---------------------------------------------------------------------------
+  // -0を0に統一する関数
+  describe.each`
+  from  | to
+  ${0}  | ${0}
+  ${-0} | ${0}
+  ${1}  | ${1}
+  ${-Infinity} | ${-Infinity}
+  `
+  (`Test of Util.unifySign`, ({from, to}) => {
+    it(`Util.unifySign(${from}) = ${to}`, () => {
+      expect(Util.unifySign(from)).toBe(to);
+    })  
+  })
 
   //---------------------------------------------------------------------------
   // 度数法から弧度法へ
