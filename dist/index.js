@@ -16,10 +16,16 @@ var Vector2_1 = __importDefault(require("./Vector2"));
 exports.Vector2 = Vector2_1.default;
 var Quadratic_1 = __importDefault(require("./Quadratic"));
 exports.Quadratic = Quadratic_1.default;
+var Linear_1 = __importDefault(require("./Linear"));
+exports.Linear = Linear_1.default;
+var Triangle_1 = __importDefault(require("./Triangle"));
+exports.Triangle = Triangle_1.default;
 if (typeof window !== "undefined") {
     window.MyMath = {
         Util: Util,
         Quadratic: Quadratic_1.default,
         Vector2: Vector2_1.default,
+        Linear: Linear_1.default,
+        Triangle: Triangle_1.default,
     };
 }
