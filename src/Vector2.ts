@@ -50,7 +50,7 @@ export default class Vector2
   get normalize() {
     const { magnitude } = this;
 
-    if (magnitude == 0) return {x:0, y:0}
+    if (magnitude == 0) return Vector2.zero;
 
     const v = {
       x: this.x/magnitude,

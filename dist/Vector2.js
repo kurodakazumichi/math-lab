@@ -39,7 +39,7 @@ var Vector2 = (function () {
         get: function () {
             var magnitude = this.magnitude;
             if (magnitude == 0)
-                return { x: 0, y: 0 };
+                return Vector2.zero;
             var v = {
                 x: this.x / magnitude,
                 y: this.y / magnitude

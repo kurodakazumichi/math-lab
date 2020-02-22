@@ -7,10 +7,7 @@ export default class Vector2 {
     sub(v: Vector2): this;
     times(k: number): this;
     get magnitude(): number;
-    get normalize(): Vector2 | {
-        x: number;
-        y: number;
-    };
+    get normalize(): Vector2;
     clone(): Vector2;
     toString(): string;
     static get zero(): Vector2;
