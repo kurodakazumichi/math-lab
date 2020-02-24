@@ -8,6 +8,7 @@ export default class Vector2 {
     times(k: number): this;
     get magnitude(): number;
     get normalize(): Vector2;
+    copy(v: Vector2): this;
     clone(): Vector2;
     toString(): string;
     static get zero(): Vector2;

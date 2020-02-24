@@ -49,6 +49,11 @@ var Vector2 = (function () {
         enumerable: true,
         configurable: true
     });
+    Vector2.prototype.copy = function (v) {
+        this.x = v.x;
+        this.y = v.y;
+        return this;
+    };
     Vector2.prototype.clone = function () {
         return new Vector2(this.x, this.y);
     };

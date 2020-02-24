@@ -9,7 +9,14 @@ import * as Util from "./util";
 import Vector2 from "./Vector2";
 import Quadratic from "./Quadratic";
 import Linear from "./Linear";
-import Triangle from "./Triangle";
+import Triangle2D from "./Triangle2D";
+import { 
+  Line2D, 
+  Segment2D, 
+  Ray2D,
+  Circle2D,
+  Capsule2D,
+} from "./Primitive2D";
 
 interface GlobalWindow {
   MyMath: any;
@@ -22,8 +29,19 @@ if (typeof window !== "undefined"){
     Quadratic,
     Vector2,
     Linear,
-    Triangle,
+    Triangle2D,
   }
 }
 
-export { Util, Vector2, Quadratic, Linear, Triangle }
+export { 
+  Util, 
+  Vector2, 
+  Linear, 
+  Quadratic, 
+  Line2D,
+  Segment2D,
+  Ray2D,
+  Circle2D,
+  Capsule2D,
+  Triangle2D 
+}

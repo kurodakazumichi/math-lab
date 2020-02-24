@@ -60,6 +60,13 @@ export default class Vector2
     return new Vector2(v.x, v.y);
   }
 
+  /** コピー */
+  copy(v:Vector2) {
+    this.x = v.x;
+    this.y = v.y;
+    return this;
+  }
+
   /** 複製 */
   clone() {
     return new Vector2(this.x, this.y);

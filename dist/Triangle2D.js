@@ -11,8 +11,8 @@ var Type;
     Type[Type["Acute"] = 2] = "Acute";
     Type[Type["Obtuse"] = 3] = "Obtuse";
 })(Type = exports.Type || (exports.Type = {}));
-var Triangle = (function () {
-    function Triangle(p) {
+var Triangle2D = (function () {
+    function Triangle2D(p) {
         if (p === void 0) { p = []; }
         var ax = p[0] ? p[0] : 0;
         var ay = p[1] ? p[1] : 0;
@@ -24,64 +24,64 @@ var Triangle = (function () {
         this._B = new Vector2_1.default(bx, by);
         this._C = new Vector2_1.default(cx, cy);
     }
-    Object.defineProperty(Triangle.prototype, "A", {
+    Object.defineProperty(Triangle2D.prototype, "A", {
         get: function () { return this._A; },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "B", {
+    Object.defineProperty(Triangle2D.prototype, "B", {
         get: function () { return this._B; },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "C", {
+    Object.defineProperty(Triangle2D.prototype, "C", {
         get: function () { return this._C; },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "AB", {
+    Object.defineProperty(Triangle2D.prototype, "AB", {
         get: function () {
             return Vector2_1.default.sub(this.B, this.A);
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "BC", {
+    Object.defineProperty(Triangle2D.prototype, "BC", {
         get: function () {
             return Vector2_1.default.sub(this.C, this.B);
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "CA", {
+    Object.defineProperty(Triangle2D.prototype, "CA", {
         get: function () {
             return Vector2_1.default.sub(this.A, this.C);
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "a", {
+    Object.defineProperty(Triangle2D.prototype, "a", {
         get: function () {
             return this.BC.magnitude;
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "b", {
+    Object.defineProperty(Triangle2D.prototype, "b", {
         get: function () {
             return this.CA.magnitude;
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "c", {
+    Object.defineProperty(Triangle2D.prototype, "c", {
         get: function () {
             return this.AB.magnitude;
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "sortedLength", {
+    Object.defineProperty(Triangle2D.prototype, "sortedLength", {
         get: function () {
             var _a = this, a = _a.a, b = _a.b, c = _a.c;
             var list = [a, b, c];
@@ -91,7 +91,7 @@ var Triangle = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "maxSideName", {
+    Object.defineProperty(Triangle2D.prototype, "maxSideName", {
         get: function () {
             if (this.isInvalid)
                 return "";
@@ -106,7 +106,7 @@ var Triangle = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "minSideName", {
+    Object.defineProperty(Triangle2D.prototype, "minSideName", {
         get: function () {
             if (this.isInvalid)
                 return "";
@@ -121,7 +121,7 @@ var Triangle = (function () {
         enumerable: true,
         configurable: true
     });
-    Triangle.prototype.getLengthAt = function (sideName) {
+    Triangle2D.prototype.getLengthAt = function (sideName) {
         switch (sideName) {
             case "BC": return this.a;
             case "CA": return this.b;
@@ -129,21 +129,21 @@ var Triangle = (function () {
         }
         return 0;
     };
-    Object.defineProperty(Triangle.prototype, "maxLength", {
+    Object.defineProperty(Triangle2D.prototype, "maxLength", {
         get: function () {
             return this.getLengthAt(this.maxSideName);
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "minLength", {
+    Object.defineProperty(Triangle2D.prototype, "minLength", {
         get: function () {
             return this.getLengthAt(this.minSideName);
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "maxCornerName", {
+    Object.defineProperty(Triangle2D.prototype, "maxCornerName", {
         get: function () {
             var side = this.maxSideName;
             switch (side) {
@@ -156,7 +156,7 @@ var Triangle = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "minCornerName", {
+    Object.defineProperty(Triangle2D.prototype, "minCornerName", {
         get: function () {
             var side = this.minSideName;
             switch (side) {
@@ -169,7 +169,7 @@ var Triangle = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "cosA", {
+    Object.defineProperty(Triangle2D.prototype, "cosA", {
         get: function () {
             if (this.isInvalid)
                 return 0;
@@ -182,7 +182,7 @@ var Triangle = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "cosB", {
+    Object.defineProperty(Triangle2D.prototype, "cosB", {
         get: function () {
             if (this.isInvalid)
                 return 0;
@@ -195,7 +195,7 @@ var Triangle = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "cosC", {
+    Object.defineProperty(Triangle2D.prototype, "cosC", {
         get: function () {
             if (this.isInvalid)
                 return 0;
@@ -208,7 +208,7 @@ var Triangle = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "sinA", {
+    Object.defineProperty(Triangle2D.prototype, "sinA", {
         get: function () {
             if (this.isInvalid)
                 return 0;
@@ -219,7 +219,7 @@ var Triangle = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "sinB", {
+    Object.defineProperty(Triangle2D.prototype, "sinB", {
         get: function () {
             if (this.isInvalid)
                 return 0;
@@ -230,7 +230,7 @@ var Triangle = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "sinC", {
+    Object.defineProperty(Triangle2D.prototype, "sinC", {
         get: function () {
             if (this.isInvalid)
                 return 0;
@@ -241,7 +241,7 @@ var Triangle = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "tanA", {
+    Object.defineProperty(Triangle2D.prototype, "tanA", {
         get: function () {
             if (this.isInvalid)
                 return 0;
@@ -251,7 +251,7 @@ var Triangle = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "tanB", {
+    Object.defineProperty(Triangle2D.prototype, "tanB", {
         get: function () {
             if (this.isInvalid)
                 return 0;
@@ -261,7 +261,7 @@ var Triangle = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "tanC", {
+    Object.defineProperty(Triangle2D.prototype, "tanC", {
         get: function () {
             if (this.isInvalid)
                 return 0;
@@ -271,7 +271,7 @@ var Triangle = (function () {
         enumerable: true,
         configurable: true
     });
-    Triangle.prototype.getCosAt = function (cornerName) {
+    Triangle2D.prototype.getCosAt = function (cornerName) {
         switch (cornerName) {
             case "A": return this.cosA;
             case "B": return this.cosB;
@@ -279,21 +279,21 @@ var Triangle = (function () {
         }
         return 0;
     };
-    Object.defineProperty(Triangle.prototype, "maxCornerCos", {
+    Object.defineProperty(Triangle2D.prototype, "maxCornerCos", {
         get: function () {
             return this.getCosAt(this.maxCornerName);
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "minCornerCos", {
+    Object.defineProperty(Triangle2D.prototype, "minCornerCos", {
         get: function () {
             return this.getCosAt(this.minCornerName);
         },
         enumerable: true,
         configurable: true
     });
-    Triangle.prototype.getSinAt = function (cornerName) {
+    Triangle2D.prototype.getSinAt = function (cornerName) {
         switch (cornerName) {
             case "A": return this.sinA;
             case "B": return this.sinB;
@@ -301,21 +301,21 @@ var Triangle = (function () {
         }
         return 0;
     };
-    Object.defineProperty(Triangle.prototype, "maxCornerSin", {
+    Object.defineProperty(Triangle2D.prototype, "maxCornerSin", {
         get: function () {
             return this.getSinAt(this.maxCornerName);
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "minCornerSin", {
+    Object.defineProperty(Triangle2D.prototype, "minCornerSin", {
         get: function () {
             return this.getSinAt(this.minCornerName);
         },
         enumerable: true,
         configurable: true
     });
-    Triangle.prototype.getTanAt = function (connerName) {
+    Triangle2D.prototype.getTanAt = function (connerName) {
         switch (connerName) {
             case "A": return this.tanA;
             case "B": return this.tanB;
@@ -323,21 +323,21 @@ var Triangle = (function () {
         }
         return 0;
     };
-    Object.defineProperty(Triangle.prototype, "maxCornerTan", {
+    Object.defineProperty(Triangle2D.prototype, "maxCornerTan", {
         get: function () {
             return this.getTanAt(this.maxCornerName);
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "minCornerTan", {
+    Object.defineProperty(Triangle2D.prototype, "minCornerTan", {
         get: function () {
             return this.getTanAt(this.minCornerName);
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "radA", {
+    Object.defineProperty(Triangle2D.prototype, "radA", {
         get: function () {
             if (this.isInvalid)
                 return 0;
@@ -347,7 +347,7 @@ var Triangle = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "radB", {
+    Object.defineProperty(Triangle2D.prototype, "radB", {
         get: function () {
             if (this.isInvalid)
                 return 0;
@@ -357,7 +357,7 @@ var Triangle = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "radC", {
+    Object.defineProperty(Triangle2D.prototype, "radC", {
         get: function () {
             if (this.isInvalid)
                 return 0;
@@ -367,7 +367,7 @@ var Triangle = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "area", {
+    Object.defineProperty(Triangle2D.prototype, "area", {
         get: function () {
             var _a = this, b = _a.b, c = _a.c, sinA = _a.sinA;
             return (b * c * sinA) * 0.5;
@@ -375,7 +375,7 @@ var Triangle = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "outerRadius", {
+    Object.defineProperty(Triangle2D.prototype, "outerRadius", {
         get: function () {
             if (this.isInvalid)
                 return 0;
@@ -385,7 +385,7 @@ var Triangle = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "innerRadius", {
+    Object.defineProperty(Triangle2D.prototype, "innerRadius", {
         get: function () {
             if (this.isInvalid)
                 return 0;
@@ -395,7 +395,7 @@ var Triangle = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "center", {
+    Object.defineProperty(Triangle2D.prototype, "center", {
         get: function () {
             if (this.isInvalid)
                 return Vector2_1.default.zero;
@@ -406,7 +406,7 @@ var Triangle = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "outerCenter", {
+    Object.defineProperty(Triangle2D.prototype, "outerCenter", {
         get: function () {
             if (this.isInvalid)
                 return Vector2_1.default.zero;
@@ -423,7 +423,7 @@ var Triangle = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "innerCenter", {
+    Object.defineProperty(Triangle2D.prototype, "innerCenter", {
         get: function () {
             if (this.isInvalid)
                 return Vector2_1.default.zero;
@@ -437,7 +437,7 @@ var Triangle = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "isInvalid", {
+    Object.defineProperty(Triangle2D.prototype, "isInvalid", {
         get: function () {
             var list = this.sortedLength;
             var a = list[0], b = list[1], c = list[2];
@@ -446,7 +446,7 @@ var Triangle = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Triangle.prototype, "type", {
+    Object.defineProperty(Triangle2D.prototype, "type", {
         get: function () {
             if (this.isInvalid)
                 return Type.None;
@@ -463,10 +463,10 @@ var Triangle = (function () {
         enumerable: true,
         configurable: true
     });
-    Triangle.prototype.toString = function () {
+    Triangle2D.prototype.toString = function () {
         var _a = this, A = _a.A, B = _a.B, C = _a.C;
         return "A" + A + ", B" + B + ", C" + C;
     };
-    return Triangle;
+    return Triangle2D;
 }());
-exports.default = Triangle;
+exports.default = Triangle2D;

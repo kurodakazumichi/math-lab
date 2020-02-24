@@ -5,7 +5,7 @@ export declare enum Type {
     Acute = 2,
     Obtuse = 3
 }
-export default class Triangle {
+export default class Triangle2D {
     private _A;
     private _B;
     private _C;
