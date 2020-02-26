@@ -6,7 +6,6 @@ export declare class Line2D {
     get p(): Vector2;
     get v(): Vector2;
     getPoint(f: number): Vector2;
-    getPoints(f: number): number[];
 }
 export declare const Ray2D: typeof Line2D;
 export declare class Segment2D extends Line2D {
@@ -27,4 +26,17 @@ export declare class Capsule2D {
     get s(): Segment2D;
     private _s;
     r: number;
+}
+export declare class AABB2D {
+    constructor(c: Vector2, r: [number, number]);
+    private _c;
+    get c(): Vector2;
+    rx: number;
+    ry: number;
+    get width(): number;
+    get height(): number;
+    get p1(): Vector2;
+    get p2(): Vector2;
+    get p3(): Vector2;
+    get p4(): Vector2;
 }

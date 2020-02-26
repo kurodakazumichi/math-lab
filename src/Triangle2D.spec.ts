@@ -1,4 +1,4 @@
-import Triangle, { Type } from './Triangle';
+import Triangle, { Type } from './Triangle2D';
 import Vector2 from './Vector2';
 
 const r2 = Math.sqrt(2);

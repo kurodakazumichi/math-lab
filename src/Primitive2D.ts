@@ -20,11 +20,6 @@ export class Line2D {
   getPoint(f:number) {
     return Vector2.add(this.p, this.v.normalize.times(f));
   }
-
-  getPoints(f:number) {
-    const end = this.getPoint(f);
-    return [this.p.x, this.p.y, end.x, end.y];
-  }
 }
 
 /** Ray2D(Line2Dの別名として定義) */
@@ -70,4 +65,45 @@ export class Capsule2D {
   get s() { return this._s; }
   private _s:Segment2D;
   r:number;
+}
+
+export class AABB2D {
+  constructor(c:Vector2, r:[number, number]) {
+    this._c = c;
+    this.rx = r[0];
+    this.ry = r[1];
+  }
+
+  private _c:Vector2;
+  get c() { return this._c; }
+  rx:number;
+  ry:number;
+
+  get width() { 
+    return this.rx*2;
+  }
+
+  get height(){ 
+    return this.ry*2; 
+  }
+
+  /** 左上 */
+  get p1() { 
+    return new Vector2(this.c.x - this.rx, this.c.y + this.ry); 
+  }
+
+  /** 右上 */
+  get p2() {
+    return new Vector2(this.c.x + this.rx, this.c.y + this.ry);
+  }
+
+  /** 右下 */
+  get p3() {
+    return new Vector2(this.c.x + this.rx, this.c.y - this.ry);
+  }
+
+  /** 左下 */
+  get p4() {
+    return new Vector2(this.c.x - this.rx, this.c.y - this.ry);
+  }
 }

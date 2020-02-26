@@ -35,10 +35,6 @@ var Line2D = (function () {
     Line2D.prototype.getPoint = function (f) {
         return Vector2_1.default.add(this.p, this.v.normalize.times(f));
     };
-    Line2D.prototype.getPoints = function (f) {
-        var end = this.getPoint(f);
-        return [this.p.x, this.p.y, end.x, end.y];
-    };
     return Line2D;
 }());
 exports.Line2D = Line2D;
@@ -93,3 +89,59 @@ var Capsule2D = (function () {
     return Capsule2D;
 }());
 exports.Capsule2D = Capsule2D;
+var AABB2D = (function () {
+    function AABB2D(c, r) {
+        this._c = c;
+        this.rx = r[0];
+        this.ry = r[1];
+    }
+    Object.defineProperty(AABB2D.prototype, "c", {
+        get: function () { return this._c; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AABB2D.prototype, "width", {
+        get: function () {
+            return this.rx * 2;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AABB2D.prototype, "height", {
+        get: function () {
+            return this.ry * 2;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AABB2D.prototype, "p1", {
+        get: function () {
+            return new Vector2_1.default(this.c.x - this.rx, this.c.y + this.ry);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AABB2D.prototype, "p2", {
+        get: function () {
+            return new Vector2_1.default(this.c.x + this.rx, this.c.y + this.ry);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AABB2D.prototype, "p3", {
+        get: function () {
+            return new Vector2_1.default(this.c.x + this.rx, this.c.y - this.ry);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AABB2D.prototype, "p4", {
+        get: function () {
+            return new Vector2_1.default(this.c.x - this.rx, this.c.y - this.ry);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return AABB2D;
+}());
+exports.AABB2D = AABB2D;
