@@ -16,6 +16,8 @@ import {
   Ray2D,
   Circle2D,
   Capsule2D,
+  AABB2D,
+  OBB2D,
 } from "./Primitive2D";
 
 interface GlobalWindow {
@@ -43,5 +45,7 @@ export {
   Ray2D,
   Circle2D,
   Capsule2D,
-  Triangle2D 
+  Triangle2D,
+  AABB2D,
+  OBB2D, 
 }

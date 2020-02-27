@@ -26,6 +26,8 @@ exports.Segment2D = Primitive2D_1.Segment2D;
 exports.Ray2D = Primitive2D_1.Ray2D;
 exports.Circle2D = Primitive2D_1.Circle2D;
 exports.Capsule2D = Primitive2D_1.Capsule2D;
+exports.AABB2D = Primitive2D_1.AABB2D;
+exports.OBB2D = Primitive2D_1.OBB2D;
 if (typeof window !== "undefined") {
     window.MyMath = {
         Util: Util,
