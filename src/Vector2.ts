@@ -66,8 +66,9 @@ export default class Vector2
    * y = x * sinθ + y * cosθ
    **/
   rotate(rad:number) {
-    this.x = this.x * Math.cos(rad) - this.y * Math.sin(rad);
-    this.y = this.x * Math.sin(rad) + this.y * Math.cos(rad);
+    const { x, y } = this;
+    this.x = x * Math.cos(rad) - y * Math.sin(rad);
+    this.y = x * Math.sin(rad) + y * Math.cos(rad);
     return this;
   }
 
