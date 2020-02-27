@@ -8,6 +8,7 @@ export default class Vector2 {
     times(k: number): this;
     get magnitude(): number;
     get normalize(): Vector2;
+    get rad(): number;
     rotate(rad: number): this;
     set(x: number, y: number): this;
     copy(v: Vector2): this;

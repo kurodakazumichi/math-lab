@@ -60,6 +60,24 @@ export default class Vector2
     return new Vector2(v.x, v.y);
   }
 
+  /** ラジアン角度 */
+  get rad() {
+    const { x, y } = this;
+    const rad = Math.atan(y/x)
+
+    // 第二、第三象限の場合は180度分加算
+    if (rad < 0 && x < 0 || 0 < rad && y < 0) {
+      return rad + Math.PI;
+    }
+
+    // 第四象限の場合は360度分加算
+    if (rad < 0 && 0 < x) {
+      return rad + 2 * Math.PI;
+    }
+
+    return rad;
+  }
+
   /** 
    * 回転 
    * x = x * cosθ - y * sinθ

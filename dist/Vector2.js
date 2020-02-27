@@ -49,6 +49,21 @@ var Vector2 = (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(Vector2.prototype, "rad", {
+        get: function () {
+            var _a = this, x = _a.x, y = _a.y;
+            var rad = Math.atan(y / x);
+            if (rad < 0 && x < 0 || 0 < rad && y < 0) {
+                return rad + Math.PI;
+            }
+            if (rad < 0 && 0 < x) {
+                return rad + 2 * Math.PI;
+            }
+            return rad;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Vector2.prototype.rotate = function (rad) {
         var _a = this, x = _a.x, y = _a.y;
         this.x = x * Math.cos(rad) - y * Math.sin(rad);
