@@ -159,16 +159,16 @@ export class OBB2D
     return new Vector2(-this._r.x, -this._r.y).rotate(this.rad).add(this.c);
   }
 
-  get v12() {
+  get s1() {
     return Vector2.sub(this.p2, this.p1);
   }
-  get v23() {
+  get s2() {
     return Vector2.sub(this.p3, this.p2);
   }
-  get v34() {
+  get s3() {
     return Vector2.sub(this.p4, this.p3);
   }
-  get v41() {
+  get s4() {
     return Vector2.sub(this.p1, this.p4);
   }
 }

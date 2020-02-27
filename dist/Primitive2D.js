@@ -230,28 +230,28 @@ var OBB2D = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(OBB2D.prototype, "v12", {
+    Object.defineProperty(OBB2D.prototype, "s1", {
         get: function () {
             return Vector2_1.default.sub(this.p2, this.p1);
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(OBB2D.prototype, "v23", {
+    Object.defineProperty(OBB2D.prototype, "s2", {
         get: function () {
             return Vector2_1.default.sub(this.p3, this.p2);
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(OBB2D.prototype, "v34", {
+    Object.defineProperty(OBB2D.prototype, "s3", {
         get: function () {
             return Vector2_1.default.sub(this.p4, this.p3);
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(OBB2D.prototype, "v41", {
+    Object.defineProperty(OBB2D.prototype, "s4", {
         get: function () {
             return Vector2_1.default.sub(this.p1, this.p4);
         },

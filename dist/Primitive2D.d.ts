@@ -59,8 +59,8 @@ export declare class OBB2D {
     get p2(): Vector2;
     get p3(): Vector2;
     get p4(): Vector2;
-    get v12(): Vector2;
-    get v23(): Vector2;
-    get v34(): Vector2;
-    get v41(): Vector2;
+    get s1(): Vector2;
+    get s2(): Vector2;
+    get s3(): Vector2;
+    get s4(): Vector2;
 }
