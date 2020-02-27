@@ -9,6 +9,7 @@ export default class Vector2 {
     get magnitude(): number;
     get normalize(): Vector2;
     rotate(rad: number): this;
+    set(x: number, y: number): this;
     copy(v: Vector2): this;
     clone(): Vector2;
     toString(): string;

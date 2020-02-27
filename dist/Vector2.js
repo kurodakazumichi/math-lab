@@ -55,6 +55,11 @@ var Vector2 = (function () {
         this.y = x * Math.sin(rad) + y * Math.cos(rad);
         return this;
     };
+    Vector2.prototype.set = function (x, y) {
+        this.x = x;
+        this.y = y;
+        return this;
+    };
     Vector2.prototype.copy = function (v) {
         this.x = v.x;
         this.y = v.y;

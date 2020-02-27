@@ -72,6 +72,12 @@ export default class Vector2
     return this;
   }
 
+  set(x:number, y:number) {
+    this.x = x;
+    this.y = y;
+    return this;
+  }
+
   /** コピー */
   copy(v:Vector2) {
     this.x = v.x;
