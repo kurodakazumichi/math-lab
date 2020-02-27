@@ -40,3 +40,27 @@ export declare class AABB2D {
     get p3(): Vector2;
     get p4(): Vector2;
 }
+export declare class OBB2D {
+    constructor(c: Vector2, r: [number, number], angle: number);
+    private _c;
+    private _r;
+    rad: number;
+    get c(): Vector2;
+    get r(): Vector2;
+    get rx(): number;
+    get ry(): number;
+    set rx(v: number);
+    set ry(v: number);
+    get angle(): number;
+    set angle(v: number);
+    get width(): number;
+    get height(): number;
+    get p1(): Vector2;
+    get p2(): Vector2;
+    get p3(): Vector2;
+    get p4(): Vector2;
+    get v12(): Vector2;
+    get v23(): Vector2;
+    get v34(): Vector2;
+    get v41(): Vector2;
+}

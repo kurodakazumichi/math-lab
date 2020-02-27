@@ -49,6 +49,11 @@ var Vector2 = (function () {
         enumerable: true,
         configurable: true
     });
+    Vector2.prototype.rotate = function (rad) {
+        this.x = this.x * Math.cos(rad) - this.y * Math.sin(rad);
+        this.y = this.x * Math.sin(rad) + this.y * Math.cos(rad);
+        return this;
+    };
     Vector2.prototype.copy = function (v) {
         this.x = v.x;
         this.y = v.y;

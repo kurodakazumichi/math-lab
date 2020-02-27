@@ -60,6 +60,17 @@ export default class Vector2
     return new Vector2(v.x, v.y);
   }
 
+  /** 
+   * 回転 
+   * x = x * cosθ - y * sinθ
+   * y = x * sinθ + y * cosθ
+   **/
+  rotate(rad:number) {
+    this.x = this.x * Math.cos(rad) - this.y * Math.sin(rad);
+    this.y = this.x * Math.sin(rad) + this.y * Math.cos(rad);
+    return this;
+  }
+
   /** コピー */
   copy(v:Vector2) {
     this.x = v.x;

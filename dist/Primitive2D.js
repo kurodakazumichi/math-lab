@@ -15,8 +15,16 @@ var __extends = (this && this.__extends) || (function () {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var Vector2_1 = __importDefault(require("./Vector2"));
+var Util = __importStar(require("./util"));
 var Line2D = (function () {
     function Line2D(p, v) {
         this._p = new Vector2_1.default(p.x, p.y);
@@ -145,3 +153,111 @@ var AABB2D = (function () {
     return AABB2D;
 }());
 exports.AABB2D = AABB2D;
+var OBB2D = (function () {
+    function OBB2D(c, r, angle) {
+        this.rad = 0;
+        this._c = c;
+        this._r = new Vector2_1.default(r[0], r[1]);
+        this.angle = angle;
+    }
+    Object.defineProperty(OBB2D.prototype, "c", {
+        get: function () { return this._c; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(OBB2D.prototype, "r", {
+        get: function () { return this._r; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(OBB2D.prototype, "rx", {
+        get: function () { return this._r.x; },
+        set: function (v) { this._r.x = v; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(OBB2D.prototype, "ry", {
+        get: function () { return this._r.y; },
+        set: function (v) { this._r.y = v; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(OBB2D.prototype, "angle", {
+        get: function () { return Util.rad2deg(this.rad); },
+        set: function (v) { this.rad = Util.deg2rad(v); },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(OBB2D.prototype, "width", {
+        get: function () {
+            return this.rx * 2;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(OBB2D.prototype, "height", {
+        get: function () {
+            return this.ry * 2;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(OBB2D.prototype, "p1", {
+        get: function () {
+            return new Vector2_1.default(-this._r.x, this._r.y).rotate(this.rad).add(this.c);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(OBB2D.prototype, "p2", {
+        get: function () {
+            return new Vector2_1.default(this._r.x, this._r.y).rotate(this.rad).add(this.c);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(OBB2D.prototype, "p3", {
+        get: function () {
+            return new Vector2_1.default(this._r.x, -this._r.y).rotate(this.rad).add(this.c);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(OBB2D.prototype, "p4", {
+        get: function () {
+            return new Vector2_1.default(-this._r.x, -this._r.y).rotate(this.rad).add(this.c);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(OBB2D.prototype, "v12", {
+        get: function () {
+            return Vector2_1.default.sub(this.p2, this.p1);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(OBB2D.prototype, "v23", {
+        get: function () {
+            return Vector2_1.default.sub(this.p3, this.p2);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(OBB2D.prototype, "v34", {
+        get: function () {
+            return Vector2_1.default.sub(this.p4, this.p3);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(OBB2D.prototype, "v41", {
+        get: function () {
+            return Vector2_1.default.sub(this.p1, this.p4);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return OBB2D;
+}());
+exports.OBB2D = OBB2D;

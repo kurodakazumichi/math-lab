@@ -1,4 +1,5 @@
 import Vector2 from './Vector2';
+import * as Util from './util';
 
 /**
  * 直線
@@ -105,5 +106,69 @@ export class AABB2D {
   /** 左下 */
   get p4() {
     return new Vector2(this.c.x - this.rx, this.c.y - this.ry);
+  }
+}
+
+export class OBB2D 
+{
+  constructor(c:Vector2, r:[number, number], angle:number) {
+    this._c = c;
+    this._r = new Vector2(r[0], r[1]);
+    this.angle = angle;
+  }
+
+  private _c:Vector2; // 中心座標
+  private _r:Vector2; // 半径(縦横)
+  rad:number = 0;     // 回転
+
+  get c() { return this._c; }
+  get r() { return this._r; }
+  get rx() { return this._r.x; }
+  get ry() { return this._r.y; }
+  set rx(v:number) { this._r.x = v; }
+  set ry(v:number) { this._r.y = v; }
+
+  get angle() { return Util.rad2deg(this.rad); }
+  set angle(v:number) { this.rad = Util.deg2rad(v); }
+
+  get width() { 
+    return this.rx*2;
+  }
+
+  get height(){ 
+    return this.ry*2; 
+  }
+
+  /** 左上 */
+  get p1() { 
+    return new Vector2(-this._r.x, this._r.y).rotate(this.rad).add(this.c);
+  }
+
+  /** 右上 */
+  get p2() {
+    return new Vector2(this._r.x, this._r.y).rotate(this.rad).add(this.c);
+  }
+
+  /** 右下 */
+  get p3() {
+    return new Vector2(this._r.x, -this._r.y).rotate(this.rad).add(this.c);
+  }
+
+  /** 左下 */
+  get p4() {
+    return new Vector2(-this._r.x, -this._r.y).rotate(this.rad).add(this.c);
+  }
+
+  get v12() {
+    return Vector2.sub(this.p2, this.p1);
+  }
+  get v23() {
+    return Vector2.sub(this.p3, this.p2);
+  }
+  get v34() {
+    return Vector2.sub(this.p4, this.p3);
+  }
+  get v41() {
+    return Vector2.sub(this.p1, this.p4);
   }
 }
