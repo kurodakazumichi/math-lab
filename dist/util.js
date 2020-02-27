@@ -11,3 +11,13 @@ exports.deg2rad = function (d) {
 exports.rad2deg = function (r) {
     return 180 / Math.PI * r;
 };
+exports.round = function (num, fixed) {
+    if (fixed === void 0) { fixed = 1; }
+    var fix = Math.pow(10, fixed);
+    return Math.round(num * fix) / fix;
+};
+exports.cramp = function (no, min, max) {
+    no = Math.min(no, max);
+    no = Math.max(no, min);
+    return no;
+};

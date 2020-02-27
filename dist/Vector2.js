@@ -144,7 +144,7 @@ var Vector2 = (function () {
         return (v.x === 0 && v.y === 0);
     };
     Vector2.isParallel = function (v1, v2) {
-        var t = v1.x * v2.y - v1.y * v2.x;
+        var t = Vector2.cross(v1, v2);
         return (t === 0);
     };
     Vector2.isVertical = function (v1, v2) {
