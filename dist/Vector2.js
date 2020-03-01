@@ -35,6 +35,14 @@ var Vector2 = (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(Vector2.prototype, "sqrMagnitude", {
+        get: function () {
+            var _a = this, x = _a.x, y = _a.y;
+            return x * x + y * y;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(Vector2.prototype, "normalize", {
         get: function () {
             var magnitude = this.magnitude;
@@ -82,6 +90,10 @@ var Vector2 = (function () {
     };
     Vector2.prototype.clone = function () {
         return new Vector2(this.x, this.y);
+    };
+    Vector2.prototype.lerp = function (to, t) {
+        var v = Vector2.sub(to, this);
+        this.add(v.times(t));
     };
     Vector2.prototype.toString = function () {
         return "(" + this.x + ", " + this.y + ")";
@@ -163,6 +175,12 @@ var Vector2 = (function () {
         var deno = v1.magnitude * v2.magnitude;
         var cos = nemu / deno;
         return Math.acos(cos);
+    };
+    Vector2.distance = function (v1, v2) {
+        return Vector2.sub(v1, v2).magnitude;
+    };
+    Vector2.lerp = function (v1, v2, t) {
+        return v1.clone().lerp(v2, t);
     };
     return Vector2;
 }());

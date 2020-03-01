@@ -7,12 +7,14 @@ export default class Vector2 {
     sub(v: Vector2): this;
     times(k: number): this;
     get magnitude(): number;
+    get sqrMagnitude(): number;
     get normalize(): Vector2;
     get rad(): number;
     rotate(rad: number): this;
     set(x: number, y: number): this;
     copy(v: Vector2): this;
     clone(): Vector2;
+    lerp(to: Vector2, t: number): void;
     toString(): string;
     static get zero(): Vector2;
     static get one(): Vector2;
@@ -30,4 +32,6 @@ export default class Vector2 {
     static dot(v1: Vector2, v2: Vector2): number;
     static cross(v1: Vector2, v2: Vector2): number;
     static angle(v1: Vector2, v2: Vector2): number;
+    static distance(v1: Vector2, v2: Vector2): number;
+    static lerp(v1: Vector2, v2: Vector2, t: number): void;
 }

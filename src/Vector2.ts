@@ -46,6 +46,12 @@ export default class Vector2
     return Math.sqrt(x*x + y*y)
   }
 
+  /** ベクトルの２乗の長さを返す */
+  get sqrMagnitude() {
+    const { x, y } = this;
+    return x*x + y*y;
+  }
+
   /** 正規化 */
   get normalize() {
     const { magnitude } = this;
@@ -106,6 +112,12 @@ export default class Vector2
   /** 複製 */
   clone() {
     return new Vector2(this.x, this.y);
+  }
+
+  /** 補間 */
+  lerp(to:Vector2, t:number) {
+    const v = Vector2.sub(to, this);
+    this.add(v.times(t));
   }
 
   /** テキスト化 */
@@ -192,5 +204,13 @@ export default class Vector2
     return Math.acos(cos);
   }
 
-
+  /** distance */
+  static distance(v1:Vector2, v2:Vector2) {
+    return Vector2.sub(v1, v2).magnitude;
+  }
+  
+  /** 補間 */
+  static lerp(v1:Vector2, v2:Vector2, t:number) {
+    return v1.clone().lerp(v2, t);
+  }
 }
