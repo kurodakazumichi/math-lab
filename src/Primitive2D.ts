@@ -104,7 +104,10 @@ export class Ray extends Line
 //-----------------------------------------------------------------------------
 export class Segment
 {
+  /** 始点 */
   private _p1:Vector2;
+
+  /** 終点 */
   private _p2:Vector2;
 
   /**
