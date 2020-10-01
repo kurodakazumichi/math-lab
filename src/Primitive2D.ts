@@ -1,43 +1,88 @@
+/******************************************************************************
+ * Primitive2D
+ * 2次元における基本的な図形を表すクラスを定義している。
+ *****************************************************************************/
 import Vector2 from './Vector2';
 import * as Util from './util';
 
-/**
- * 直線
- */
+//-----------------------------------------------------------------------------
+// 直線
+// 直線は無限に続く線である。
+// プログラム上では直線上の1点と直線の方向を表すベクトルの２つの情報によって
+// 定義する。
+//-----------------------------------------------------------------------------
 export class Line {
-  
-  constructor(p:Vector2, v:Vector2) {
+
+  /** 直線上の1点 */
+  private _p:Vector2;
+
+  /** 直線の方向を表すベクトル */
+  private _v:Vector2;
+
+  /**
+   * コンストラクタ
+   * @param p 直線上の1点となる座標
+   * @param v 直線の方向を表すベクトル
+   */
+  constructor(p:Vector2, v:Vector2) 
+  {
     this._p = new Vector2(p.x, p.y);
     this._v = new Vector2(v.x, v.y);
   }
 
-  private _p:Vector2;
-  private _v:Vector2;
-
+  /** アクセッサ */
   get p() { return this._p; }
+  set p(v){ this._p = v; }
   get v() { return this._v; }
+  set v(v){ this._v = v; }
 
-  /** 線上の座標を取得 */
-  getPoint(f:number) {
+  /**
+   * 直線上の座標を取得する。
+   * @param f 任意の数値
+   */
+  getPoint(f:number) 
+  {
+    // 直線上の1点から直線の方向に任意の距離だけ進んだ場所の座標
     return Vector2.add(this.p, this.v.normalize.times(f));
   }
 }
 
-/** Ray2D(Line2Dの別名として定義) */
+//-----------------------------------------------------------------------------
+// Ray
+// Rayは始点から無限に伸びる直線である。
+// Rayを表すのに必要な情報は始点となる座標と、Rayの方向ベクトルであり直線と同じ
+// その為、Rayは直線の別名として定義している。
+//-----------------------------------------------------------------------------
 export const Ray = Line;
 
-/** 線分 */
-export class Segment extends Line {
+//-----------------------------------------------------------------------------
+// 線分
+// 線分は始点と終点のある直線で、始点と終点の２つの座標で定義する。
+//-----------------------------------------------------------------------------
+export class Segment
+{
+  private _p1:Vector2;
+  private _p2:Vector2;
+
+  /**
+   * コンストラクタ
+   * @param p1 始点
+   * @param p2 終点
+   */
   constructor(p1:Vector2, p2:Vector2) {
-    super(p1, p2);
+    this._p1 = p1;
+    this._p2 = p2;
   }
 
-  get p1 () { return this.p; } // 始点
-  get p2 () { return this.v; } // 終点
+  /** アクセッサ */
+  get p1 () { return this._p1; }
+  set p1 (v){ this._p1 = v; }
+  get p2 () { return this._p2; }
+  set p2 (v){ this._p2 = v; }
   
-  getEndPoint() {
-    return Vector2.add(this.p1, this.p2);
-  }
+  /**
+   * 線分の始点と終点の座標を1次元配列で取得する
+   */
   getPoints() {
     return [this.p1.x, this.p1.y, this.p2.x, this.p2.y];
   }
