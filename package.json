@@ -19,5 +19,8 @@
     "build": "rm -rf ./build && parcel build ./src/index.ts --out-dir=build --no-source-maps",
     "build:map": "rm -rf ./build && parcel build ./src/index.ts --out-dir=build",
     "build:tsc": "rm -rf ./dist && tsc"
+  },
+  "dependencies": {
+    "node-forge": "0.10.0"
   }
 }
