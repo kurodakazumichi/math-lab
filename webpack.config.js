@@ -15,12 +15,14 @@ module.exports = (env, argv) => {
   const browser = {
     path: path.join(__dirname, '/browser'),
     filename: `mathLab${(isDev?".js":".min.js")}`,
+    configFile: "tsconfig.json",
   };
 
   // Node環境用の設定
   const node = {
     path: path.join(__dirname, "/dist"),
     filename:"index.js",
+    configFile: "tsconfig.node.json"
   };
 
   // argv.typeにはbrowserかnodeのどちらかを指定する。指定しないと多分エラーになる
@@ -46,6 +48,9 @@ module.exports = (env, argv) => {
             use: [
               {
                 loader: 'ts-loader',
+                options: {
+                  configFile: params.configFile
+                }                
               }
             ]
         }]
