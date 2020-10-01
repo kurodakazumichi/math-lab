@@ -134,17 +134,33 @@ export class Segment
   }
 }
 
-/** 円 */
-export class Circle {
+//-----------------------------------------------------------------------------
+// 円
+// 円は中心の座標と半径で定義する。
+//-----------------------------------------------------------------------------
+export class Circle 
+{
+  /** 中心座標 */
+  private _p:Vector2;
+
+  /** 半径 */
+  private _r:number;
+
+  /**
+   * コンストラクタ
+   * @param p 中心座標
+   * @param r 半径
+   */
   constructor(p:Vector2, r:number) {
     this._p = new Vector2(p.x, p.y);
-    this.r = r;
+    this._r = r;
   }
 
+  /** アクセッサ */
   get p() { return this._p; }
-
-  private _p:Vector2;
-  r:number;
+  set p(v){ this._p = v; }
+  get r() { return this._r; }
+  set r(v){ this._r = v; }
 }
 
 /** カプセル */
