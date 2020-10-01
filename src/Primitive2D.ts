@@ -36,6 +36,10 @@ export class Line {
   get v() { return this._v; }
   set v(v){ this._v = v; }
 
+  //---------------------------------------------------------------------------
+  // ユーティリティ
+  //---------------------------------------------------------------------------
+
   /**
    * 直線上の座標を取得する。
    * @param f 任意の数値
@@ -44,6 +48,18 @@ export class Line {
   {
     // 直線上の1点から直線の方向に任意の距離だけ進んだ場所の座標
     return Vector2.add(this.p, this.v.normalize.times(f));
+  }
+
+  /**
+   * 直線の長さを指定し、その長さの場合の直線の始点から終点までの座標を1次元配列で取得する
+   * @param length 直線の長さ
+   */
+  getPoints(length: number) 
+  {
+    const halfLength = length / 2;
+    const p1 = this.getPoint(-halfLength);
+    const p2 = this.getPoint(halfLength);
+    return [p1.x, p1.y, p2.x, p2.y];
   }
 }
 
