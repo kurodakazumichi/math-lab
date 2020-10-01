@@ -20,3 +20,4 @@ export default class Linear {
         points: number[];
     };
 }
+//# sourceMappingURL=Linear.d.ts.map

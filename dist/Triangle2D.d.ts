@@ -58,3 +58,4 @@ export default class Triangle2D {
     get type(): Type;
     toString(): string;
 }
+//# sourceMappingURL=Triangle2D.d.ts.map

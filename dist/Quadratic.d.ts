@@ -63,3 +63,4 @@ export default class Quadratic {
         points: number[];
     };
 }
+//# sourceMappingURL=Quadratic.d.ts.map

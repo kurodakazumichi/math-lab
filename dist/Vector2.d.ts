@@ -35,3 +35,4 @@ export default class Vector2 {
     static distance(v1: Vector2, v2: Vector2): number;
     static lerp(v1: Vector2, v2: Vector2, t: number): void;
 }
+//# sourceMappingURL=Vector2.d.ts.map

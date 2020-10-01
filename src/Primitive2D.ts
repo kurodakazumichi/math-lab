@@ -4,7 +4,7 @@ import * as Util from './util';
 /**
  * 直線
  */
-export class Line2D {
+export class Line {
   
   constructor(p:Vector2, v:Vector2) {
     this._p = new Vector2(p.x, p.y);
@@ -24,10 +24,10 @@ export class Line2D {
 }
 
 /** Ray2D(Line2Dの別名として定義) */
-export const Ray2D = Line2D;
+export const Ray = Line;
 
 /** 線分 */
-export class Segment2D extends Line2D {
+export class Segment extends Line {
   constructor(p1:Vector2, p2:Vector2) {
     super(p1, p2);
   }
@@ -44,7 +44,7 @@ export class Segment2D extends Line2D {
 }
 
 /** 円 */
-export class Circle2D {
+export class Circle {
   constructor(p:Vector2, r:number) {
     this._p = new Vector2(p.x, p.y);
     this.r = r;
@@ -57,18 +57,18 @@ export class Circle2D {
 }
 
 /** カプセル */
-export class Capsule2D {
-  constructor(s:Segment2D, r:number) {
-    this._s = new Segment2D(s.p1, s.p2);
+export class Capsule {
+  constructor(s:Segment, r:number) {
+    this._s = new Segment(s.p1, s.p2);
     this.r  = r;
   }
 
   get s() { return this._s; }
-  private _s:Segment2D;
+  private _s:Segment;
   r:number;
 }
 
-export class AABB2D {
+export class AABB {
   constructor(c:Vector2, r:[number, number]) {
     this._c = c;
     this.rx = r[0];
@@ -109,7 +109,7 @@ export class AABB2D {
   }
 }
 
-export class OBB2D 
+export class OBB 
 {
   constructor(c:Vector2, r:[number, number], angle:number) {
     this._c = c;

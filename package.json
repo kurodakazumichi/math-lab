@@ -18,8 +18,8 @@
   "scripts": {
     "test": "jest --watch",
     "test:cover": "jest --coverage",
-    "build": "rm -rf ./build && parcel build ./src/index.ts --out-dir=build --no-source-maps",
-    "build:map": "rm -rf ./build && parcel build ./src/index.ts --out-dir=build",
-    "build:tsc": "rm -rf ./dist && tsc"
+    "build": "webpack --type browser",
+    "build:dev": "webpack --mode development --type browser",
+    "build:tsc": "webpack --type node"
   }
 }

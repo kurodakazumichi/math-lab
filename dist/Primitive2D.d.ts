@@ -1,5 +1,5 @@
 import Vector2 from './Vector2';
-export declare class Line2D {
+export declare class Line {
     constructor(p: Vector2, v: Vector2);
     private _p;
     private _v;
@@ -7,27 +7,27 @@ export declare class Line2D {
     get v(): Vector2;
     getPoint(f: number): Vector2;
 }
-export declare const Ray2D: typeof Line2D;
-export declare class Segment2D extends Line2D {
+export declare const Ray: typeof Line;
+export declare class Segment extends Line {
     constructor(p1: Vector2, p2: Vector2);
     get p1(): Vector2;
     get p2(): Vector2;
     getEndPoint(): Vector2;
     getPoints(): number[];
 }
-export declare class Circle2D {
+export declare class Circle {
     constructor(p: Vector2, r: number);
     get p(): Vector2;
     private _p;
     r: number;
 }
-export declare class Capsule2D {
-    constructor(s: Segment2D, r: number);
-    get s(): Segment2D;
+export declare class Capsule {
+    constructor(s: Segment, r: number);
+    get s(): Segment;
     private _s;
     r: number;
 }
-export declare class AABB2D {
+export declare class AABB {
     constructor(c: Vector2, r: [number, number]);
     private _c;
     get c(): Vector2;
@@ -40,7 +40,7 @@ export declare class AABB2D {
     get p3(): Vector2;
     get p4(): Vector2;
 }
-export declare class OBB2D {
+export declare class OBB {
     constructor(c: Vector2, r: [number, number], angle: number);
     private _c;
     private _r;
@@ -64,3 +64,4 @@ export declare class OBB2D {
     get s3(): Vector2;
     get s4(): Vector2;
 }
+//# sourceMappingURL=Primitive2D.d.ts.map
