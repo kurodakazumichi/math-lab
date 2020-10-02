@@ -60,4 +60,47 @@ describe('Test of Util', () => {
       expect(Util.rad2deg(from)).toBe(to);
     })
   })
+
+  //---------------------------------------------------------------------------
+  // 小数点第何位を指定して使者五入
+  describe.each`
+  num  | fixed | result
+  ${0} | ${0} | ${0}
+  ${1.2345} | ${0} | ${1}
+  ${1.2345} | ${1} | ${1.2}
+  ${1.2345} | ${2} | ${1.23}
+  ${1.2345} | ${3} | ${1.235}
+  ${1.2345} | ${4} | ${1.2345}
+  ${1.2345} | ${5} | ${1.2345}
+  `
+  (`Test of Util.round`, ({num, fixed, result}) => {
+    it(`Util.round(${num}, ${fixed}) = ${result}`, () => {
+      expect(Util.round(num, fixed)).toBe(result);
+    })
+  })
+
+  describe("Test of Util.round when use default arg", () => {
+    it(`Util.round(1.23) = 1.2`, () => {
+      expect(Util.round(1.23)).toBe(1.2);
+    })
+  });
+
+  //---------------------------------------------------------------------------
+  // 数値を指定した範囲内に収める
+  describe.each`
+  num   | min  | max   | result
+  ${0}  | ${0} | ${0}  | ${0}
+  ${5}  | ${0} | ${10} | ${5}
+  ${5}  | ${5} | ${10} | ${5}
+  ${5}  | ${5} | ${5}  | ${5}
+  ${-5} | ${0} | ${10} | ${0}
+  ${-5} | ${5} | ${10} | ${5}
+  ${15} | ${5} | ${10} | ${10}
+  `
+  (`Test of Util.cramp`, ({num, min, max, result}) => {
+    it(`Util.cramp(${num}, ${min}, ${max}) = ${result}`, () => {
+      expect(Util.cramp(num, min, max)).toBe(result);
+    })  
+  })
+
 });
