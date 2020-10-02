@@ -42,7 +42,7 @@ export class Line {
    * 直線上の座標を取得する。
    * @param f 任意の数値
    */
-  getPoint(f:number) 
+  point(f:number) 
   {
     // 直線上の1点から直線の方向に任意の距離だけ進んだ場所の座標
     return Vector2.add(this.p, this.v.normalize.times(f));
@@ -52,11 +52,11 @@ export class Line {
    * 直線の長さを指定し、その長さの場合の直線の始点から終点までの座標を1次元配列で取得する
    * @param length 直線の長さ
    */
-  getPoints(length: number) 
+  points(length: number) 
   {
     const halfLength = length / 2;
-    const p1 = this.getPoint(-halfLength);
-    const p2 = this.getPoint(halfLength);
+    const p1 = this.point(-halfLength);
+    const p2 = this.point(halfLength);
     return [p1.x, p1.y, p2.x, p2.y];
   }
 }
@@ -77,7 +77,7 @@ export class Ray extends Line
    * 半直線上の座標を取得する。
    * @param f 任意の数値
    */
-  getPoint(f:number) 
+  point(f:number) 
   {
     // 直線上の1点から直線の方向に任意の距離だけ進んだ場所の座標
     // 視点から逆方向の座標を取得できないようにするため、fの絶対値を取る
@@ -88,10 +88,10 @@ export class Ray extends Line
    * Rayの長さを指定し、その長さの場合のRayの始点から終点までの座標を1次元配列で取得する
    * @param length Rayの長さ
    */
-  getPoints(length: number) 
+  points(length: number) 
   {
     const p1 = this.p;
-    const p2 = this.getPoint(length);
+    const p2 = this.point(length);
     return [p1.x, p1.y, p2.x, p2.y];
   }
 }
@@ -125,7 +125,7 @@ export class Segment
   /**
    * 線分の始点と終点の座標を1次元配列で取得する
    */
-  getPoints() {
+  get points() {
     return [this.p1.x, this.p1.y, this.p2.x, this.p2.y];
   }
 }
