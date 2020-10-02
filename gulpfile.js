@@ -72,7 +72,7 @@ const scss = (done) =>
 const browserSyncOption = {
   port:8081,
   server: {
-    baseDir: './',
+    baseDir: './public',
     index: 'index.html'
   },
   reloadOnRestart: true
