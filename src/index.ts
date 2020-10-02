@@ -1,22 +1,20 @@
 /******************************************************************************
- * 通常のjsファイルのように<script src="***"></script>で読み込んで使えるように
- * 全てのクラスをwindow.MyMath空間にバンドルする。
- * 
- * 正直このやり方は正しくない気はするが、結果的に同じだからいいよね
- * と思ってやってしまっている。
+ * Index
  *****************************************************************************/
 import * as Util from "./util";
 import Vector2 from "./Vector2";
 import Quadratic from "./Quadratic";
 import Linear from "./Linear";
-import Triangle2D from "./Triangle2D";
-import * as Primitive2D from './Primitive2D';
+import Triangle2 from "./Triangle2";
+import * as Primitive2 from './Primitive2';
+import * as Collision2 from './Collision2';
 
 export { 
   Util, 
-  Vector2, 
   Linear, 
-  Quadratic, 
-  Triangle2D,
-  Primitive2D,
+  Quadratic,   
+  Vector2, 
+  Triangle2,
+  Primitive2,
+  Collision2,
 }

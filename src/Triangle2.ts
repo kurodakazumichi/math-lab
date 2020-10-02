@@ -23,7 +23,7 @@ export enum Type {
  * CA = b
  * AB = c
  *****************************************************************************/
-export default class Triangle2D {
+export default class Triangle2 {
   
   private _A:Vector2;
   private _B:Vector2;
