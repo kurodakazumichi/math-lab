@@ -1,20 +1,12 @@
 # math-lab
-- 開発はTypeScriptで行い、開発時はjestによって動作確認を行うスタイルのプロジェクト。
-- バンドル化にはparcelを使用する。
-- 最終的にjQueryのように`script`タグで読み込めるようなライブラリを吐き出してぇ。
-
-という時のためのプロジェクト設定方法
-
-※このプロジェクト自体は数学勉強用のための俺俺ライブラリを作っている例
-
+数学に関する物事をクラス化するお勉強用プロジェクト。
+作成したクラスはNode環境やブラウザでライブラリとして利用できるものを想定。
 
 ## 環境
 このプロジェクトは以下の環境で作っている。
 
-- MacOS Catalina v10.15.2
 - Node.js v10.10.0 インストール済
 - yarn v1.22.0 インストール済  
-(yarnの代わりにnpmを使ってもいい)
 
 ## 全体のディレクトリ構成
 
@@ -22,82 +14,30 @@
 .
 ├── README.md
 ├── package.json
-├── src            ... ソースコード
-|    └── index.ts  ... バンドルのためのts    
-├── build          ... バンドルされたjsが入る
-├── dist           ... トランスパイルされたjsとtsの型定義ファイル
-├── jest.config.js ... jestの設定
-├── tsconfig.json  ... tsの設定
+├── src                ... ソースコード
+│    └── index.ts     ... バンドルのためのts    
+├── dist               ... トランスパイルされたjsとtsの型定義ファイル
+├── browser            ... ブラウザ用にビルドされたjsが出力される
+├── example            ... サンプルサイト(gulpによってpublicフォルダに出力される)
+├── public             ... exampleの出力結果
+├── jest.config.js     ... jestの設定
+├── tsconfig.json      ... tsの共通設定
+├── tsconfig.node.json ... Node環境用にビルドするための追加設定
+├── gulpfile.js        ... サンプルサイトを生成するタスクを定義
+├── webpack.config.js  ... ビルド設定
 └── yarn.lock
 ```
 
-## 環境構築手順
-
-### 環境構築手順 その① 下準備
-```
-# 適当なディレクトリを作って移動
-mkdir hoge
-cd hoge
-
-# プロジェクト環境の下準備(package.jsonが作られる)
-yarn init
-```
-
-## 環境構築手順 その② 使用するパッケージ
-```bash
-# 必要なパッケージを入れる
-yarn add -D typescript jest ts-jest parcel @types/jest @types/node
-```
-
-### 環境構築手順 その③ tsconfig.json
-typescriptの設定ファイルである`tsconfig.json`を作成する。
-
-詳しくは`./tsconfig.json`を参照のこと
-
-### 環境構築手順 その④ jest.config.json
-jestの設定ファイルである`jest.config.js`を作成する。  
-typescript使う設定などをしている.
-
-詳しくは`./jest.config.js`を参照のこと
-
-### 環境構築手順 その⑤ バンドル用のindex.tsを作る
-たくさんのプログラムを最終的に１つにまとめるためのファイルを作る  
-このプロジェクトでは`./src/index.ts`がその役目をはたす。
-
-詳しくは`./src/index.ts`を参照のこと
-
-### 環境構築手順 その⑥ 便利コマンドを定義
-テストの実行やビルドをコマンド一発でできるように`package.json`に以下の内容を追加
+# example/vendersについて
+このフォルダはgit管理しません。
+ただ実際に動作させるためには以下のファイルをこのフォルダに配置する必要があります。
+下記に示すものを手動で取得し、このフォルダに配置してください。
 
 ```
-"scripts": {
-  "test": "jest --watch",
-  "test:cover": "jest --coverage",
-  "build": "rm -rf ./build && parcel build ./src/index.ts --out-dir=build --no-source-maps",
-  "build:map": "rm -rf ./build && parcel build ./src/index.ts --out-dir=build"
-}
+venders
+├ somali
+│ └ somali.js (https://github.com/kurodakazumichi/Somali/raw/master/browser/somali.js)
+└ highlight (https://highlightjs.org/download/)
+   ├ highlight.pack.js
+   └ atom-one-dark.css
 ```
-
-コマンドライン上で
-- `yarn test`とすればjestによるテストが起動する。
-- `yarn test:cover`とすれば全体のテスト網羅率が表示される。
-- `yarn build`とすれば、`./build`にビルド結果の`js`が出力される。
-- `yarn build:map`は`yarn build`と一緒だが、mapファイルも出力される。
-
-
-これで環境構築は終了。
-
-## 実際の開発の流れ
-
-1. 何かしらプログラムを作る -> `./src/hoge.ts`
-2. それに対するテストプログラムを作る -> `./src/hoge.spec.ts`
-3. テストを実行する -> `yarn test`
-4. ビルドする -> `yarn build`
-5. おわり。
-
-詳しくは`./src`を参考のこと
-
-### 追記
-
-他のTypeScriptプロジェクトに`yarn add`して使うための設定を追加。
-`yarn build:tsc`とすることで`dist`にトランスパイルしたコードが生成される。
