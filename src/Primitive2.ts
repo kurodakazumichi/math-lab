@@ -98,35 +98,40 @@ export class Ray extends Line
 
 //-----------------------------------------------------------------------------
 // 線分
-// 線分は始点と終点のある直線で、始点と終点の２つの座標で定義する。
+// 線分は始点と終点のある直線。
+// 始点と終点を持っても定義はできるが、始点と線分の方向と長さを表すベクトルから
+// 定義する。
 //-----------------------------------------------------------------------------
 export class Segment
 {
-  /** 始点 */
-  private _p1:Vector2;
+  /** 線分の始点 */
+  private _p:Vector2;
 
-  /** 終点 */
-  private _p2:Vector2;
+  /** 線分の方向と長さを表すベクトル */
+  private _v:Vector2;
 
   /**
    * コンストラクタ
-   * @param p1 始点
-   * @param p2 終点
+   * @param p 線分の始点
+   * @param v 線分の方向と長さを表すベクトル
    */
-  constructor(p1:Vector2, p2:Vector2) {
-    this._p1 = p1;
-    this._p2 = p2;
+  constructor(p:Vector2, v:Vector2) 
+  {
+    this._p = new Vector2(p.x, p.y);
+    this._v = new Vector2(v.x, v.y);
   }
 
   /** アクセッサ */
-  get p1 () { return this._p1; }
-  get p2 () { return this._p2; }
+  get p1() { return this._p; }
+  get p2() { return Vector2.add(this._p, this.v); }
+  get v() { return this._v; }
   
   /**
    * 線分の始点と終点の座標を1次元配列で取得する
    */
   get points() {
-    return [this.p1.x, this.p1.y, this.p2.x, this.p2.y];
+    const { p1: s, p2: e } = this;
+    return [s.x, s.y, e.x, e.y];
   }
 }
 
