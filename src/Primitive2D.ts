@@ -158,16 +158,33 @@ export class Circle
   set r(v){ this._r = v; }
 }
 
-/** カプセル */
-export class Capsule {
-  constructor(s:Segment, r:number) {
+//-----------------------------------------------------------------------------
+// カプセル
+// カプセルは線分と半径の２つの情報から定義される。
+//-----------------------------------------------------------------------------
+export class Capsule 
+{
+  /** カプセルを表す線分 */
+  private _s:Segment;
+
+  /** カプセルの太さ */
+  private _r:number;
+
+  /**
+   * コンストラクタ
+   * @param s 線分
+   * @param r 太さ
+   */
+  constructor(s:Segment, r:number) 
+  {
     this._s = new Segment(s.p1, s.p2);
-    this.r  = r;
+    this._r = r;
   }
 
+  /** アクセッサ */
   get s() { return this._s; }
-  private _s:Segment;
-  r:number;
+  get r() { return this._r; }
+  set r(v){ this._r = v; }
 }
 
 export class AABB {
