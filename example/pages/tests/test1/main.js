@@ -1,5 +1,5 @@
 {
-  const { Capsule, Segment, Rect, Box, Triangle } = MathLab.Primitive2D;
+  const { Capsule, Segment, Rect, Box, Triangle } = MathLab.Primitive2;
   const { Vector2 } = MathLab;
 
   const Apply = {
