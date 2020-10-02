@@ -8,7 +8,21 @@
     <%# vender系のjs,cssの読み込み %>
     <script src="../../../venders/somali/somali.js"></script>
     <script src="../../../venders/highlight/highlight.pack.js"></script>
-    <link rel="stylesheet" href="../../../venders/highlight/atom-one-dark.css">    
+    <link rel="stylesheet" href="../../../venders/highlight/atom-one-dark.css">
+
+    <script>
+      MathJax = {
+        chtml: {
+          matchFontHeight: false
+        },
+        tex: {
+          inlineMath: [['$', '$']]
+        }
+      };
+    </script>
+    <script id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>    
   </head>
   <body>
     <header>
