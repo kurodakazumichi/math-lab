@@ -32,9 +32,7 @@ export class Line {
 
   /** アクセッサ */
   get p() { return this._p; }
-  set p(v){ this._p = v; }
   get v() { return this._v; }
-  set v(v){ this._v = v; }
 
   //---------------------------------------------------------------------------
   // ユーティリティ
@@ -122,9 +120,7 @@ export class Segment
 
   /** アクセッサ */
   get p1 () { return this._p1; }
-  set p1 (v){ this._p1 = v; }
   get p2 () { return this._p2; }
-  set p2 (v){ this._p2 = v; }
   
   /**
    * 線分の始点と終点の座標を1次元配列で取得する
@@ -158,7 +154,6 @@ export class Circle
 
   /** アクセッサ */
   get p() { return this._p; }
-  set p(v){ this._p = v; }
   get r() { return this._r; }
   set r(v){ this._r = v; }
 }
