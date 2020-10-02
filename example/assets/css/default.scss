@@ -1,0 +1,118 @@
+@import "normalize";
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;600;700&display=swap');
+
+body {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size:26px;
+  color:#393939;
+}
+
+header {
+  background:#393939;
+  padding:0.2em;
+
+  a {
+    text-decoration:none;
+    color:white;
+  }
+}
+
+footer {
+  background:#393939;
+  padding:0.2em;
+  color:white;
+  font-size: 16px;
+  text-align:center;
+}
+
+article {
+  padding:1em;
+  width:900px;
+  margin:0 auto;
+
+  h1 {
+    font-size:50px;
+    font-weight: 600;
+  
+    &::after {
+      content: "";
+      display: block;
+      height: 5px;
+      margin:5px 0 1em 0;
+      background: linear-gradient(to right, #43C6AC 0%, #d9e653 100%);
+    }
+  }
+  
+  h2 {
+    font-size:40px;
+    font-weight: 600;
+    margin-top: 3em;
+  
+    &::after {
+      content: "";
+      display: block;
+      height: 5px;
+      margin-top:5px;
+      background: linear-gradient(to right, #fff 0%, #43C6AC 50%, #fff 100%);
+    }  
+  }
+  
+  p {
+    line-height: 1.5em;
+    margin-bottom: 1em;
+  }
+  
+  code {
+    background: #eee;
+    border:1px solid #ddd;
+    border-radius: 5px;
+    padding:2px;
+  }
+  
+  pre {
+    code {
+      border: 1px solid #ddd;
+      margin-bottom: 2em;
+      font-size:18px;
+      line-height: 1.5em;
+    }
+  }
+  
+  li:not([class]) {
+    line-height: 1.5em;
+    margin-bottom: 0.5em;
+  }
+  
+  ul {
+    padding-left: 1em;
+    
+    li:not([class]) {
+      list-style-type: circle;
+    }
+  }
+
+  figure {
+    table {
+      font-size:30px;
+      border-collapse: collapse;
+      th, td {
+        padding:0.2em;
+        border: 1px solid #ddd;
+      }
+      th {
+        background-color: #43C6AC;
+      }
+    }
+  }
+  
+}
+
+
+
+
+
+.somali {
+  display: flex;
+  justify-content:space-around;
+  margin-bottom: 1em;
+}

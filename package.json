@@ -27,6 +27,8 @@
     "test:cover": "jest --coverage",
     "build": "webpack --type browser",
     "build:dev": "webpack --mode development --type browser",
-    "build:tsc": "webpack --type node"
+    "build:tsc": "webpack --type node",
+    "example": "gulp",
+    "example:build": "gulp build"
   }
 }

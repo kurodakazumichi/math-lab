@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= file.data.title %> | MathLab</title>
+    <script src="../../../assets/js/mathLab.js"></script>
+    <link rel="stylesheet" href="../../../assets/css/default.css">
+
+    <%# vender系のjs,cssの読み込み %>
+    <script src="../../../venders/somali/somali.js"></script>
+    <script src="../../../venders/highlight/highlight.pack.js"></script>
+    <link rel="stylesheet" href="../../../venders/highlight/atom-one-dark.css">    
+  </head>
+  <body>
+    <header>
+      <a href="../../../index.html">HOME</a>
+    </header>
+    <main>
+      <article>
+        <h1><%= file.data.title %></h1>
+        <%- file.contents %>
+      </article>
+    </main>
+
+    <footer>
+      <span>無職の学び舎 | Nekonecode</span>
+    </footer>
+    
+    <script src="main.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
