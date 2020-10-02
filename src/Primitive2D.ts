@@ -336,3 +336,45 @@ export class Box
   }
 }
 
+//-----------------------------------------------------------------------------
+// 三角形
+// 三角形は3点の座標によって定義する
+//-----------------------------------------------------------------------------
+export class Triangle 
+{
+  /** 頂点１ */
+  private _p1:Vector2;
+
+  /** 頂点２ */
+  private _p2:Vector2;
+
+  /** 頂点３ */
+  private _p3:Vector2;  
+  
+  /**
+   * コンストラクタ
+   * @param p1 頂点１
+   * @param p2 頂点２
+   * @param p3 頂点３
+   */
+  constructor(p1:Vector2, p2:Vector2, p3:Vector2) 
+  {
+    this._p1 = p1;
+    this._p2 = p2;
+    this._p3 = p3;
+  }
+
+  /** アクセッサ */
+  get p1() { return this._p1; }
+  get p2() { return this._p2; }
+  get p3() { return this._p3; }
+
+  /** ３頂点の座標を1次元配列で取得する */
+  get points() {
+    return [
+      this._p1.x, this._p1.y,
+      this._p2.x, this._p2.y,
+      this._p3.x, this._p3.y,
+    ];
+  }
+}
