@@ -187,107 +187,152 @@ export class Capsule
   set r(v){ this._r = v; }
 }
 
-export class AABB {
-  constructor(c:Vector2, r:[number, number]) {
-    this._c = c;
-    this.rx = r[0];
-    this.ry = r[1];
+//-----------------------------------------------------------------------------
+// 矩形(軸に平行な矩形)
+// 矩形は左上の基点となる座標と右下までの長さ(width, heihgt)で定義する
+// 各頂点は左上をp1とし、時計回りにp2,p3,p4とする。
+// p1      p2
+// ┏━━━┓
+// ┃      ┃
+// ┃      ┃
+// ┗━━━┛
+// p4      p3
+//-----------------------------------------------------------------------------
+export class Rect {
+
+  /** 左上の基点となる座標 */
+  private _p:Vector2;
+
+  /** 幅 */
+  private _w:number;
+
+  /** 高さ */
+  private _h:number;  
+
+  /**
+   * コンストラクタ
+   * @param p 左上の座標
+   * @param w 幅
+   * @param h 高さ
+   */
+  constructor(p:Vector2, w:number, h:number) {
+    this._p = p;
+    this._w = w;
+    this._h = h;
   }
 
-  private _c:Vector2;
-  get c() { return this._c; }
-  rx:number;
-  ry:number;
-
-  get width() { 
-    return this.rx*2;
-  }
-
-  get height(){ 
-    return this.ry*2; 
-  }
+  /** アクセッサ */
+  get p() { return this._p; }
+  get w() { return this._w; }
+  set w(v){ this._w = v; }
+  get h() { return this._h; }
+  set h(v){ this._h = v; }
 
   /** 左上 */
   get p1() { 
-    return new Vector2(this.c.x - this.rx, this.c.y + this.ry); 
+    return this.p.clone();
   }
 
   /** 右上 */
   get p2() {
-    return new Vector2(this.c.x + this.rx, this.c.y + this.ry);
+    return new Vector2(this.p.x + this.w, this.p.y);
   }
 
   /** 右下 */
   get p3() {
-    return new Vector2(this.c.x + this.rx, this.c.y - this.ry);
+    return new Vector2(this.p.x + this.w, this.p.y + this.h);
   }
 
   /** 左下 */
   get p4() {
-    return new Vector2(this.c.x - this.rx, this.c.y - this.ry);
+    return new Vector2(this.p.x, this.p.y + this.h);
   }
 }
 
-export class OBB 
+//-----------------------------------------------------------------------------
+// 矩形(回転する矩形)
+// 回転する矩形は中心座標とXYそれぞれの半径、また回転角度から定義する。
+// 各頂点は左上をp1とし、時計回りにp2,p3,p4とする。
+// p1      p2
+// ┏━━━┓
+// ┃      ┃
+// ┃      ┃
+// ┗━━━┛
+// p4      p3
+//-----------------------------------------------------------------------------
+export class Box 
 {
-  constructor(c:Vector2, r:[number, number], angle:number) {
+  /** 中心座標 */
+  private _c:Vector2;
+
+  /** 半径(XY) */
+  private _r:Vector2;
+
+  /** 回転 */
+  private _rad:number = 0;
+
+  /**
+   * コンストラクタ
+   * @param c 中心座標
+   * @param r 半径(XY)
+   * @param angle 回転
+   */
+  constructor(c:Vector2, r:Vector2, angle:number) {
     this._c = c;
-    this._r = new Vector2(r[0], r[1]);
+    this._r = r;
     this.angle = angle;
   }
 
-  private _c:Vector2; // 中心座標
-  private _r:Vector2; // 半径(縦横)
-  rad:number = 0;     // 回転
-
+  /** アクセッサ */
   get c() { return this._c; }
   get r() { return this._r; }
   get rx() { return this._r.x; }
   get ry() { return this._r.y; }
   set rx(v:number) { this._r.x = v; }
   set ry(v:number) { this._r.y = v; }
-
-  get angle() { return Util.rad2deg(this.rad); }
-  set angle(v:number) { this.rad = Util.deg2rad(v); }
-
-  get width() { 
-    return this.rx*2;
-  }
-
-  get height(){ 
-    return this.ry*2; 
-  }
+  get w() { return this.rx*2; }
+  get h(){ return this.ry*2; }
+  get angle() { return Util.rad2deg(this._rad); }
+  set angle(v:number) { this._rad = Util.deg2rad(v); }
 
   /** 左上 */
   get p1() { 
-    return new Vector2(-this._r.x, this._r.y).rotate(this.rad).add(this.c);
+    return new Vector2(-this._r.x, this._r.y).rotate(this._rad).add(this.c);
   }
 
   /** 右上 */
   get p2() {
-    return new Vector2(this._r.x, this._r.y).rotate(this.rad).add(this.c);
+    return new Vector2(this._r.x, this._r.y).rotate(this._rad).add(this.c);
   }
 
   /** 右下 */
   get p3() {
-    return new Vector2(this._r.x, -this._r.y).rotate(this.rad).add(this.c);
+    return new Vector2(this._r.x, -this._r.y).rotate(this._rad).add(this.c);
   }
 
   /** 左下 */
   get p4() {
-    return new Vector2(-this._r.x, -this._r.y).rotate(this.rad).add(this.c);
+    return new Vector2(-this._r.x, -this._r.y).rotate(this._rad).add(this.c);
   }
 
-  get s1() {
+  /** p1からp2に向かうベクトル */
+  get v1to2() {
     return Vector2.sub(this.p2, this.p1);
   }
-  get s2() {
+
+  /** p2からp3に向かうベクトル */
+  get v2to3() {
     return Vector2.sub(this.p3, this.p2);
   }
-  get s3() {
+
+  /** p3からp4に向かうベクトル */
+  get v3to4() {
     return Vector2.sub(this.p4, this.p3);
   }
-  get s4() {
+
+  /** p4からp1に向かうベクトル */
+  get v4to1() {
     return Vector2.sub(this.p1, this.p4);
   }
 }
+
