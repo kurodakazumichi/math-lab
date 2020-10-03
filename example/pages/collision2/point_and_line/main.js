@@ -1,5 +1,5 @@
 {
-  const { Vector2, Collision2 } = MathLab;
+  const { Vector2, Collision2, Util } = MathLab;
   const { Line } = MathLab.Primitive2;
   const { Sync } = props;
 
@@ -110,7 +110,7 @@
     createNodes(shapes, groups) {
       return {
         grid : groups.grid(),
-        point: shapes.point().draggable(true),
+        point: shapes.pointer(),
         line : shapes.line(),
         a    : shapes.arrow().color(Somali.sColor.red),
         b    : shapes.arrow().color(Somali.sColor.yellow),
@@ -143,6 +143,75 @@
 
     constructor() {
       super();
+
+      this.v1 = Vector2.right.times(2);
+      this.v2 = Vector2.one.times(3);
+    }
+
+    createNodes(shapes, groups) {
+      return {
+        grid : groups.grid(),
+        point: shapes.pointer().pos(this.v2.x, this.v2.y),
+        theta: shapes.wedge().pos(0, 0).angle(45).rotation(-45),
+        v1   : shapes.arrow().color(Somali.sColor.red),
+        v2   : shapes.arrow().color(Somali.sColor.yellow),
+        text : shapes.text().text("θ=45").pos(0.5, 0.5),
+        cross: shapes.text().fontSize(20),
+        sin  : shapes.text().fontSize(20).pos(-5, 4),
+      }
+    }
+
+    initNodes(nodes) {
+      Sync.vec2ToArrow(this.v1, nodes.v1);
+      Sync.vec2ToArrow(this.v2, nodes.v2);
+      this.updateCross();
+      this.updateSin();
+
+      nodes.point.on("dragmove", (point) => {
+        this.v2.set(point.x(), point.y());
+        Sync.vec2ToArrow(this.v2, this.nodes.v2);
+
+        const deg = this.deg;
+        this.nodes.text.text(`θ=${deg}`)
+
+        this.nodes.theta.angle(deg).rotation(-deg);
+
+        this.updateCross();
+        this.updateSin();
+
+      });
+    }
+
+    get deg() {
+      const cross = Vector2.cross(this.v1, this.v2);
+      let deg = Util.round(Util.rad2deg(Vector2.angle(this.v1, this.v2)), 0);
+
+      if (cross < 0) {
+        deg = 180 + (180 - deg) ;
+      }
+      return deg;
+    }
+
+    updateCross() {
+      this.nodes.cross.text(`外積の値=${Vector2.cross(this.v1, this.v2)}`);
+    }
+
+    updateSin() {
+      const deg = this.deg;
+      const sin = Math.sin(Util.deg2rad(deg));
+
+      this.nodes.sin.text(`sin(${deg}) = ${Util.round(sin, 5)}`)
+    }
+  }
+
+  class Graph5 extends Somali.Scene 
+  {
+    get option() {
+      return {id:"graph5", update:false}
+    }
+
+    constructor() {
+      super();
     }
 
     createNodes(shapes, groups) {
@@ -159,5 +228,6 @@
   new Graph2().build();
   new Graph3().build();
   new Graph4().build();
+  new Graph5().build();
 
 }
