@@ -59,9 +59,19 @@ article {
   
   p {
     line-height: 1.5em;
-    margin-bottom: 1em;
+    margin-bottom: 2.5em;
+  }
+
+  b {
+    color: #43C6AC;
   }
   
+  a {
+    text-decoration: none;
+    font-weight: bold;
+    color:#4469A6;
+
+  }
   code {
     background: #eee;
     border:1px solid #ddd;
@@ -109,7 +119,13 @@ article {
 
 
 
-
+.math {
+  padding:1em;
+  border:1px solid #ddd;
+  border-radius: 10px;
+  background:#eee;
+  line-height: 2.5em;
+}
 
 .somali {
   display: flex;
