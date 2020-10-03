@@ -1,0 +1,136 @@
+---
+title: 2Dベクトルの外積
+---
+<p>
+  ２つのベクトル $\vec{v1}$ と $\vec{v2}$ があるとして、ベクトルの外積は以下のように書く。
+</p>
+
+<p class="math">$\vec{v1} \times \vec{v2}$</p>
+
+<p>
+  とりあえずこの式を見たら、<b>あぁ、ベクトルの外積だな</b>と思えばいいと思う。
+</p>
+
+<h2>外積の活用例</h2>
+<ul>
+  <li><a href="../../collision2/point_and_line/">点と線の衝突</a></li>
+</ul>
+
+<h2>外積の計算</h2>
+<p>
+  外積の計算方法は１つではないので、それぞれについて見ていく。
+</p>
+
+<h3>計算方法 その１</h3>
+
+<div id="graph1"></div>
+
+<p class="math">
+  $\vec{v1} \times \vec{v2} = |\vec{v1}||\vec{v2}|sin(\theta)$
+</p>
+
+<p>
+  2つのベクトルの長さと$\sin(\theta)$をかけて求める方法。<br>
+  $\theta$は2つのベクトルの間の角度。
+</p>
+
+<h3>計算方法 その２</h3>
+
+<div id="graph2"></div>
+
+<p class="math">
+  $\vec{v1} \times \vec{v2} = ad - bc$
+</p>
+
+<p>
+  2つのベクトルの成分をかけたり引いたりして求める方法。
+</p>
+
+<p>
+  ベクトルのXY成分さえわかっていれば<b>ちょっとした掛け算と足し算で計算できてしまう</b>ので、こっちで計算できるならこっちの計算式で求めてしまうのがいいだろう。
+</p>
+
+
+<h2>$ad - bc$で本当に求まる？</h2>
+
+<p class="math">
+  $\vec{v1} \times \vec{v2} = |\vec{v1}||\vec{v2}|sin(\theta) = ad - bc$<br>
+</p>
+
+<p>真ん中の複雑そうな式が、右側の簡単な式になっちゃうというのはにわかに信じがたいのだが、これが正しいという事を証明していこう。</p>
+
+<div id="graph3"></div>
+
+<p class="math">
+  $sin(\theta)$ = $sin(\alpha - \beta)$ と書くことができる。
+</p>
+
+<p>
+  $\alpha$が80度で$\beta$が30度だったら、$\theta$は(80 - 30)で50度という単純な話。
+</p>
+
+<p>三角関数の加法定理といって、こんな公式があったりする。</p>
+
+<p class="math">
+  $sin(\alpha - \beta) = sin\alpha \ cos\beta - cos\alpha \ sin\beta $
+</p>
+
+<p>
+  この公式を使うとベクトルの外積は以下のように計算式を変形できる。
+</p>
+
+<p class="math">
+$\vec{v1} \times \vec{v2}$<br>
+$= |\vec{v1}||\vec{v2}|sin(\theta)$ <br>
+$= |\vec{v1}||\vec{v2}|sin(\alpha - \beta)$<br>
+$= |\vec{v1}||\vec{v2}|(sin\alpha \ cos\beta - cos\alpha \ sin\beta) $
+</p>
+
+<p>整理するとこうなる</p>
+<p class="math">
+  $\vec{v1} \times \vec{v2} = |\vec{v1}||\vec{v2}|(sin\alpha \ cos\beta - cos\alpha \ sin\beta) $
+</p>
+
+<p>
+  $(sin\alpha \ cos\beta - cos\alpha \ sin\beta) $
+  の部分を先に計算してみる
+</p>
+
+<div id="graph4"></div>
+
+<ul>
+  <li>$sin\alpha = \frac{d}{|\vec{v2}|}$</li>
+  <li>$cos\beta = \frac{a}{|\vec{v1}|}$</li>
+  <li>$cos\alpha = \frac{c}{|\vec{v2}|}$</li>
+  <li>$sin\beta = \frac{b}{|\vec{v1}|}$</li>
+</ul>
+
+<p class="math">
+  $(sin\alpha \ cos\beta - cos\alpha \ sin\beta) $<br>
+  $= \frac{d}{|\vec{v2}|} \frac{a}{|\vec{v1}|} - \frac{c}{|\vec{v2}|} \frac{b}{|\vec{v1}|}$<br>
+  $= \frac{ad - bc}{|\vec{v1}||\vec{v2}|}$
+</p>
+
+<p>整理すると</p>
+
+
+<p class="math">
+  $(sin\alpha \ cos\beta - cos\alpha \ sin\beta) = \frac{ad - bc}{|\vec{v1}||\vec{v2}|}$
+</p>
+
+<p>
+  もとの計算式にあてはめてみる
+</p>
+
+<p class="math">
+  $\vec{v1} \times \vec{v2} $
+  $ = |\vec{v1}||\vec{v2}|(sin\alpha \ cos\beta - cos\alpha \ sin\beta)$<br>
+  $ = |\vec{v1}||\vec{v2}| \frac{ad - bc}{|\vec{v1}||\vec{v2}|}$<br>
+  $ = ad - bc$
+</p>
+
+<p class="math">
+  $\vec{v1} \times \vec{v2} = ad - bc$
+</p>
+
+<p>求めている結果が得られました！<br>これにて証明は終了です。</p>
