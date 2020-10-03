@@ -25,8 +25,14 @@ export function isHit(point:Vector2, ray: Ray)
   // よってaとbの内積=|a||b|の時、点は半直線上にあるといえる。
   const a = ray.v;
   const b = Vector2.sub(point, ray.p);
-  const l = a.magnitude * b.magnitude;
-  return (Vector2.dot(a, b) === l);
+  let l = a.magnitude * b.magnitude;
+  let d = Vector2.dot(a, b);
+
+  // 小数点誤差をある程度無くすために、極小の値を切り捨て
+  l = Math.floor(l * 1000000) / 1000000;
+  d = Math.floor(d * 1000000) / 1000000;
+
+  return (d === l);
 }
 
 /**

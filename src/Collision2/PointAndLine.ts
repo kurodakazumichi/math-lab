@@ -16,7 +16,12 @@ export function isHit(point:Vector2, line: Line)
   // 2つのベクトルが平行なとき、外積の結果が0になることを使って判定する。
   const a = line.v;
   const b = Vector2.sub(point, line.p);
-  return (Vector2.cross(a, b) === 0);
+
+  // 外積の結果の小数点誤差をある程度のところで切り捨て
+  let c = Vector2.cross(a, b);
+  c = Math.floor(c * 1000000) / 1000000;
+
+  return (c === 0);
 }
 
 /**
