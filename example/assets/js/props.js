@@ -4,10 +4,10 @@
 const props = {};
 
 /******************************************************************************
- * Apply
+ * Sync
  * MathLabのPrimitiveがもつパラメータをSomaliのShapeに適用するUtil
  *****************************************************************************/
-props.Apply = {
+props.Sync = {
 
   /** Primitive2.lineをSomali.Lineへ適用 */
   lineToLine: (line, shape) => {

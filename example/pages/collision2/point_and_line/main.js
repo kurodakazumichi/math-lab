@@ -1,7 +1,7 @@
 {
   const { Vector2, Collision2 } = MathLab;
   const { Line } = MathLab.Primitive2;
-  const { Apply } = props;
+  const { Sync } = props;
 
   class Graph1 extends Somali.Scene 
   {
@@ -27,7 +27,7 @@
     initNodes(nodes) {
       nodes.star.visible(false).opacity(0.5);
       nodes.point.pos(this.pos.x, this.pos.y);
-      Apply.lineToLine(this.line, nodes.line);
+      Sync.lineToLine(this.line, nodes.line);
     }
 
     update() {
@@ -74,7 +74,7 @@
     initNodes(nodes) {
       nodes.star.visible(false).opacity(0.5);
       nodes.point.pos(this.pos.x, this.pos.y);
-      Apply.lineToLine(this.line, nodes.line);
+      Sync.lineToLine(this.line, nodes.line);
     }
 
     update() {
@@ -119,7 +119,7 @@
 
     initNodes(nodes) {
       nodes.point.pos(this.pos.x, this.pos.y);
-      Apply.lineToLine(this.line, nodes.line);
+      Sync.lineToLine(this.line, nodes.line);
 
       const p = this.line.point(2);
       nodes.a.points([this.line.p.x, this.line.p.y, p.x, p.y]);
