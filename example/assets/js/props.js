@@ -14,10 +14,16 @@ props.Sync = {
     return shape.points(line.points(100));
   },
 
-  /** Vectir2をArrowへ適用 */
+  /** Vectir2をSomali.Arrowへ適用 */
   vec2ToArrow: (v, shape) => {
     return shape.points([0, 0, v.x, v.y]);
+  },
+
+  /** CircleをSomali.Circleへ適用 */
+  circle2Circle: (circle, shape) => {
+    return shape.pos(circle.p.x, circle.p.y).radius(circle.r);
   }
+
 
 };
 
