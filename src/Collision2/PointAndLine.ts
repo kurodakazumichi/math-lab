@@ -41,3 +41,22 @@ export function intercect(point:Vector2, line:Line)
   // 衝突検知の結果を返却
   return { hit, pos };
 }
+
+/**
+ * 点と直線の最近傍点を取得する
+ * @param point 点
+ * @param line 直線
+ */
+export function getNearestNeighborPoint(point:Vector2, line:Line) {
+  // カプセルと点の最近傍点を求める
+
+  // 直線の向きを表すベクトルをd
+  // 線分の任意の点から点に向かうベクトルをp
+  const d = line.v;
+  const p = Vector2.sub(point, line.p);
+
+  // 線分上の最近傍点を求める
+  const n = d.normalize;
+  const dot = Vector2.dot(n, p);
+  return Vector2.add(line.p, n.times(dot));
+}
