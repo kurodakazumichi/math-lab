@@ -22,7 +22,12 @@ props.Sync = {
   /** CircleをSomali.Circleへ適用 */
   circle2Circle: (circle, shape) => {
     return shape.pos(circle.p.x, circle.p.y).radius(circle.r);
-  }
+  },
+
+  /** RectをSomali.Rectへ適用 */
+  rect2Rect: (rect, shape) => {
+    return shape.pos(rect.p1.x, rect.p1.y).width(rect.w).height(rect.h);
+  },
 
 
 };
