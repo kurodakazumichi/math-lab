@@ -15,7 +15,7 @@ props.Sync = {
   },
 
   /** Vectir2をSomali.Arrowへ適用 */
-  vec2ToArrow: (v, shape) => {
+  vecToArrow: (v, shape) => {
     return shape.points([0, 0, v.x, v.y]);
   },
 
