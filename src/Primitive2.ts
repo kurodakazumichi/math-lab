@@ -245,12 +245,12 @@ export class Rect {
 
   /** 右下 */
   get p3() {
-    return new Vector2(this.p.x + this.w, this.p.y + this.h);
+    return new Vector2(this.p.x + this.w, this.p.y - this.h);
   }
 
   /** 左下 */
   get p4() {
-    return new Vector2(this.p.x, this.p.y + this.h);
+    return new Vector2(this.p.x, this.p.y - this.h);
   }
 }
 
