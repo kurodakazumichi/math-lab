@@ -48,3 +48,34 @@ export function intercect(point:Vector2, segment:Segment)
   // 衝突検知の結果を返却
   return { hit, pos };
 }
+
+/**
+ * 点と線分の最近傍点を取得する
+ * @param point 点
+ * @param segment 線分
+ */
+export function getNearestNeighborPoint(point:Vector2, segment:Segment) {
+  // カプセルと点の最近傍点を求める
+
+// 線分の向きを表すベクトルをd
+// 線分の始点から点に向かうベクトルをp1
+// 線分の終点から点に向かうベクトルをp2
+const d = segment.v;
+const p1 = Vector2.sub(point, segment.p1);
+const p2 = Vector2.sub(point, segment.p2);
+
+// 線分の始点の外側に点があったら、線分の始点が最近傍点
+if (Vector2.dot(d, p1) < 0) {
+  return segment.p1.clone();
+}
+
+// 線分の終端の外側に点があったら、線分の終端が最近傍点
+if (0 < Vector2.dot(d, p2)) {
+  return segment.p2.clone();
+}
+
+// 線分上の最近傍点を求める
+const n = d.normalize;
+const dot = Vector2.dot(n, p1);
+return Vector2.add(segment.p1, n.times(dot));
+}

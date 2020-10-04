@@ -211,7 +211,7 @@ export class Capsule
    */
   constructor(s:Segment, r:number) 
   {
-    this._s = new Segment(s.p1, s.p2);
+    this._s = s;
     this._r = r;
   }
 

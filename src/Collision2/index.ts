@@ -6,6 +6,7 @@ import * as PointAndCircle from './PointAndCircle';
 import * as PointAndRect from './PointAndRect';
 import * as PointAndBox from './PointAndBox';
 import * as PointAndTriangle from './PointAndTriangle';
+import * as PointAndCapsule from './PointAndCapsule';
 
 export {
   PointAndPoint,
@@ -16,4 +17,5 @@ export {
   PointAndRect,
   PointAndBox,
   PointAndTriangle,
+  PointAndCapsule,
 }

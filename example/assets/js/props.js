@@ -41,8 +41,17 @@ props.Sync = {
   },
 
   /** TriangleをSomali.Lineへ適用 */
-  triToLine: (tri, line) => {
-    return line.points(tri.points).closed(true);
+  triToLine: (tri, shape) => {
+    return shape.points(tri.points).closed(true);
+  },
+
+  /** CapsuleをSomali.Lineへ適用 */
+  capsuleToLine: (capsule, shape) => {
+    console.log(capsule);
+    return shape
+      .points(capsule.s.points)
+      .strokeWidth(capsule.r * 2, true)
+      .lineCap("round");
   }
 
 };
