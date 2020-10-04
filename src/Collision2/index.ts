@@ -2,7 +2,7 @@ import * as PointAndPoint from './PointAndPoint';
 import * as PointAndLine from './PointAndLine';
 import * as PointAndRay from './PointAndRay';
 import * as PointAndSegment from './PointAndSegment';
-import * as PointandCircle from './PointAndCircle';
+import * as PointAndCircle from './PointAndCircle';
 import * as PointAndRect from './PointAndRect';
 
 export {
@@ -10,6 +10,6 @@ export {
   PointAndLine,
   PointAndRay,
   PointAndSegment,
-  PointandCircle,
+  PointAndCircle,
   PointAndRect,
 }

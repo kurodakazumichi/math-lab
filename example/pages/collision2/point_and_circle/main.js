@@ -30,7 +30,7 @@
       this.pos.set(Math.sin(this.timer) * 4, Math.cos(this.timer * 0.1) * 4)
       this.nodes.point.pos(this.pos.x, this.pos.y);
 
-      const result = Collision2.PointandCircle.intercect(this.pos, this.circle);
+      const result = Collision2.PointAndCircle.intercect(this.pos, this.circle);
       this.nodes.star.visible(result.hit);
 
       if (result.hit) {
