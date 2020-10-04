@@ -1,0 +1,1 @@
+{"version":3,"file":"PointAndCircle.d.ts","sourceRoot":"","sources":["../../src/Collision2/PointAndCircle.ts"],"names":[],"mappings":"AAGA,OAAO,OAAO,MAAM,YAAY,CAAC;AACjC,OAAO,EAAE,MAAM,EAAE,MAAM,eAAe,CAAC;AAOvC,wBAAgB,KAAK,CAAC,KAAK,EAAC,OAAO,EAAE,MAAM,EAAE,MAAM,WAUlD;AAOD,wBAAgB,SAAS,CAAC,KAAK,EAAC,OAAO,EAAE,MAAM,EAAC,MAAM;;;EAWrD"}

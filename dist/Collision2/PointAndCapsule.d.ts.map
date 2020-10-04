@@ -1,0 +1,1 @@
+{"version":3,"file":"PointAndCapsule.d.ts","sourceRoot":"","sources":["../../src/Collision2/PointAndCapsule.ts"],"names":[],"mappings":"AAGA,OAAO,OAAO,MAAM,YAAY,CAAC;AAEjC,OAAO,EAAE,OAAO,EAAE,MAAM,eAAe,CAAC;AAOxC,wBAAgB,KAAK,CAAC,KAAK,EAAC,OAAO,EAAE,OAAO,EAAC,OAAO,WAUnD;AAOD,wBAAgB,SAAS,CAAC,KAAK,EAAC,OAAO,EAAE,OAAO,EAAC,OAAO;;;EAUvD"}
