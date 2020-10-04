@@ -175,21 +175,28 @@ export class Ellipse
   /** 半径XY */
   private _r: Vector2;
 
+  /** 回転 */
+  private _rad:number = 0;
+
   /**
    * コンストラクタ
    * @param p 中心
    * @param rx 半径X
    * @param ry 半径Y
    */
-  constructor(p:Vector2, rx:number, ry:number) {
+  constructor(p:Vector2, rx:number, ry:number, angle:number) {
     this._p = p.clone();
     this._r = new Vector2(rx, ry);
+    this.angle = angle;
   }
 
   /** アクセッサ */
   get p() { return this._p; }
   get rx() { return this._r.x; }
   get ry() { return this._r.y; }
+  get rad(){ return this._rad; }
+  get angle() { return Util.rad2deg(this._rad); }
+  set angle(v:number) { this._rad = Util.deg2rad(v); }
 }
 
 //-----------------------------------------------------------------------------

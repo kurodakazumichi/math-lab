@@ -47,12 +47,20 @@ props.Sync = {
 
   /** CapsuleをSomali.Lineへ適用 */
   capsuleToLine: (capsule, shape) => {
-    console.log(capsule);
     return shape
       .points(capsule.s.points)
       .strokeWidth(capsule.r * 2, true)
       .lineCap("round");
-  }
+  },
+
+  /** EllipseをSomali.Ellipseへ適用 */
+  ellipseToEllipse:(ellipse, shape) => {
+    return shape
+      .pos(ellipse.p.x, ellipse.p.y)
+      .rx(ellipse.rx)
+      .ry(ellipse.ry)
+      .rotation(-ellipse.angle);    
+  },
 
 };
 
