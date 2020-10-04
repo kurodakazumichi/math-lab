@@ -52,3 +52,27 @@ export function intercect(point:Vector2, ray:Ray)
   // 衝突検知の結果を返却
   return { hit, pos };
 }
+
+/**
+ * 点と半直線の最近傍点を取得する
+ * @param point 点
+ * @param ray 半直線
+ */
+export function getNearestNeighborPoint(point:Vector2, ray:Ray) {
+  // カプセルと点の最近傍点を求める
+
+  // 半直線の向きを表すベクトルをd
+  // 半直線の始点から点に向かうベクトルをp
+  const d = ray.v;
+  const p = Vector2.sub(point, ray.p);
+
+  // 半直線の始点の外側に点があったら、半直線の始点が最近傍点
+  if (Vector2.dot(d, p) < 0) {
+    return ray.p.clone();
+  }
+
+  // 半直線上の最近傍点を求める
+  const n = d.normalize;
+  const dot = Vector2.dot(n, p);
+  return Vector2.add(ray.p, n.times(dot));
+}
