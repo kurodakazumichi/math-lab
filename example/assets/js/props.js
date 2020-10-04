@@ -29,6 +29,17 @@ props.Sync = {
     return shape.pos(rect.p1.x, rect.p1.y).width(rect.w).height(rect.h);
   },
 
+  /** BoxをSomali.Rectへ適用 */
+  box2Rect: (box, shape) => {
+    return shape
+      .pos(box.c.x, box.c.y)
+      .width(box.w)
+      .height(box.h)
+      .rotation(-box.angle)
+      .offset(-box.rx, box.ry)
+      ;
+  }
+
 
 };
 
