@@ -153,7 +153,7 @@ export class Circle
    * @param r 半径
    */
   constructor(p:Vector2, r:number) {
-    this._p = new Vector2(p.x, p.y);
+    this._p = p.clone();
     this._r = r;
   }
 
