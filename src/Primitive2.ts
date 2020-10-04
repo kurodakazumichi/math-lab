@@ -411,4 +411,19 @@ export class Triangle
       this._p3.x, this._p3.y,
     ];
   }
+
+  /** p1からp2に向かうベクトル */
+  get v1to2() {
+    return Vector2.sub(this.p2, this.p1);
+  }
+
+  /** p2からp3に向かうベクトル */
+  get v2to3() {
+    return Vector2.sub(this.p3, this.p2);
+  }
+
+  /** p3からp1に向かうベクトル */
+  get v3to1() {
+    return Vector2.sub(this.p1, this.p3);
+  }
 }

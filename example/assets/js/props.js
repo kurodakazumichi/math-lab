@@ -38,8 +38,12 @@ props.Sync = {
       .rotation(-box.angle)
       .offset(-box.rx, box.ry)
       ;
-  }
+  },
 
+  /** TriangleをSomali.Lineへ適用 */
+  triToLine: (tri, line) => {
+    return line.points(tri.points).closed(true);
+  }
 
 };
 
