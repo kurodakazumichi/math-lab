@@ -28,6 +28,7 @@
     "build": "webpack --type browser",
     "build:dev": "webpack --mode development --type browser",
     "build:tsc": "webpack --type node",
+    "build:all":"yarn build:dev & yarn build & yarn build:tsc",
     "example": "gulp",
     "example:build": "gulp build"
   }
