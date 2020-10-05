@@ -192,6 +192,7 @@ export class Ellipse
 
   /** アクセッサ */
   get p() { return this._p; }
+  get r() { return this._r; }
   get rx() { return this._r.x; }
   get ry() { return this._r.y; }
   get rad(){ return this._rad; }
@@ -304,7 +305,7 @@ export class Rect {
 export class Box 
 {
   /** 中心座標 */
-  private _c:Vector2;
+  private _p:Vector2;
 
   /** 半径(XY) */
   private _r:Vector2;
@@ -314,18 +315,18 @@ export class Box
 
   /**
    * コンストラクタ
-   * @param c 中心座標
+   * @param p 中心座標
    * @param r 半径(XY)
    * @param angle 回転
    */
-  constructor(c:Vector2, r:Vector2, angle:number) {
-    this._c = c;
+  constructor(p:Vector2, r:Vector2, angle:number) {
+    this._p = p;
     this._r = r;
     this.angle = angle;
   }
 
   /** アクセッサ */
-  get c() { return this._c; }
+  get p() { return this._p; }
   get r() { return this._r; }
   get rx() { return this._r.x; }
   get ry() { return this._r.y; }
@@ -338,22 +339,22 @@ export class Box
 
   /** 左上 */
   get p1() { 
-    return new Vector2(-this._r.x, this._r.y).rotate(this._rad).add(this.c);
+    return new Vector2(-this._r.x, this._r.y).rotate(this._rad).add(this.p);
   }
 
   /** 右上 */
   get p2() {
-    return new Vector2(this._r.x, this._r.y).rotate(this._rad).add(this.c);
+    return new Vector2(this._r.x, this._r.y).rotate(this._rad).add(this.p);
   }
 
   /** 右下 */
   get p3() {
-    return new Vector2(this._r.x, -this._r.y).rotate(this._rad).add(this.c);
+    return new Vector2(this._r.x, -this._r.y).rotate(this._rad).add(this.p);
   }
 
   /** 左下 */
   get p4() {
-    return new Vector2(-this._r.x, -this._r.y).rotate(this._rad).add(this.c);
+    return new Vector2(-this._r.x, -this._r.y).rotate(this._rad).add(this.p);
   }
 
   /** p1からp2に向かうベクトル */
