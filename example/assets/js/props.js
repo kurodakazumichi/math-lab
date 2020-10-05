@@ -14,9 +14,14 @@ props.Sync = {
     return shape.points(line.points(100));
   },
 
-  /** Vectir2をSomali.Arrowへ適用 */
+  /** Vector2をSomali.Arrowへ適用 */
   vecToArrow: (v, shape) => {
     return shape.points([0, 0, v.x, v.y]);
+  },
+
+  /** Vector2のポジションを同期 */
+  vecToPos: (v, shape) => {
+    return shape.pos(v.x, v.y);
   },
 
   /** CircleをSomali.Circleへ適用 */
@@ -116,4 +121,46 @@ props.Action.uniform = class
   updateNode() {
     this.node.pos(this.pos.x, this.pos.y);
   }
+}
+
+/******************************************************************************
+ * Graphプリセット
+ *****************************************************************************/
+props.Graph = {}
+
+props.Graph.Cos = class extends Somali.Scene{
+
+  constructor(id = "graph_cos") {
+    super();
+    this.id = id;
+  }
+
+  get option() {
+    return {id:this.id, height: 200, width: 700, unit: 70, update:false}
+  }
+
+  createNodes(shapes, groups) {
+    return {
+      grid  : groups.grid().labelX("θ").labelY("cos"),
+      cos   : groups.cos(),
+    }
+  }  
+}
+
+props.Graph.Sin = class extends Somali.Scene {
+  constructor(id = "graph_sin") {
+    super();
+    this.id = id;
+  }
+
+  get option() {
+    return {id:this.id, height: 200, width: 700, unit: 70, update:false}
+  }
+
+  createNodes(shapes, groups) {
+    return {
+      grid  : groups.grid().labelX("θ").labelY("sin"),
+      cos   : groups.sin(),
+    }
+  }  
 }
