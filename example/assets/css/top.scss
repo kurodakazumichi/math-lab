@@ -52,6 +52,19 @@ article {
     }  
   }
 
+  h3 {
+    font-size:22px;
+    margin-bottom: 0.2em;
+
+    &::after {
+      content: "";
+      display: block;
+      height: 2px;
+      margin-top:5px;
+      background: linear-gradient(to right, #eee 50%, #fff 100%);
+    }      
+  }  
+
   .index {
     display: flex;
     flex-wrap: wrap;
