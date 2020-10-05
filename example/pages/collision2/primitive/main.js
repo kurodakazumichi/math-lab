@@ -3,6 +3,34 @@
   const { Line, Ray, Segment, Circle, Ellipse, Rect, Box, Triangle, Capsule } = MathLab.Primitive2;
   const { Sync } = props;
 
+  class GraphPoint extends Somali.Scene 
+  {
+    get option() {
+      return { id: "graph_point", gui:true };
+    }
+
+    constructor() {
+      super();
+      this.shape = Vector2.zero;
+    }
+
+    initGui(gui) {
+      gui.add(this.shape, "x").step(0.1);
+      gui.add(this.shape, "y").step(0.1);
+    }
+
+    createNodes(shapes, groups) {
+      return {
+        grid: groups.grid(),
+        main: shapes.point(),
+      }
+    }
+
+    update() {
+      Sync.vecToPos(this.shape, this.nodes.main);
+    }
+  } 
+
   class GraphLine extends Somali.Scene 
   {
     get option() {
@@ -361,6 +389,7 @@
     }
   } 
 
+  new GraphPoint().build();
   new GraphLine().build();
   new GraphRay().build();
   new GraphSeg().build();

@@ -8,6 +8,22 @@ title: 衝突判定用の形状定義
 
 <p>記載しているソースコードは簡易版というかあくまでイメージです、実際に利用しているコードは<a href="https://github.com/kurodakazumichi/math-lab/blob/master/src/Primitive2.ts">ここ</a>にあります。</p>
 
+<h2>点</h2>
+
+<div id="graph_point"></div>
+
+<p>点はxy座標の２つから定義します。無職の場合は点はPointというようなクラスは作成せず、Vector2という2次元ベクトルクラスを作成し利用しています。</p>
+
+<h3>サンプルコード</h3>
+<pre><code>class Vector2 
+{
+  /** x座標 */
+  x:number;
+
+  /** y座標 */
+  y:number;
+}</code></pre>
+
 <h2>直線</h2>
 <div id="graph_line"></div>
 
