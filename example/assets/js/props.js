@@ -37,7 +37,7 @@ props.Sync = {
   /** BoxをSomali.Rectへ適用 */
   boxToRect: (box, shape) => {
     return shape
-      .pos(box.c.x, box.c.y)
+      .pos(box.p.x, box.p.y)
       .width(box.w)
       .height(box.h)
       .rotation(-box.angle)
