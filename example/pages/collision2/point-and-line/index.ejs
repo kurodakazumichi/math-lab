@@ -77,6 +77,31 @@ title: 点と直線の衝突
   <li>よって、ベクトルの外積が0の時、点と直線は衝突している。</li>
 </ol>
 
+<h2>サンプルコード</h2>
+<pre><code>/**
+* 点と直線の衝突判定
+* @param p 点
+* @param line 直線
+*/
+function intercect(p:Vector2, line:Line)
+{
+  // 直線の方向を表すベクトルをaとする
+  const a = line.v;
+
+  // 直線上の1点からpに向かうベクトルをbとする(ベクトルの引き算で算出)
+  const b = Vector2.sub(p, line.p);
+
+  // aとbの外積を取る
+  const cross = Vector2.cross(a, b);
+
+  // 外積が0だったら当たっている
+  return (cross === 0);
+}</code></pre>
+
+<p>
+  外積が0と完全一致することは小数点誤差などもありほぼ起こりえない問題はありますが、外積の値が-0.01 ～ 0.01だったらのように判定に少し遊びを持たせると当たりやすくなります。
+</p>
+
 <h2>余談：$y=ax+b$の直線の式で判定できるか？</h2>
 
 <div id="graph5"></div>
