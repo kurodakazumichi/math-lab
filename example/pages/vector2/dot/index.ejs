@@ -50,3 +50,92 @@ title: 2Dベクトルの内積
 <p>
   ベクトルのXY成分さえわかっていれば<b>ちょっとした掛け算と足し算で計算できてしまう</b>ので、こっちで計算できるならこっちの計算式で求めてしまうのがいいだろう。
 </p>
+
+<h2>$ac + bd$ で本当に求まる？</h2>
+
+<p class="math">
+  $\vec{v1} \cdot \vec{v2} = |\vec{v1}||\vec{v2}|cos(\theta) = ac + bd$<br>
+</p>
+
+<p>真ん中の複雑そうな式が、右側の簡単な式になっちゃうというのはにわかに信じがたいのだが、これが正しいという事を証明していこう。</p>
+
+
+<h3>$\cos(\theta)$の捉え方を変える</h3>
+<div id="graph3"></div>
+
+<p class="math">
+  $cos(\theta)$ = $cos(\alpha - \beta)$ と書くことができる。
+</p>
+
+<p>
+  $\alpha$が80度で$\beta$が30度だったら、$\theta$は(80 - 30)で50度という単純な話。
+</p>
+
+<h3>三角関数の加法定理というのものがありまして</h3>
+<p>こんな公式があったりする。</p>
+
+<p class="math">
+  $cos(\alpha - \beta) = cos\alpha \ cos\beta + sin\alpha \ sin\beta $
+</p>
+
+<p>
+  この公式を使うとベクトルの外積は以下のように計算式を変形できる。
+</p>
+
+<p class="math">
+$\vec{v1} \cdot \vec{v2}$<br>
+$= |\vec{v1}||\vec{v2}|cos(\theta)$ <br>
+$= |\vec{v1}||\vec{v2}|cos(\alpha - \beta)$<br>
+$= |\vec{v1}||\vec{v2}|(cos\alpha \ cos\beta + sin\alpha \ sin\beta) $
+</p>
+
+<p>整理するとこうなる</p>
+<p class="math">
+  $\vec{v1} \times \vec{v2} = |\vec{v1}||\vec{v2}|(cos\alpha \ cos\beta + sin\alpha \ sin\beta) $
+</p>
+
+<h3>計算がんばる</h3>
+
+<p>
+  $(cos\alpha \ cos\beta + sin\alpha \ sin\beta) $
+  の部分を先に計算してみる
+</p>
+
+<div id="graph4"></div>
+
+<ul>
+  <li>$cos\alpha = \frac{c}{|\vec{v2}|}$</li>
+  <li>$cos\beta = \frac{a}{|\vec{v1}|}$</li>
+  <li>$sin\alpha = \frac{d}{|\vec{v2}|}$</li>
+  <li>$sin\beta = \frac{b}{|\vec{v1}|}$</li>
+</ul>
+
+<p class="math">
+  $(cos\alpha \ cos\beta + sin\alpha \ sin\beta) $<br>
+  $= \frac{c}{|\vec{v2}|} \frac{a}{|\vec{v1}|} + \frac{d}{|\vec{v2}|} \frac{b}{|\vec{v1}|}$<br>
+  $= \frac{ac + bd}{|\vec{v1}||\vec{v2}|}$
+</p>
+
+<p>整理すると</p>
+
+
+<p class="math">
+  $(cos\alpha \ cos\beta + sin\alpha \ sin\beta) = \frac{ac + bd}{|\vec{v1}||\vec{v2}|}$
+</p>
+
+<p>
+  もとの計算式にあてはめてみる
+</p>
+
+<p class="math">
+  $\vec{v1} \cdot \vec{v2} $
+  $ = |\vec{v1}||\vec{v2}|(cos\alpha \ cos\beta + sin\alpha \ sin\beta)$<br>
+  $ = |\vec{v1}||\vec{v2}| \frac{ac + bd}{|\vec{v1}||\vec{v2}|}$<br>
+  $ = ac + bd$
+</p>
+
+<p class="math">
+  $\vec{v1} \cdot \vec{v2} = ac + bd$
+</p>
+
+<p>求めている結果が得られました！<br>これにて証明は終了です。</p>
