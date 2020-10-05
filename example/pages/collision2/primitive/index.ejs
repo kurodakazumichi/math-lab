@@ -1,0 +1,190 @@
+---
+title: 衝突判定用の形状定義
+---
+
+<p>
+  衝突判定で利用する形状の定義について記載しています。<br>
+</p>
+
+<p>記載しているソースコードは簡易版というかあくまでイメージです、実際に利用しているコードは<a href="https://github.com/kurodakazumichi/math-lab/blob/master/src/Primitive2.ts">ここ</a>にあります。</p>
+
+<h2>直線</h2>
+<div id="graph_line"></div>
+
+<p>
+  直線は無限に続く線で、直線上の1点と、直線の方向を表すベクトルの２つの情報で定義しています。
+</p>
+
+<h3>サンプルコード</h3>
+<pre><code>class Line 
+{
+  /** 直線上の1点 */
+  p:Vector2;
+
+  /** 直線の方向を表すベクトル */
+  v:Vector2;
+}</code></pre>
+
+<h2>半直線</h2>
+
+<div id="graph_ray"></div>
+
+<p>
+  半直線は1点を端として、一方に無限に伸びている線です。
+</p>
+
+<p>
+  半直線は始点となる座標と、方向を表すベクトルの2つの情報で定義しています。
+  所有する情報は直線と同じなので、Lienクラスを継承してもいいと思います。
+</p>
+
+<h3>サンプルコード</h3>
+<pre><code>class Ray   
+{
+  /** 始点 */
+  p:Vector2;
+
+  /** 半直線の方向を表すベクトル */
+  v:Vector2;
+}</code></pre>
+
+<h2>線分</h2>
+
+<div id="graph_seg"></div>
+
+<p>
+  線分は始点と終点があり、長さを持つ線です。
+</p>
+
+<p>
+  線分は始点と終点の情報で定義もできますが、衝突判定をする上では始点と線分の向きと長さを表すベクトルの2つの情報で定義したほうが良い気がします。
+</p>
+
+<h3>サンプルコード</h3>
+<pre><code>class Segment   
+{
+  /** 始点 */
+  p:Vector2;
+
+  /** 線分の方向と長さを表すベクトル */
+  v:Vector2;
+}</code></pre>
+
+<h2>円</h2>
+
+<div id="graph_circle"></div>
+
+<p>
+  円は衝突判定において、非常に扱いやすく優秀な形状です。中心座標と半径の２つの情報で定義しています。
+</p>
+
+<h3>サンプルコード</h3>
+<pre><code>class Circle   
+{
+  /** 中心 */
+  p:Vector2;
+
+  /** 半径 */
+  r:number;
+}</code></pre>
+
+<h2>楕円</h2>
+
+<div id="graph_ellipse"></div>
+
+<p>
+  楕円は中心座標とXとYそれぞれの半径、そして回転の３つの情報で定義します。
+</p>
+
+<h3>サンプルコード</h3>
+<pre><code>class Ellipse   
+{
+  /** 中心 */
+  p:Vector2;
+
+  /** XとYの半径 */
+  r:Vector2;
+
+  /** 回転 */
+  angle: number;
+}</code></pre>
+
+<h2>矩形</h2>
+
+<div id="graph_rect"></div>
+
+<p>
+  矩形は回転しない四角形、左上の座標と幅と高さの３つの情報で定義します。
+</p>
+
+<h3>サンプルコード</h3>
+<pre><code>class Rect   
+{
+  /** 左上の座標 */
+  p:Vector2;
+
+  /** 幅 */
+  w:number;
+
+  /** 高さ */
+  h: number;
+}</code></pre>
+
+<h2>矩形(回転あり)</h2>
+
+<div id="graph_box"></div>
+
+<p>
+  回転する四角形は中心座標とXY半径、回転の３つの情報で定義します。
+</p>
+
+<h3>サンプルコード</h3>
+<pre><code>class Box   
+  {
+    /** 中心座標 */
+    p:Vector2;
+  
+    /** XとYの半径 */
+    r:Vector2;
+  
+    /** 回転 */
+    angle:number;
+  }</code></pre>
+
+<h2>三角形</h2>
+
+<div id="graph_tri"></div>
+<p>
+  三角形は頂点３つの座標で定義します。
+</p>
+
+<h3>サンプルコード</h3>
+<pre><code>class Triangle   
+{
+  /** 頂点１ */
+  p1:Vector2;
+
+  /** 頂点２ */
+  p2:Vector2;
+
+  /** 頂点３ */
+  p3:Vector2;  
+}</code></pre>
+
+<h2>カプセル</h2>
+
+<div id="graph_cap"></div>
+<p>
+  カプセルは円が線分上を移動するものとして考えて、線分と円の半径の2つの情報で定義します。
+  半径がカプセルの太さに該当するパラメーターになります。
+</p>
+
+<h3>サンプルコード</h3>
+<pre><code>class Triangle   
+{
+  /** 線分 */
+  s:Segment;
+
+  /** 半径(カプセルの太さ) */
+  r:number;
+}</code></pre>
