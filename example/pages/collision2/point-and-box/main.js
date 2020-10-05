@@ -21,7 +21,7 @@
       return {
         grid: groups.grid(),
         point: shapes.point(),
-        box  : Sync.box2Rect(this.box, shapes.rect()),
+        box  : Sync.boxToRect(this.box, shapes.rect()),
         star: shapes.star().opacity(0.5)
       }
     }

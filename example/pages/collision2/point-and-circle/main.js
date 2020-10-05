@@ -19,7 +19,7 @@
       return {
         grid: groups.grid(),
         point: shapes.point(),
-        circle: Sync.circle2Circle(this.circle, shapes.circle()),
+        circle: Sync.circleToCircle(this.circle, shapes.circle()),
         star: shapes.star().opacity(0.5)
       }
     }

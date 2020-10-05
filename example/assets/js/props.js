@@ -25,17 +25,17 @@ props.Sync = {
   },
 
   /** CircleをSomali.Circleへ適用 */
-  circle2Circle: (circle, shape) => {
+  circleToCircle: (circle, shape) => {
     return shape.pos(circle.p.x, circle.p.y).radius(circle.r);
   },
 
   /** RectをSomali.Rectへ適用 */
-  rect2Rect: (rect, shape) => {
+  rectToRect: (rect, shape) => {
     return shape.pos(rect.p1.x, rect.p1.y).width(rect.w).height(rect.h);
   },
 
   /** BoxをSomali.Rectへ適用 */
-  box2Rect: (box, shape) => {
+  boxToRect: (box, shape) => {
     return shape
       .pos(box.c.x, box.c.y)
       .width(box.w)
