@@ -1,6 +1,7 @@
 /******************************************************************************
  * 点と直線の衝突
  *****************************************************************************/
+import * as Define from '../Define';
 import Vector2 from '../Vector2';
 import { Line } from '../Primitive2';
 
@@ -18,10 +19,9 @@ export function isHit(point:Vector2, line: Line)
   const b = Vector2.sub(point, line.p);
 
   // 外積の結果の小数点誤差をある程度のところで切り捨て
-  let c = Vector2.cross(a, b);
-  c = Math.floor(c * 1000000) / 1000000;
+  const c = Vector2.cross(a, b);
 
-  return (c === 0);
+  return (Math.abs(c) < Define.EPSILON);
 }
 
 /**

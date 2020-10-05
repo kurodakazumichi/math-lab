@@ -2,6 +2,7 @@
  * Index
  *****************************************************************************/
 import * as Util from "./util";
+import * as Define from './Define';
 import Vector2 from "./Vector2";
 import Vector3 from "./Vector3";
 import Matrix3 from "./Matrix3";
@@ -14,6 +15,7 @@ import * as Collision2 from './Collision2';
 
 export { 
   Util, 
+  Define,
   Linear, 
   Quadratic,   
   Vector2, 
