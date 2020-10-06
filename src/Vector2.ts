@@ -118,6 +118,7 @@ export default class Vector2
   lerp(to:Vector2, t:number) {
     const v = Vector2.sub(to, this);
     this.add(v.times(t));
+    return this;
   }
 
   /** テキスト化 */
