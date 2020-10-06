@@ -3,6 +3,7 @@
  *****************************************************************************/
 import Vector2 from '../Vector2';
 import { Segment } from '../Primitive2';
+import { Define } from '..';
 
 /**
  * 点と線分が当たっているかどうか
@@ -21,14 +22,14 @@ export function isHit(point:Vector2, segment: Segment)
   const bl = b.magnitude;
 
   // 小数点誤差をある程度無くすために、極小の値を切り捨て
-  const l = Math.floor(al * bl * 1000000) / 1000000;
-  const d = Math.floor(Vector2.dot(a, b) * 1000000) / 1000000;
+  const l = al * bl;
+  const d = Vector2.dot(a, b);
 
   // 点が線分上にあるとしたら、ベクトルaとbは平行なはずなので
   // a,bの内積 = |a||b|になっているはず
   // また線分には長さがあるので、始点から点に伸ばしたベクトル(b)の長さが
   // 線分の長さ(|a|)より短ければ当たっているといえる
-  return (d === l && al > bl);
+  return (Math.abs(l - d) < Define.EPSILON && al > bl);
 }
 
 /**
