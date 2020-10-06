@@ -57,6 +57,10 @@ article {
     }  
   }
 
+  h3 {
+    margin-top: 2em;
+  }
+
   p {
     line-height: 1.5em;
     margin-bottom: 2.5em;
@@ -92,13 +96,9 @@ article {
     line-height: 1.5em;
     margin-bottom: 0.5em;
   }
-  
+
   ul {
     padding-left: 1em;
-    
-    li:not([class]) {
-      list-style-type: circle;
-    }
   }
 
   figure {
