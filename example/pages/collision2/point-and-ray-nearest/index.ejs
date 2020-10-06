@@ -81,12 +81,12 @@ title: 点と半直線の最近傍点
    const b = Vector2.sub(p, ray.p);
  
    // v と b の 内積がマイナス = 半直線の反対側に点がある = 半直線の始点が最近傍点
-   if (Vector2.dot(d, p) <= 0) {
+   if (Vector2.dot(v, b) <= 0) {
      return ray.p;
    }
  
    // 内積がプラス = 点と直線の最近傍点を求める
    const n = v.normalize;
-   const dot = Vector2.dot(n, p);
+   const dot = Vector2.dot(n, b);
    return Vector2.add(ray.p, n.times(dot));
  }</code></pre>
