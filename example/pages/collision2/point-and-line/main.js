@@ -113,7 +113,9 @@
         point: shapes.pointer(),
         line : shapes.line(),
         a    : shapes.arrow().color(Somali.sColor.red),
+        aText: shapes.text().text("a"),
         b    : shapes.arrow().color(Somali.sColor.yellow),
+        bText: shapes.text().text("b"),
       }
     }
 
@@ -123,7 +125,7 @@
 
       const p = this.line.point(2);
       nodes.a.points([this.line.p.x, this.line.p.y, p.x, p.y]);
-
+      nodes.aText.pos(p.x, p.y);
       nodes.point.on('dragmove', (point) => {
         this.pos.set(point.x(), point.y());
       })
@@ -132,6 +134,7 @@
     update() {
       const b = Vector2.sub(this.pos, this.line.p);
       this.nodes.b.points([this.line.p.x, this.line.p.y, b.x, b.y]);
+      this.nodes.bText.pos(b.x, b.y);
     }
   }    
 
