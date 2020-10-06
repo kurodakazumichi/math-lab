@@ -4,7 +4,7 @@
 
   const Apply = {
     boxToRect: (box, rect) => {
-      return rect.pos(box.c.x, box.c.y)
+      return rect.pos(box.p.x, box.p.y)
         .width(box.w)
         .height(box.h)
         .offset(-box.rx, box.ry)
