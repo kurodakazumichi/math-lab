@@ -7,5 +7,6 @@ import * as PointAndRect from './PointAndRect';
 import * as PointAndBox from './PointAndBox';
 import * as PointAndTriangle from './PointAndTriangle';
 import * as PointAndCapsule from './PointAndCapsule';
-export { PointAndPoint, PointAndLine, PointAndRay, PointAndSegment, PointAndCircle, PointAndRect, PointAndBox, PointAndTriangle, PointAndCapsule, };
+import * as PointAndEllipse from './PointAndEllipse';
+export { PointAndPoint, PointAndLine, PointAndRay, PointAndSegment, PointAndCircle, PointAndRect, PointAndBox, PointAndTriangle, PointAndCapsule, PointAndEllipse, };
 //# sourceMappingURL=index.d.ts.map

@@ -14,7 +14,7 @@ export default class Vector2 {
     set(x: number, y: number): this;
     copy(v: Vector2): this;
     clone(): Vector2;
-    lerp(to: Vector2, t: number): void;
+    lerp(to: Vector2, t: number): this;
     toString(): string;
     static get zero(): Vector2;
     static get one(): Vector2;
@@ -33,6 +33,6 @@ export default class Vector2 {
     static cross(v1: Vector2, v2: Vector2): number;
     static angle(v1: Vector2, v2: Vector2): number;
     static distance(v1: Vector2, v2: Vector2): number;
-    static lerp(v1: Vector2, v2: Vector2, t: number): void;
+    static lerp(v1: Vector2, v2: Vector2, t: number): Vector2;
 }
 //# sourceMappingURL=Vector2.d.ts.map

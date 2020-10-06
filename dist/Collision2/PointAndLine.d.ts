@@ -5,4 +5,5 @@ export declare function intercect(point: Vector2, line: Line): {
     hit: boolean;
     pos: Vector2;
 };
+export declare function getNearestNeighborPoint(point: Vector2, line: Line): Vector2;
 //# sourceMappingURL=PointAndLine.d.ts.map

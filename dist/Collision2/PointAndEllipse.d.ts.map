@@ -1,0 +1,1 @@
+{"version":3,"file":"PointAndEllipse.d.ts","sourceRoot":"","sources":["../../src/Collision2/PointAndEllipse.ts"],"names":[],"mappings":"AAGA,OAAO,OAAO,MAAM,YAAY,CAAC;AACjC,OAAO,EAAE,OAAO,EAAE,MAAM,eAAe,CAAC;AAOxC,wBAAgB,KAAK,CAAC,KAAK,EAAC,OAAO,EAAE,OAAO,EAAC,OAAO,WAkBnD;AAOD,wBAAgB,SAAS,CAAC,KAAK,EAAC,OAAO,EAAE,OAAO,EAAC,OAAO;;;EAUvD"}

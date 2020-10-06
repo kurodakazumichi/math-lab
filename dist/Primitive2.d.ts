@@ -32,10 +32,15 @@ export declare class Circle {
 export declare class Ellipse {
     private _p;
     private _r;
-    constructor(p: Vector2, rx: number, ry: number);
+    private _rad;
+    constructor(p: Vector2, rx: number, ry: number, angle: number);
     get p(): Vector2;
+    get r(): Vector2;
     get rx(): number;
     get ry(): number;
+    get rad(): number;
+    get angle(): number;
+    set angle(v: number);
 }
 export declare class Capsule {
     private _s;
@@ -61,11 +66,11 @@ export declare class Rect {
     get p4(): Vector2;
 }
 export declare class Box {
-    private _c;
+    private _p;
     private _r;
     private _rad;
-    constructor(c: Vector2, r: Vector2, angle: number);
-    get c(): Vector2;
+    constructor(p: Vector2, r: Vector2, angle: number);
+    get p(): Vector2;
     get r(): Vector2;
     get rx(): number;
     get ry(): number;
