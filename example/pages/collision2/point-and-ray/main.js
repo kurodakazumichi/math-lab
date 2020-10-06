@@ -1,9 +1,11 @@
 {
-  const { Vector2, Collision2 } = MathLab;
+  const { Vector2, Collision2, Util } = MathLab;
   const { Ray } = MathLab.Primitive2;
-  const { Actions, Action } = props;
+  const { sColor } = Somali;
+  const { Action, Sync } = props;
+  const graphs = {};
 
-  class Graph1 extends Somali.Scene 
+  graphs.Graph1 = class extends Somali.Scene 
   {
     get option() {
       return { id: "graph1" };
@@ -47,7 +49,7 @@
     }
   }
 
-  class Graph2 extends Somali.Scene 
+  graphs.Graph2 = class extends Somali.Scene 
   {
     get option() {
       return { id: "graph2" };
@@ -88,9 +90,66 @@
       }
     }
   }
+
+  graphs.Graph3 = class extends Somali.Scene 
+  {
+    get option() {
+      return { id: "graph3" };
+    }
+
+    constructor() {
+      super();
+      this.pos = new Vector2(1, 3);
+      this.ray = new Ray(new Vector2(-1, -1), new Vector2(2, 1));
+    }
+
+    createNodes(shapes, groups) {
+      return {
+        grid: groups.grid(),
+        pointer : shapes.pointer().pos(this.pos.x, this.pos.y),
+        ray: shapes.line().points(this.ray.points(10)),
+
+        va: shapes.arrow().color(sColor.red).opacity(0.6),
+        vaText: shapes.text("a"),
+
+        vb: shapes.arrow().color(sColor.yellow),
+        vbText: shapes.text("b"),
+
+        dot: shapes.text().pos(1, -1),
+        ab: shapes.text().pos(1, -1.5),
+      }
+    }
+
+    initNodes(nodes) 
+    {
+      const { ray } = this;
+      const a1 = ray.p;
+      const a2 = Vector2.add(ray.p, ray.v); 
+      nodes.va.points([a1.x, a1.y, a2.x, a2.y]);
+      nodes.vaText.pos(a2.x, a2.y);
+
+      nodes.pointer.on("dragmove", (p) => {
+        this.pos.set(p.x(), p.y());
+      })
+    }
+
+
+    update() {
+      const { ray, pos } = this;
+
+      this.nodes.vb.points([ray.p.x, ray.p.y, pos.x, pos.y]);
+      this.nodes.vbText.pos(pos.x, pos.y);
+
+      const b = Vector2.sub(pos, ray.p);
+      const dot = Vector2.dot(ray.v, b);
+      const ab = ray.v.magnitude * b.magnitude;
+      this.nodes.dot.text(`a・b = ${Util.round(dot, 4)}`);
+      this.nodes.ab.text(`|a||b| = ${Util.round(ab, 4)}`);
+    }
+  }  
   
-  
-  new Graph1().build();
-  new Graph2().build();
+  Object.values(graphs).map((graph) => {
+    new graph().build();
+  })
 }
 

@@ -4,14 +4,81 @@ title: 点と半直線の衝突
 <div id="graph1"></div>
 
 <p>
-  点と直線ではベクトルの外積を使って判定したが、点と半直線ではベクトルの<b>内積</b>を使って当たりを判定する。
+  <a href="../point-and-line/">点と直線の衝突</a>ではベクトルの<b>外積</b>を使って判定しましたが、点と半直線ではベクトルの<b>内積</b>を使って判定をします。
 </p>
 
 <div id="graph2"></div>
 
 <p>
-  今回の処理では小数点誤差について、極小の値を切り捨てる対応をしてみた。
+  しかしながら小数点の細かい数値の問題で、動きを滑らかにするとほとんど衝突しません。
 </p>
+
+<h2>考え方</h2>
+
+<div id="graph3"></div>
+
+<p class="math">
+  $ \vec{a} $：半直線の向きを表すベクトル<br>
+  $ \vec{b} $：半直線の始点から<span class="green">●</span>に向かうベクトル
+</p>
+
 <p>
-  結果はご覧の通りで、今回も見た目的には当たっているがコンピューター的に当たっていない。
+  <span class="green">●</span>を動かしながらグラフ内に表示されている $ \vec{a} \cdot \vec{b} $ と $ |\vec{a}| |\vec{b}| $ の数値を確認してみて下さい。
 </p>
+
+<p>
+  <span class="green">●</span>が 半直線の上にくるとき、$ \vec{a} \cdot \vec{b} $ と $ |\vec{a}| |\vec{b}| $ が同じ数値になると思います。
+</p>
+
+<p class="math">
+  $ \vec{a} \cdot \vec{b} $ は $\vec{a}$ と $\vec{b}$ の内積で、$ |\vec{a}| |\vec{b}| $ は $\vec{a}$ と $\vec{b}$ の長さを掛け合わせたものです。
+</p>
+
+<p>
+  <span class="green">●</span>が半直線に当たっている場合、$ \vec{a} \cdot \vec{b} $ と $ |\vec{a}| |\vec{b}| $ は同じ値になるので、$ \vec{a} \cdot \vec{b} =  |\vec{a}| |\vec{b}| $ だったら点と半直線は当たっていると判定します。
+</p>
+
+<h2>なぜ、$ \vec{a} \cdot \vec{b} =  |\vec{a}| |\vec{b}| $ になるのか</h2>
+
+<p class="math">
+  $ \vec{a} \cdot \vec{b} =  |\vec{a}| |\vec{b}| cos(\theta) $ 
+</p>
+
+<p> これは内積の計算式になりますが、最後に $cos(\theta)$ を掛けているのがわかると思います。</p>
+
+<p>
+  点が半直線上に来るとき、$ \vec{a}$ と $\vec{b} $ は平行になるため、ベクトルの間の角度は0度となり、内積は以下のようになります。
+</p>
+
+<p class="math">
+  $ \vec{a} \cdot \vec{b} =  |\vec{a}| |\vec{b}| cos(0) $ <br>
+  $ \ \ \ \ \ \ \ = |\vec{a}| |\vec{b}| 1 $  　　　　： $ cos(0) = 1 $ なので<br>
+  $ \ \ \ \ \ \ \ = |\vec{a}| |\vec{b}| $ <br><br>
+
+  $ \vec{a} \cdot \vec{b} =  |\vec{a}| |\vec{b}| $ になりました。
+</p>
+
+<h2>サンプルコード</h2>
+
+<pre><code>/**
+  * 点と半直線が当たっているかどうか
+  * @param p 点
+  * @param ray 半直線
+  */
+ function intercect(p:Vector2, ray: Ray)
+ {
+  // 半直線の方向を表すベクトルをa
+  const a = ray.v;
+
+  // 半直線の始点からpに向かうベクトルを b
+  const b = Vector2.sub(p, ray.p);
+
+  // a と b の長さを掛け合わせたものを ab
+  const ab = a.magunitude * b.magnitude;
+
+  // a と b の内積を dot
+  const dot = Vector2.dot(a, b);
+
+  // ab と dot が同じだったら当たっている
+  return (ab === dot)
+}</code></pre>
