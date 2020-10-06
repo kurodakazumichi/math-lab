@@ -36,7 +36,23 @@
   </head>
   <body>
     <header>
-      <a href="../../../index.html">目次</a>
+      <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a itemprop="item" href="https://www.nekonecode.com">
+            <span itemprop="name">無職の学び舎</span>
+          </a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <li>&gt;</li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a itemprop="item" href="../../../index.html">
+            <span itemprop="name">無職は数学の勉強をする</span>
+          </a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <li>&gt;</li>
+        <li><%= file.data.title %></li>
+      </ol>      
     </header>
     <main>
       <article>

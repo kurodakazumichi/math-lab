@@ -1,29 +1,6 @@
 @import "normalize";
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;600;700&display=swap');
-
-body {
-  font-family: 'M PLUS Rounded 1c', sans-serif;
-  font-size:26px;
-  color:#393939;
-}
-
-header {
-  background:#393939;
-  padding:0.2em;
-
-  a {
-    text-decoration:none;
-    color:white;
-  }
-}
-
-footer {
-  background:#393939;
-  padding:0.2em;
-  color:white;
-  font-size: 16px;
-  text-align:center;
-}
+@import "common";
 
 article {
   padding:1em;
