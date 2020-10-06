@@ -3,6 +3,7 @@
  *****************************************************************************/
 import Vector2 from '../Vector2';
 import { Ray } from '../Primitive2';
+import { Define } from '..';
 
 /**
  * 点と半直線が当たっているかどうか
@@ -28,11 +29,7 @@ export function isHit(point:Vector2, ray: Ray)
   let l = a.magnitude * b.magnitude;
   let d = Vector2.dot(a, b);
 
-  // 小数点誤差をある程度無くすために、極小の値を切り捨て
-  l = Math.floor(l * 1000000) / 1000000;
-  d = Math.floor(d * 1000000) / 1000000;
-
-  return (d === l);
+  return (Math.abs(d - l) < Define.EPSILON);
 }
 
 /**
