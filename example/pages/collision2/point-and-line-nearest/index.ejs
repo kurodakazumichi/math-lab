@@ -1,9 +1,126 @@
 ---
-title: 点と線分の最近傍点
+title: 点と直線の最近傍点
 ---
 <div id="graph1"></div>
 
 <p>
-  <span class="yellow">★</span>は点と線分が最も近い場所<br>
-  <span class="green">●</span>はドラッグして動かせる。
+  <span class="yellow">★</span>：点と線分が最も近い場所<br>
+  <span class="green">●</span>：ドラッグして動かせます
 </p>
+
+<p>
+  ここでは点と直線の最も近い位置(グラフ上の<span class="yellow">★</span>の位置)を求める方法について記載します。
+</p>
+
+<h2>考え方</h2>
+
+<p>
+  点と直線があった時に、点と直線が一番近いのはどこかという事を考えていきます。
+</p>
+
+<div id="graph2"></div>
+
+<p>
+  点から直線に向かっていくつか線を引いてみましたが、点から直線に垂直におろした<span class="green">緑の線</span>が最短距離になりそうですね。
+</p>
+
+<p>
+  なので、求めるのは点から直線にまっすぐに線を落とした時に直線とぶつかる場所という事になります。
+</p>
+
+<h2>点と直線の一番近い点を求める</h2>
+<div id="graph3"></div>
+<p>
+  点と直線の一番近い点を $点P$ とすると、当たり前ですが $点P$ は直線の上にある事がわかります。
+</p>
+
+<div id="graph4"></div>
+<p>
+  直線上の任意の点を $A$ 、直線の方向を表すベクトルを $\vec{v}$ とします。
+</p>
+
+<div id="graph5"></div>
+<p>
+  すると、$点P$ は $ 点A $ の座標に $ \vec{v} $ を伸ばしたベクトルを足した位置にある事がわかります。
+</p>
+
+<div id="graph6"></div>
+<p>
+  ここで、$\vec{v}$ を正規化して長さを１にしました。<br>
+  正規化したベクトルを $\vec{n}$ とします。
+</p>
+
+<p>
+  こうすると、$\vec{n}\ $を何倍すれば $点P$ の位置にくるのかを考えればよいということになります。
+</p>
+
+<p>
+  この<b>何倍にすればいいか</b>という数値を $t$ としておきます。
+</p>
+
+<p>
+  この $t$ がわかってしまえば、$ 点A $ の座標に $ \vec{n} $ を $t倍$ したベクトル($t\vec{n}$)を足してあげれば $点P$ の座標になります。
+</p>
+
+<div id="graph7"></div>
+
+<p class="math">
+  $ P = A + t\vec{n} $
+</p>
+
+<h3>$t$ を求める</h3>
+
+<p>
+  $t$ は $ 点A $ から $ 点P $ までの距離になりますが、この $t$ を求めるにはベクトルの内積を使います。
+</p>
+
+<div id="graph8"></div>
+
+<p>
+  $点A$ から $点B$ に向かうベクトルを $\vec{b}$とします。
+</p>
+
+<p>
+  すると、$t$ は $\vec{n}$ と $\vec{b}$ の内積で求まります。<br>
+</p>
+
+<p class="math">
+  $ t = \vec{n} \cdot \vec{b} $
+</p>
+
+<p>
+  なぜこれで $t$ が求まるの？と気になる方は、<a href="../../vector2/dot2/">ベクトルの内積の特性</a>の方に記載していますのでご参照下さい。
+</p>
+
+<h2>まとめ</h2>
+
+<div id="graph9"></div>
+
+<p class="math">
+  $P = A + t\vec{n}$<br>
+  $t = \vec{n} \cdot \vec{b}$
+</p>
+
+<h2>サンプルコード</h2>
+
+<pre><code>/**
+ * 点と直線の最近傍点を取得する
+ * @param p 点
+ * @param line 直線
+ */
+function getNearest(p:Vector2, line:Line){
+
+  // 直線の向きを表すベクトルを正規化したものをnとする
+  const n = line.v.normalize;
+
+  // 直線上の任意の1点から点へ向かうベクトルをaとする
+  const a = Vector2.sub(point, line.p);
+
+  // nとaの内積
+  const dot = Vector2.dot(n, a);
+
+  // 直線上の1点に n を dot 倍したベクトルを足した場所が最近傍点
+  const near = Vector2.add(line.p, n.times(dot));
+
+  return near;
+}</code></pre>
