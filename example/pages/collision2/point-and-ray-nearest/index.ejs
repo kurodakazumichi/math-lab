@@ -4,6 +4,86 @@ title: 点と半直線の最近傍点
 <div id="graph1"></div>
 
 <p>
-  <span class="yellow">★</span>は点と線分が最も近い場所<br>
+  <span class="yellow">★</span>は点と半直線が最も近い場所<br>
   <span class="green">●</span>はドラッグして動かせる。
 </p>
+
+<p>
+  点と半直線の最近傍点の求め方は点と直線の方法と似ていますので、この記事では点と直線との違いの部分にフォーカスして解説していきます。
+</p>
+
+<p>
+  まだ点と直線の記事を見ていない場合は、まず<a href="../point-and-line-nearest/">点と直線の最近傍点</a>をお読み下さい。
+</p>
+
+<h2>直線と半直線で異なること</h2>
+
+<p>直線は無限に続く線ですが、半直線には始点があります。</p>
+
+<p>点と半直線の最近傍点を求める際には、半直線には始点があるという事を意識する必要があります。</p>
+
+<h2>考え方</h2>
+
+<div id="graph2"></div>
+
+<p>
+  <span class="green">●</span>を動かして確かめてもらいたいのですが、<span class="green">●</span>が青い領域にあるときは
+  <a href="../point-and-line-nearest/">点と直線の最近傍点</a>の求め方と同じになります。
+</p>
+
+<p>
+  しかし、<span class="green">●</span>が赤い領域にある時、最近傍点は半直線の始点の位置になります。
+</p>
+
+<p>
+  つまり、点と半直線の最近傍点を求めるには、<span class="green">●</span>が青い領域にあるのか、それとも赤い領域にあるのかを判定する必要があります。
+</p>
+
+<p>それを判定するために<a href="../../vector2/dot/">ベクトルの内積</a>を使います。</p>
+
+<h2>赤なのか青なのか</h2>
+
+<div id="graph3"></div>
+
+<p class="math">
+  $A$：半直線の始点<br>
+  $B$：点の座標<br>
+  $\vec{v}$：半直線の方向を表すベクトル <br>
+  $\vec{b}$：半直線の始点から点Bに向かうベクトル
+</p>
+
+<p>この時、 $\vec{v}$ と $\vec{b}$ の内積をとって、内積の値がプラスだったら $点B$ は 青い領域にあり、マイナスだったら赤い領域にあります。</p>
+
+<p>まとめると</p>
+<p class="math">
+  $ \vec{v} \cdot \vec{b} &lt;= 0$ の時、最近傍点は $点A$ である。<br>
+  $ \vec{v} \cdot \vec{b} &gt;  0$ の時、最近傍点は <a href="../point-and-line-nearest/">点と直線の最近傍点</a>の方法で求める。
+</p>
+
+<p>となります。</p>
+
+<h2>サンプルコード</h2>
+
+<pre><code>/**
+  * 点と半直線の最近傍点を取得する
+  * @param p 点
+  * @param ray 半直線
+  */
+ export function getNearest(p:Vector2, ray:Ray) {
+
+   // 半直線の向きを表すベクトルをv
+   const v = ray.v;
+
+   // 半直線の始点から点に向かうベクトルをb
+   const b = Vector2.sub(p, ray.p);
+ 
+   // v と b の 内積がマイナス = 半直線の反対側に点がある = 半直線の始点が最近傍点
+   if (Vector2.dot(d, p) <= 0) {
+     return ray.p;
+   }
+ 
+   // 内積がプラス = 点と直線の最近傍点を求める
+   const n = v.normalize;
+   const dot = Vector2.dot(n, p);
+   return Vector2.add(ray.p, n.times(dot));
+ }</code></pre>
