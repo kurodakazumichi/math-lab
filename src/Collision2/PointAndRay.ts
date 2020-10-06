@@ -59,8 +59,7 @@ export function intercect(point:Vector2, ray:Ray)
  * @param ray 半直線
  */
 export function getNearestNeighborPoint(point:Vector2, ray:Ray) {
-  // カプセルと点の最近傍点を求める
-
+  
   // 半直線の向きを表すベクトルをd
   // 半直線の始点から点に向かうベクトルをp
   const d = ray.v;
