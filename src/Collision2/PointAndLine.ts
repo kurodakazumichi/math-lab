@@ -47,9 +47,8 @@ export function intercect(point:Vector2, line:Line)
  * @param point 点
  * @param line 直線
  */
-export function getNearestNeighborPoint(point:Vector2, line:Line) {
-  // カプセルと点の最近傍点を求める
-
+export function getNearestNeighborPoint(point:Vector2, line:Line) 
+{
   // 直線の向きを表すベクトルをd
   // 線分の任意の点から点に向かうベクトルをp
   const d = line.v;
