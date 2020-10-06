@@ -1,0 +1,208 @@
+---
+title: ベクトルの回転
+---
+<div id="graph1"></div>
+
+<p>
+  ベクトルを回転させる方法について記載していきます。
+</p>
+
+<h2>方法</h2>
+
+<div id="graph2"></div>
+
+<p>
+  $ \vec{a} = (a_{x}, a_{y}) $：回転前のベクトル<br>
+  $ \vec{b} = (b_{x}, b_{y}) $：$\vec{a}$ を $\theta$ 回転させたベクトル
+</p>
+
+<p>とすると</p>
+
+<p class="math">
+  $ b_{x} = a_{x} cos(\theta) - a_{y} sin(\theta) $<br>
+  $ b_{y} = a_{x} sin(\theta) + a_{y} cos(\theta) $
+</p>
+
+<p>
+  という計算で、$\vec{a}$ を $\theta$ 回転させた結果が得られます。
+</p>
+
+<p>
+  この魔法の計算をするとベクトルが回転するにはするんですが、なぜこの計算でベクトルを回転する事ができるのかがモヤっとします。
+</p>
+
+<p>
+  というわけで、もう少し掘り下げていきたいと思います。
+</p>
+
+<h2>なぜ、上記の計算でベクトルが回転するのか</h2>
+
+<div id="graph3"></div>
+
+<p>
+  $\alpha$ 回転した $\vec{a} = (a_{x}, a_{y})$ の $x$座標 と $y$座標 は以下のようにあらわす事ができます。
+</p>
+
+<p class="math">
+  $ (a_{x}, a_{y}) = (|\vec{a}| cos(\alpha), |\vec{a}|sin(\alpha)) $
+</p>
+
+<p>
+  ちなみに数式を書いておきながらなんですが、無職は数式アレルギーというか数式が見えた瞬間に記事を読む気力が奪われがちです。
+</p>
+
+<p>
+  上の式もどういうこっちゃとなってしまうので、泥臭く計算してみることにしました。
+</p>
+
+<p class="math">
+  $a_{x} = |\vec{a}|cos(\alpha)$<br>
+  $ \ \ \ \ = |\vec{a}| \frac{a_{x}}{|\vec{a}|} $<br>
+  $ \ \ \ \ = a_{x} $
+</p>
+
+<p class="math">
+  $a_{y} = |\vec{a}|sin(\alpha)$<br>
+  $ \ \ \ \ = |\vec{a}| \frac{a_{y}}{|\vec{a}|} $<br>
+  $ \ \ \ \ = a_{y} $
+</p>
+
+<p>$cos = \frac{底辺}{斜辺}$、$cos = \frac{高さ}{斜辺}$ なので、その通りに計算してみると確かに合っています。</p>
+
+<div id="graph4"></div>
+
+<p>
+  次に、$\vec{a}$ から $\theta$ 回転させた $\vec{b} = (b_{x}, b_{y})$ について見ていきます。
+</p>
+
+<p>
+  $\vec{b}$ と $x軸$ の間の角度は $\alpha + \theta$ なので<br>
+  $\vec{b} = (b_{x}, b_{y})$ の $x座標$ と $y座標$ は以下のようにあらわす事ができます。
+</p>
+
+<p class="math">
+  $ (b_{x}, b_{y}) = (|\vec{b}|cos(\alpha + \theta), |\vec{b}|sin(\alpha + \theta))$
+</p>
+
+<p>
+  $\vec{b}$ は $\vec{a}$ は回転しただけなので長さは同じです。
+</p>
+
+<p class="math">
+  $|\vec{b}|$ = |$\vec{a}|$ なので<br>
+  $ (b_{x}, b_{y}) = (|\vec{a}|cos(\alpha + \theta), |\vec{a}|sin(\alpha + \theta))$
+</p>
+
+<p>
+  そして、このサイトでも何度か登場している、三角関数の加法定理というものがあります。
+</p>
+
+<p class="math">
+  $ sin(\alpha + \theta) = sin(\alpha)cos(\theta) + cos(\alpha)sin(\theta) $
+  $ cos(\alpha + \theta) = cos(\alpha)cos(\theta) - sin(\alpha)sin(\theta) $
+</p>
+
+<p>この式を当てはめていきます。</p>
+
+<p class="math">
+  $ b_{x} = |\vec{a}|(cos(\alpha)cos(\theta) - sin(\alpha)sin(\theta)) $<br>
+  $ b_{y} = |\vec{a}|(sin(\alpha)cos(\theta) + cos(\alpha)sin(\theta)) $
+</p>
+
+<p>長かったので$b_{x} b_{y}$を分けて記載しました。</p>
+
+<p>この式をまた泥臭く計算してみます。</p>
+
+<p class="math">
+  $ b_{x} = |\vec{a}|(cos(\alpha)cos(\theta) - sin(\alpha)sin(\theta)) $<br>
+  $cos(\alpha) = \frac{a_{x}}{|\vec{a}|}, sin(\alpha) = \frac{a_{y}}{|\vec{a}|} $ なので<br>
+  $ = |\vec{a}|(\frac{a_{x}}{|\vec{a}|} cos(\theta) - \frac{a_{y}}{|\vec{a}|}sin(\theta)) $<br>
+  $ = |\vec{a}|\frac{a_{x}}{|\vec{a}|} cos(\theta) - |\vec{a}|\frac{a_{y}}{|\vec{a}|}sin(\theta)) $<br>
+  $ = a_{x} cos(\theta) - a_{y}sin(\theta) $<br>
+</p>
+
+<p class="math">
+  $ b_{y} = |\vec{a}|(sin(\alpha)cos(\theta) + cos(\alpha)sin(\theta)) $<br>
+  $ sin(\alpha) = \frac{a_{y}}{|\vec{a}|}, cos(\alpha) = \frac{a_{x}}{|\vec{a}|} $ なので<br>
+  $ b_{y} = |\vec{a}|( \frac{a_{y}}{|\vec{a}|} cos(\theta) + \frac{a_{x}}{|\vec{a}|}sin(\theta)) $<br>
+  $ b_{y} = |\vec{a}| \frac{a_{y}}{|\vec{a}|} cos(\theta) + |\vec{a}| \frac{a_{x}}{|\vec{a}|}sin(\theta) $<br>
+  $ b_{y} = a_{y} cos(\theta) + a_{x} sin(\theta) $<br>
+  $ b_{y} = a_{x} sin(\theta) + a_{y} cos(\theta)$<br>
+</p>
+
+<p>整理すると</p>
+
+<p class="math">
+  $ b_{x} = a_{x} cos(\theta) - a_{y} sin(\theta) $<br>
+  $ b_{y} = a_{x} sin(\theta) + a_{y} cos(\theta) $
+</p>
+
+<p>記事の冒頭で紹介した計算式と同じになりました！</p>
+
+<h3>行列で書くと</h3>
+
+<p>泥臭く計算していたためとても長々しくなりましたが、行列を使って書くともう少しスッキリするようです。</p>
+
+<p class="math">
+$ \vec{b} = |\vec{a}|
+\begin{pmatrix}
+cos(\alpha)cos(\theta) - sin(\alpha)sin(\theta) \\
+sin(\alpha)cos(\theta) + cos(\alpha)sin(\theta)
+\end{pmatrix}
+$
+<br><br>
+$
+\ \ = |\vec{a}|
+\begin{pmatrix}
+cos(\theta) - sin(\theta) \\
+sin(\theta) + cos(\theta)
+\end{pmatrix}
+\begin{pmatrix}
+cos(\alpha) \\
+sin(\alpha)
+\end{pmatrix}
+$
+<br><br>
+$
+\ \ = 
+\begin{pmatrix}
+cos(\theta) - sin(\theta) \\
+sin(\theta) + cos(\theta)
+\end{pmatrix}
+\begin{pmatrix}
+|\vec{a}| cos(\alpha) \\
+|\vec{a}| sin(\alpha)
+\end{pmatrix}
+$
+<br><br>
+$
+\ \ = 
+\begin{pmatrix}
+cos(\theta) - sin(\theta) \\
+sin(\theta) + cos(\theta)
+\end{pmatrix}
+\begin{pmatrix}
+a_{x} \\
+a_{y}
+\end{pmatrix}
+$
+</p>
+
+<p>
+  なんだか頭の良さそうな式ですが、無職は行列は計算の順序などになれていないため、泥臭く計算しないとなかなか理解できないのでした。
+</p>
+
+
+<h2>サンプルコード</h2>
+
+<pre><code>/**
+ * ベクトルの回転
+ * @param v 回転させたいベクトル
+ * @param rad 回転させる角度(ラジアン)
+*/
+function rotate(v:Vector2, rad:number) {
+  const { x, y } = v;
+
+  v.x = x * Math.cos(rad) - y * Math.sin(rad);
+  v.y = x * Math.sin(rad) + y * Math.cos(rad);
+}</code></pre>

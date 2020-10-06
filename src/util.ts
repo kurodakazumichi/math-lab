@@ -34,3 +34,7 @@ export const cramp = (no:number, min:number, max:number) => {
   no = Math.max(no, min);
   return no;
 }
+
+export const lerp = (from:number, to:number, rate:number) => {
+  return from + ((to - from) * rate);
+}
