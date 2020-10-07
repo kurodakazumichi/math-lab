@@ -9,6 +9,8 @@ import * as PointAndTriangle from './PointAndTriangle';
 import * as PointAndCapsule from './PointAndCapsule';
 import * as PointAndEllipse from './PointAndEllipse';
 
+import * as LineAndLine from './LineAndLine';
+
 export {
   PointAndPoint,
   PointAndLine,
@@ -20,4 +22,5 @@ export {
   PointAndTriangle,
   PointAndCapsule,
   PointAndEllipse,
+  LineAndLine,
 }
