@@ -2,8 +2,9 @@
   const { Vector2, Collision2 } = MathLab;
   const { Circle } = MathLab.Primitive2;
   const { Sync } = props;
+  const graphs = {};
 
-  class Graph1 extends Somali.Scene 
+  graphs.Graph1 = class extends Somali.Scene 
   {
     get option() {
       return { id: "graph1" };
@@ -39,9 +40,47 @@
     }
   }
 
+  graphs.Graph2 = class extends Somali.Scene 
+  {
+    get option() {
+      return { id: "graph2" };
+    }
 
+    constructor() {
+      super();
+      this.circle = new Circle(new Vector2(1, 1), 3);
+    }
+
+    createNodes(shapes, groups) {
+      return {
+        grid: groups.grid(),
+        p : shapes.pointer().pos(-4, 4), 
+        pText: shapes.text().text("P"),
+
+        circle: Sync.circleToCircle(this.circle, shapes.circle()),
+
+        r: shapes.line().points([1, 1, -2, 1]),
+        rText: shapes.text().text("r").pos(-0.6, 1),
+        a: shapes.point().pos(this.circle.p.x, this.circle.p.y),
+        aText: shapes.text().text("A").pos(this.circle.p.x, this.circle.p.y),
+        
+        aux: shapes.aux(),
+      }
+    }
+
+    update() {
+      const c = this.circle.p;
+      const x = this.nodes.p.x();
+      const y = this.nodes.p.y();
+
+      this.nodes.pText.pos(x, y);
+      this.nodes.aux.points([x, y, c.x, c.y]);
+    }
+  }
   
-  new Graph1().build();
+  Object.values(graphs).map((graph) => {
+    new graph().build();
+  })
 
 }
 
