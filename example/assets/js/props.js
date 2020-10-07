@@ -19,6 +19,16 @@ props.Sync = {
     return shape.points([0, 0, v.x, v.y]);
   },
 
+  /** SegmentをSomali.Arrowへ同期 */
+  segToArrow: (seg, shape) => {
+    return shape.points([seg.p1.x, seg.p1.y, seg.p2.x, seg.p2.y]);
+  },
+
+  /** SegmentをSomali.Lineへ同期 */
+  segToLine: (seg, shape) => {
+    return shape.points([seg.p1.x, seg.p1.y, seg.p2.x, seg.p2.y]);
+  },
+
   /** Vector2のポジションを同期 */
   vecToPos: (v, shape) => {
     return shape.pos(v.x, v.y);

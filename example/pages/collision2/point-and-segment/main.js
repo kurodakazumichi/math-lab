@@ -1,9 +1,12 @@
 {
   const { Vector2, Collision2 } = MathLab;
   const { Segment } = MathLab.Primitive2;
-  const { Action } = props;
+  const { sColor } = Somali;
+  const { Action, Sync } = props;
 
-  class Graph1 extends Somali.Scene 
+  const graphs = {};
+
+  graphs.Graph1 = class extends Somali.Scene 
   {
     get option() {
       return { id: "graph1" };
@@ -47,7 +50,7 @@
     }
   }
 
-  class Graph2 extends Somali.Scene 
+  graphs.Graph2 = class extends Somali.Scene 
   {
     get option() {
       return { id: "graph2" };
@@ -88,9 +91,119 @@
       }
     }
   }
+
+  class Graph3_Base extends Somali.Scene {
+
+    constructor() {
+      super();
+
+      this.p = new Vector2(1, 3);
+      this.seg = new Segment(new Vector2(-1, -1), new Vector2(4, 2));
+    }
+
+    createNodes(shapes, groups) {
+      return {
+        grid: groups.grid(),
+
+        va: shapes.arrow(),
+        vaText: shapes.text().text("a"),
+
+        p: shapes.point(),
+        pText: shapes.text().text("P").offset(0, 0.8),
+
+        vb: shapes.arrow().color(sColor.yellow).dash(5),
+        vbText: shapes.text().text("b").offset(-0.7, -0.4),
+      }
+    }
+
+    initNodes(nodes) {
+
+      Sync.vecToPos(this.p, nodes.p);
+      Sync.vecToPos(this.p, nodes.pText);
+
+      Sync.segToArrow(this.seg, nodes.va);
+      Sync.vecToPos(this.seg.p2, nodes.vaText);
+
+      nodes.vb.points([this.seg.p1.x, this.seg.p1.y, this.p.x, this.p.y]);
+      nodes.vbText.pos(this.p.x, this.p.y);
+
+    }
+  }
+
+  graphs.Graph3_1 = class extends Graph3_Base {
+    get option() {
+      return { id: "graph3_1", update: false }
+    }
+  }
+
+  graphs.Graph3_2 = class extends Graph3_Base {
+    get option() {
+      return { id: "graph3_2", update: false }
+    }
+
+    constructor() {
+      super();
+      this.p.set(2, 0.5);
+    }
+
+    initNodes(nodes) {
+      super.initNodes(nodes);
+
+      nodes.vaText.visible(false);
+
+      nodes.vb.visible(false);
+      nodes.vbText.visible(false);
+    }
+  }  
   
-  
-  new Graph1().build();
-  new Graph2().build();
+  graphs.Graph3_3 = class extends Graph3_Base {
+    get option() {
+      return { id: "graph3_3", update: false }
+    }
+
+    constructor() {
+      super();
+      this.p.set(2, 0.5);
+    }
+
+  }  
+
+  graphs.Graph3_4 = class extends Graph3_Base {
+    get option() {
+      return { id: "graph3_4", update: false }
+    }
+
+    constructor() {
+      super();
+      this.p.set(4, 1.5);
+    }
+
+    initNodes(nodes) {
+      super.initNodes(nodes);
+      nodes.vbText.offset(0, -0.3);
+    }
+
+  }    
+
+  graphs.Graph3_5 = class extends Graph3_Base {
+    get option() {
+      return { id: "graph3_5", update: false }
+    }
+
+    constructor() {
+      super();
+      this.p.set(1, 0);
+    }
+
+    initNodes(nodes) {
+      super.initNodes(nodes);
+      nodes.vbText.offset(0, -0.3);
+    }
+
+  }    
+
+  Object.values(graphs).map((graph) => {
+    new graph().build();
+  })
 }
 
