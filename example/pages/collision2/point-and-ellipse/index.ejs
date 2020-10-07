@@ -2,3 +2,133 @@
 title: 点と楕円の衝突
 ---
 <div id="graph1"></div>
+
+<h2>考え方</h2>
+
+<p>
+  点と円の当たり判定は簡単でしたが、楕円との衝突判定になると突然難しくなります。
+</p>
+
+<p>
+  まず楕円のままでは判定が出来ないので、楕円を正円に戻す事を考えます。
+</p>
+<div id="graph2"></div>
+<p>グラフ右の[start]をクリックし楕円が正円に戻る様子をご覧ください。</p>
+<ol>
+  <li>楕円を原点に移動する(平行移動)</li>
+  <li>楕円を回転していない状態(軸と平行)に戻す。</li>
+  <li>楕円のy半径をx半径と同じになるように伸縮する。</li>
+</ol>
+
+<p>この時、衝突判定をしたい点(<span class="red">●</span>)に対して、楕円にしたことと同じことをします。</p>
+
+
+<p>こうなると、<b>ただの点と円の衝突判定</b>になります。</p>
+
+<p>しかも円は原点にあるため、単純に原点から点(<span class="red">●</span>)の距離と、楕円の半径を比較するだけでよくなります。</p>
+
+<p>実際には楕円を移動して正円に戻すというわけではなく、楕円を正円に戻すための移動、回転、伸縮をを点( <span class="red">●</span> )に対して行い、移動した点の座標と楕円のX半径を比較して判定します。</p>
+
+<h2>衝突判定</h2>
+
+<div id="graph3"></div>
+
+<p>楕円の中心を$C(C_{x}, C_{y})$、$x半径$ を $r_{x}$、$y半径$ を $r_{y}$、回転量を $\theta$ 、衝突判定をとりたい点を $P(P_{x}, P_{y})$ とします。</p>
+
+<div id="graph4"></div>
+<p>
+  楕円と $P$ の衝突を判定するために、楕円を正円に戻した際の $P'(P'_{x}, P'_{y})$ を求めます。 
+</p>
+
+<h3>平行移動</h3>
+
+<p>
+  楕円を原点に移動する平行移動は、楕円の中心座標を引けばよいので
+</p>
+
+<p class="math">
+  $P'_{x} = P_{x} - C_{x}$ <br>
+  $P'_{y} = P_{y} - C_{y}$ <br>
+</p>
+
+<p>となります。</p>
+
+<h3>回転</h3>
+
+<p>平行移動した$点P$ を 原点を中心に $-\theta$ 回転させます。</p>
+
+<p class="math">
+  $P'_{x} = (P_{x} - C_{x})cos(-\theta) - (P_{y} - C_{y}) sin(-\theta)$ <br>
+  $P'_{y} = (P_{x} - C_{x})sin(-\theta) + (P_{y} - C_{y}) cos(-\theta)$ <br>
+</p>
+
+<p>ベクトルの回転に関する計算方法は<a href="../../vector2/rotation/">ベクトルの回転</a>に記載しています。</p>
+
+<p>$\theta$ の符号を逆転させて 以下のように式を整理します。</p>
+
+<p class="math">
+  $P'_{x} = (P_{x} - C_{x})cos(\theta) + (P_{y} - C_{y}) sin(\theta)$ <br>
+  $P'_{y} = -(P_{x} - C_{x})sin(\theta) + (P_{y} - C_{y}) cos(\theta)$ <br>
+</p>
+
+<p>$\theta$ の符号を反転させた際の$sin$と$cos$は以下のように対応します、グラフで見るとわかりやすいかもしれません。</p>
+
+<div id="graph_sin"></div>
+<p class="math">
+  $sin(-\theta) = -sin(\theta)$
+</p>
+
+<div id="graph_cos"></div>
+  
+<p class="math">
+  $cos(-\theta) = cos(\theta)$
+</p>
+
+<h3>拡縮</h3>
+
+<p>最後に楕円の $y半径$ を $x半径$ に合わせるための変換をかけます。</p>
+
+<p>$y半径$ に何をかければ $x半径$ になるかを $t$ とすると、 $t$ は以下の計算より簡単に求まります。</p>
+
+<p class="math">
+  $tr_{y} = r_{x} $<br>
+  $t = \frac{r_{x}}{r_{y}}$
+</p>
+
+<p>また拡縮するのは $y方向$ のみになるので、最終的な $P'$ は以下になります。</p>
+
+<p class="math">
+  $P'_{x} = (P_{x} - C_{x})cos(\theta) + (P_{y} - C_{y}) sin(\theta)$ <br>
+  $P'_{y} = \frac{r_{x}}{r_{y}}(-(P_{x} - C_{x})sin(\theta) + (P_{y} - C_{y}) cos(\theta)) $ <br>
+</p>
+
+<p>
+  $P'$ が求まったので、後は 原点から $P'$ までの長さと、楕円の半径 $r_{x}$ を比較するだけになります。
+</p>
+
+<h2>サンプルコード</h2>
+
+<pre><code>/**
+  * 点と楕円が当たっているかどうか
+  * @param point 点
+  * @param ellipse 楕円
+  */
+ export function isHit(point:Vector2, ellipse:Ellipse) 
+ {
+   // 点と楕円の衝突は、楕円を正円に戻した状態で判定する事を考える
+   // 楕円を平行移動して原点に戻し、
+   // 回転は逆回転して軸と平行にし
+   // Y半径をX半径に合わせるように伸縮させる
+   // 上記の作用を点に対して行い、原点から点の距離と楕円のX半径との距離を比較する
+   const p = point;
+   const e = ellipse;
+   const sin = Math.sin(e.rad);
+   const cos = Math.cos(e.rad);
+   
+   const { rx, ry } = ellipse;
+   
+   const px = (p.x - e.p.x) * cos + (p.y - e.p.y) * sin;
+   const py = (rx / ry) * (-(p.x - e.p.x) * sin + (p.y - e.p.y) * cos);
+ 
+   return (px * px + py * py) < rx * rx;
+}</code></pre>
