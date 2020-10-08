@@ -166,7 +166,7 @@
   graphs.Graph2_1 = class extends Graph2Base 
   {
     get option() {
-      return { id: "graph2_1" }
+      return { id: "graph2_1", update:false }
     }
 
     initNodes(nodes) {
@@ -191,7 +191,7 @@
   graphs.Graph2_2 = class extends Graph2Base 
   {
     get option() {
-      return { id: "graph2_2" }
+      return { id: "graph2_2", update:false }
     }
 
     initNodes(nodes) {
@@ -210,7 +210,7 @@
   graphs.Graph2_3_1 = class extends Graph2Base 
   {
     get option() {
-      return { id: "graph2_3_1" }
+      return { id: "graph2_3_1", update:false }
     }
 
     initNodes(nodes) {
@@ -233,7 +233,7 @@
   graphs.Graph2_3_2 = class extends Graph2Base 
   {
     get option() {
-      return { id: "graph2_3_2" }
+      return { id: "graph2_3_2", update:false }
     }
 
     initNodes(nodes) {
@@ -254,7 +254,7 @@
   graphs.Graph2_4 = class extends Graph2Base 
   {
     get option() {
-      return { id: "graph2_4" }
+      return { id: "graph2_4", update:false }
     }
 
     initNodes(nodes) {
@@ -272,7 +272,7 @@
   graphs.Graph2_5 = class extends Graph2Base 
   {
     get option() {
-      return { id: "graph2_5" }
+      return { id: "graph2_5", update:false }
     }
 
     initNodes(nodes) {
@@ -293,7 +293,7 @@
   graphs.Graph2_6 = class extends Graph2Base 
   {
     get option() {
-      return { id: "graph2_6" }
+      return { id: "graph2_6", update:false }
     }
 
     initNodes(nodes) {
@@ -310,6 +310,13 @@
     }
 
   }    
+
+  graphs.Graph2_7 = class extends Graph2Base 
+  {
+    get option() {
+      return { id: "graph2_7", update:false }
+    }
+  }      
 
   Object.values(graphs).map((graph) => {
     new graph().build();
