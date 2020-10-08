@@ -16,8 +16,6 @@
 
       this.l1 = new Line(Vector2.zero, Vector2.one);
       this.l2 = new Line(Vector2.right, Vector2.one);
-
-      const hit = Collision2.LineAndLine.isHit(this.l1, this.l2);
     }
 
     initGui(gui) {
