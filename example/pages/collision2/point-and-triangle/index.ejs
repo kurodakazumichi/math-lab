@@ -2,3 +2,46 @@
 title: 点と三角形の衝突
 ---
 <div id="graph1"></div>
+
+<p>
+  ここでは点と三角形の衝突についてまとめていきます、と思ったのですが点と三角形の衝突は<a href="../point-and-box/">点と矩形(回転あり)の衝突</a>と考え方も計算方法もほぼ同じです。
+</p>
+
+<p>
+  なので、記事を書くのも大変なのでこのページではサンプルコードだけ張り付けて手抜きをさせていただきます。
+</p>
+
+<p>
+  <a href="../point-and-box/">点と矩形(回転あり)の衝突</a>が理解できれば、点と三角形の衝突はおのずと理解できると思います。
+</p>
+
+
+<p>
+  あー、でも三角形の場合頂点の順番が狂うと正しく衝突が取れない問題がありました。
+  それはまた今度気合いあるときに書きたいと思います。
+</p>
+<h2>サンプルコード</h2>
+
+<pre><code>/**
+ * 点と三角形が当たっているかどうか
+ * @param point 点
+ * @param tri 三角形
+*/
+function intercect(point:Vector2, tri:Triangle) 
+{
+  // 三角形の3辺と、辺の始点から点に向かうベクトルのセット
+  const datas = [
+    { v1: tri.v1to2, v2: Vector2.sub(point, tri.p1) },
+    { v1: tri.v2to3, v2: Vector2.sub(point, tri.p2) },
+    { v1: tri.v3to1, v2: Vector2.sub(point, tri.p3) },
+  ];
+ 
+  // 分離軸判定
+  for(const data of datas) 
+  {
+    const cross = Vector2.cross(data.v1, data.v2);
+    if (0 < cross) return false;
+  }
+ 
+  return true;
+}</code></pre>

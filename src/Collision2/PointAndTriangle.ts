@@ -11,7 +11,7 @@ import { Triangle } from '../Primitive2';
  */
 export function isHit(point:Vector2, tri:Triangle) 
 {
-  
+  // 三角形の3辺と、辺の始点から点に向かうベクトルのセット
   const datas = [
     { v1: tri.v1to2, v2: Vector2.sub(point, tri.p1) },
     { v1: tri.v2to3, v2: Vector2.sub(point, tri.p2) },
