@@ -2,7 +2,7 @@
   const { Vector2, Collision2, Util } = MathLab;
   const { Ray } = MathLab.Primitive2;
   const { sColor } = Somali;
-  const { Action, Sync } = props;
+  const { Action } = props;
   const graphs = {};
 
   graphs.Graph1 = class extends Somali.Scene 
