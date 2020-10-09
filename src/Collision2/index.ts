@@ -14,6 +14,8 @@ import * as LineAndRay from './LineAndRay';
 import * as LineAndSegment from './LineAndSegment';
 import * as LineAndCircle from './LineAndCircle';
 
+import * as CircleAndCircle from './CircleAndCircle';
+
 export {
   PointAndPoint,
   PointAndLine,
@@ -29,4 +31,5 @@ export {
   LineAndRay,
   LineAndSegment,
   LineAndCircle,
+  CircleAndCircle,
 }
