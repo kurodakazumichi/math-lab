@@ -175,7 +175,25 @@ props.Graph.Sin = class extends Somali.Scene {
   createNodes(shapes, groups) {
     return {
       grid  : groups.grid().labelX("θ").labelY("sin"),
-      cos   : groups.sin(),
+      sin   : groups.sin(),
     }
   }  
+}
+
+props.Graph.Tan = class extends Somali.Scene {
+  constructor(id = "graph_tan") {
+    super();
+    this.id = id;
+  }
+
+  get option() {
+    return {id:this.id, height: 200, width: 700, unit: 70, update:false}
+  }
+
+  createNodes(shapes, groups) {
+    return {
+      grid  : groups.grid().labelX("θ").labelY("tan"),
+      tan   : groups.tan(),
+    }
+  }   
 }
