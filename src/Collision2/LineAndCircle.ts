@@ -4,7 +4,6 @@
 import Vector2 from '../Vector2';
 import { Line, Circle } from '../Primitive2';
 import * as PointAndLine from './PointAndLine';
-import { Define } from '..';
 
 /**
  * 直線と円が当たっているかどうか
