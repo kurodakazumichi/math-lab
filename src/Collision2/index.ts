@@ -12,6 +12,7 @@ import * as PointAndEllipse from './PointAndEllipse';
 import * as LineAndLine from './LineAndLine';
 import * as LineAndRay from './LineAndRay';
 import * as LineAndSegment from './LineAndSegment';
+import * as LineAndCircle from './LineAndCircle';
 
 export {
   PointAndPoint,
@@ -27,4 +28,5 @@ export {
   LineAndLine,
   LineAndRay,
   LineAndSegment,
+  LineAndCircle,
 }
