@@ -1,0 +1,194 @@
+---
+title: ベクトルの内積の計算法則
+---
+<p>
+  数学できない人あるあるかもしれませんが、色んなサイトで数式を見ている時に、この式がなんでこの式になるの？！意味わからん！ってなることが多々あります。
+</p>
+
+<p>
+  ここではそんな無職のために、ベクトルの内積の計算法則(この式はこう書けるよ！)についてまとめます。
+</p>
+
+<p>
+  とりあえずさらっと法則を書いて、証明は下の方に書いておくので気になる方はみて下さい。
+</p>
+
+<h2>交換法則</h2>
+
+<p>
+  ベクトルの内積はベクトルの順番を入れ替えても結果は同じだよの法則
+</p>
+
+<p class="math">
+  $ \vec{a} \cdot \vec{b} = \vec{b} \cdot \vec{a} $
+</p>
+
+<h2>定数倍の法則</h2>
+
+<p>
+  定数倍されたベクトルとの内積は、先に内積を計算してから定数倍しても同じだよの法則
+</p>
+
+<p class="math">
+  $ (k\vec{a}) \cdot \vec{b} = \vec{a} \cdot (k\vec{b}) = k(\vec{a} \cdot \vec{b})$
+</p>
+
+<h2>分配法則</h2>
+
+<p>
+  ベクトルの内積でも普通に分配法則がなりたつんです！の法則(これ知らなくて式展開ついていけない事が何度もあった...)
+</p>
+
+<p class="math">
+  $ (\vec{a} + \vec{b}) \cdot \vec{c} = \vec{a} \cdot \vec{b} + \vec{b} \cdot \vec{c} $<br>
+  $ \vec{c} \cdot (\vec{a} + \vec{b})  = \vec{a} \cdot \vec{b} + \vec{b} \cdot \vec{c} $
+</p>
+
+<p>
+  更にこの形でも分配法則は成り立ちます。
+</p>
+
+<p class="math">
+  $ 
+    (\vec{a} + \vec{b}) \cdot (\vec{c} + \vec{d})
+    = \vec{a} \cdot \vec{c} + \vec{a} \cdot \vec{d} + \vec{b} \cdot \vec{c} + \vec{b} \cdot \vec{d} 
+  $<br>
+</p>
+
+<h2>同じベクトル同士の内積の法則</h2>
+
+<p>
+  同じベクトル同士の内積をとるとこうなるよ！の法則
+</p>
+
+<p class="math">
+  $ \vec{a} \cdot \vec{a} = |\vec{a}|^2 $
+</p>
+
+<p>
+  また以下のように書いてるのを見かける事もあります！ノルムというそうですが、絶対値との違いがいまいちわかっていない無職です。
+</p>
+
+<p class="math">
+  $ \vec{a} \cdot \vec{a} = || \vec{a} || $
+</p>
+
+<h2>交換法則の証明</h2>
+
+<p class="math">
+  $ \vec{a} \cdot \vec{b} = \vec{b} \cdot \vec{a} $
+</p>
+
+
+<p>
+  $ \vec{a} $ から $ \vec{b} $ に向かうベクトル間の角度を $\theta$ とすると、ベクトルを入れ替えた場合は 間の角度が $-\theta$ になります。
+</p>
+
+<p>
+  これを計算してみると
+</p>
+
+<p class="math">
+  $ \vec{a} \cdot \vec{b} = |\vec{a}||\vec{b}|cos(\theta) $<br>
+  $ \vec{b} \cdot \vec{a} = |\vec{a}||\vec{b}|cos(-\theta) $
+</p>
+
+<p>
+  三角関数の性質として $ cos(-\theta) = cos(\theta) $ があるので
+</p>
+
+<p class="math">
+  $ \vec{a} \cdot \vec{b} = |\vec{a}||\vec{b}|cos(\theta) $<br>
+  $ \vec{b} \cdot \vec{a} = |\vec{a}||\vec{b}|cos(\theta) $
+</p>
+
+<p>
+  内積はベクトルを入れ替えても結果は同じになりました。
+</p>
+
+<h2>定数倍の法則の証明</h2>
+
+<p class="math">
+  $ (k\vec{a}) \cdot \vec{b} = \vec{a} \cdot (k\vec{b}) = k(\vec{a} \cdot \vec{b})$
+</p>
+
+<p>
+  ベクトルの成分から内積を計算する方法を使って証明してみます。
+</p>
+
+<p class="math">
+  $ k\vec{a} = (ka_{x}, ka_{y}), \vec{b} = (b_{x}, b_{y}) $ とすると<br><br>
+  
+  $(k\vec{a}) \cdot \vec{b} = ka_{x}b_{x} + ka_{y}b_{y}$<br>
+  $ = k(a_{x}b_{x} + a_{y}b_{y}) $　：$a_{x}b_{x} + a_{y}b_{y}$ は内積の計算と同じ<br>
+  $ = k(\vec{a} \cdot \vec{b}) $
+</p>
+
+<p>
+  内積の結果を $k$ 倍するのと同じになりました。
+</p>
+
+<h2>分配法則の証明</h2>
+
+<p class="math">
+  $ (\vec{a} + \vec{b}) \cdot \vec{c} = \vec{a} \cdot \vec{b} + \vec{b} \cdot \vec{c} $
+</p>
+
+<p>
+  ベクトルの成分を使って内積を求める方法で計算してみます。
+</p>
+
+<p class="math">
+  $ \vec{a} = (a_{x}, a_{y}), \vec{b} = (b_{x}, b_{y}), \vec{c} = (c_{x}, c_{y}) $ とすると<br>
+  $ \vec{a} + \vec{b} = (a_{x} + b_{x}, a_{y} + b_{y}) $<br><br>
+  
+  $ (\vec{a} + \vec{b}) \cdot \vec{c} =  (a_{x} + b_{x})c_{x} + (a_{y} + b_{y})c_{y}$<br>
+  $ = a_{x}c_{x} + b_{x}c_{x} + a_{y}c_{y} + b_{y}c_{y} $<br>
+  $ = a_{x}c_{x} + a_{y}c_{y} + b_{x}c_{x} + b_{y}c_{y} $<br>
+  $ = \vec{a} \cdot \vec{c} + \vec{b} \cdot \vec{c} $<br>
+</p>
+
+<p>分配法則が成り立っています。</p>
+
+
+<p>もう一つの複雑な方も頑張って計算してみます。</p>
+
+<p class="math">
+  $ 
+    (\vec{a} + \vec{b}) \cdot (\vec{c} + \vec{d})
+    = \vec{a} \cdot \vec{c} + \vec{a} \cdot \vec{d} + \vec{b} \cdot \vec{c} + \vec{b} \cdot \vec{d} 
+  $
+</p>
+
+<p class="math">
+  $ \vec{a} = (a_{x}, a_{y}), \vec{b} = (b_{x}, b_{y}) $<br>
+  $ \vec{c} = (c_{x}, c_{y}), \vec{d} = (d_{x}, d_{y}) $ とすると<br><br>
+
+  $ \vec{a} + \vec{b} = (a_{x} + b_{x}, a_{y} + b_{y}) $<br>
+  $ \vec{c} + \vec{d} = (c_{x} + d_{x}, c_{y} + d_{y}) $<br><br>
+  
+  $ (\vec{a} + \vec{b}) \cdot (\vec{c} + \vec{d}) $<br>
+  $ = (a_{x} + b_{x})(c_{x} + d_{x}) + (a_{y} + b_{y})(c_{y} + d_{y})$<br>
+  $ = a_{x}c_{x} + a_{x}d_{x} + b_{x}c_{x} + b_{x}d_{x} + a_{y}c_{y} + a_{y}d_{y} + b_{y}c_{y} + b_{y}d_{y} $<br>
+  $ = a_{x}c_{x} + a_{y}c_{y} + a_{x}d_{x} + a_{y}d_{y} + b_{x}c_{x} + b_{y}c_{y} +  b_{x}d_{x}  +b_{y}d_{y} $<br>
+  $ = \vec{a} \cdot \vec{c} + \vec{a} \cdot \vec{d} + \vec{b} \cdot \vec{c} + \vec{b} \cdot \vec{d}$<br>
+</p>
+
+<p>交換法則が成り立っています。</p>
+
+<h2>同じベクトル同士の内積の法則</h2>
+
+<p class="math">
+  $ \vec{a} \cdot \vec{a} = |\vec{a}|^2 $
+</p>
+
+<p>
+  同じベクトル同士なので、間の角度は0度になります。
+</p>
+
+<p class="math">
+  $ \vec{a} \cdot \vec{a} = |\vec{a}||\vec{a}|cos(0) $<br>
+  ：$cos(0) = 1$ なので<br>
+  $ = |\vec{a}||\vec{a}| $<br>
+  $ = |\vec{a}|^2 $
+</p>
