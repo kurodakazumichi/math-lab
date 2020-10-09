@@ -14,6 +14,11 @@ props.Sync = {
     return shape.points(line.points(100));
   },
 
+  /** Primitive2.RayをSomali.Lineへ同期 */
+  rayToLine: (ray, shape) => {
+    return shape.points(ray.points(100));
+  },
+
   /** Vector2をSomali.Arrowへ適用 */
   vecToArrow: (v, shape) => {
     return shape.points([0, 0, v.x, v.y]);

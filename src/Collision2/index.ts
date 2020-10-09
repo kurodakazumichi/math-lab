@@ -10,6 +10,7 @@ import * as PointAndCapsule from './PointAndCapsule';
 import * as PointAndEllipse from './PointAndEllipse';
 
 import * as LineAndLine from './LineAndLine';
+import * as LineAndRay from './LineAndRay';
 
 export {
   PointAndPoint,
@@ -23,4 +24,5 @@ export {
   PointAndCapsule,
   PointAndEllipse,
   LineAndLine,
+  LineAndRay,
 }
