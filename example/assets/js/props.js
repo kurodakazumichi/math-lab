@@ -62,9 +62,6 @@ props.Sync = {
   },
 
   /** SegmentをSomali.Lineへ同期 */
-  segToLine: (seg, shape) => {
-    return shape.points([seg.p1.x, seg.p1.y, seg.p2.x, seg.p2.y]);
-  },
   lineBySeg: (shape, seg) => {
     return shape.points([seg.p1.x, seg.p1.y, seg.p2.x, seg.p2.y]);
   },
