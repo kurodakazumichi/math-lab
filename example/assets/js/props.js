@@ -22,9 +22,6 @@ props.NodesUtil = {
 props.Sync = {
 
   /** Primitive2.lineをSomali.Lineへ適用 */
-  lineToLine: (line, shape) => {
-    return shape.points(line.points(100));
-  },
   lineByLine: (shape, line) => {
     return shape.points(line.points(100));
   },

@@ -27,7 +27,7 @@
     initNodes(nodes) {
       nodes.star.visible(false).opacity(0.5);
       nodes.point.pos(this.pos.x, this.pos.y);
-      Sync.lineToLine(this.line, nodes.line);
+      Sync.lineByLine(nodes.line, this.line);
     }
 
     update() {
@@ -74,7 +74,7 @@
     initNodes(nodes) {
       nodes.star.visible(false).opacity(0.5);
       nodes.point.pos(this.pos.x, this.pos.y);
-      Sync.lineToLine(this.line, nodes.line);
+      Sync.lineByLine(nodes.line, this.line);
     }
 
     update() {
@@ -121,7 +121,7 @@
 
     initNodes(nodes) {
       nodes.point.pos(this.pos.x, this.pos.y);
-      Sync.lineToLine(this.line, nodes.line);
+      Sync.lineByLine(nodes.line, this.line);
 
       const p = this.line.point(2);
       nodes.a.points([this.line.p.x, this.line.p.y, p.x, p.y]);

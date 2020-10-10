@@ -38,12 +38,12 @@
     }
 
     initNodes(nodes) {
-      Sync.lineToLine(this.line, nodes.line);
+      Sync.lineByLine(nodes.line, this.line);
       Sync.circleByCircle(nodes.circle, this.circle);
     }
 
     update() {
-      Sync.lineToLine(this.line, this.nodes.line);
+      Sync.lineByLine(this.nodes.line, this.line);
 
       const hit = Collision2.LineAndCircle.isHit(this.line, this.circle);
 
@@ -79,7 +79,7 @@
     }
 
     initNodes(nodes) {
-      Sync.lineToLine(this.line, nodes.line);
+      Sync.lineByLine(nodes.line, this.line);
       Sync.circleByCircle(nodes.circle, this.circle);
       Sync.vecToPos(this.circle.p, nodes.C);
       Sync.vecToPos(this.col.nearest, nodes.H);

@@ -40,12 +40,12 @@
     }
 
     initNodes(nodes) {
-      Sync.lineToLine(this.line, nodes.line);
+      Sync.lineByLine(nodes.line, this.line);
       Sync.circleByCircle(nodes.circle, this.circle);
     }
 
     update() {
-      Sync.lineToLine(this.line, this.nodes.line);
+      Sync.lineByLine(this.nodes.line, this.line);
 
       const result = Collision2.LineAndCircle.intercect(this.line, this.circle);
 

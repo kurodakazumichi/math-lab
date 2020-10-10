@@ -39,8 +39,8 @@
     }
 
     update() {
-      Sync.lineToLine(this.l1, this.nodes.l1);
-      Sync.lineToLine(this.l2, this.nodes.l2);
+      Sync.lineByLine(this.nodes.l1, this.l1);
+      Sync.lineByLine(this.nodes.l2, this.l2);
 
       const result = Collision2.LineAndLine.intercect(this.l1, this.l2);
 
@@ -88,8 +88,8 @@
     }
 
     initNodes(nodes) {
-      Sync.lineToLine(this.l1, nodes.l1);
-      Sync.lineToLine(this.l2, nodes.l2);
+      Sync.lineByLine(nodes.l1, this.l1);
+      Sync.lineByLine(nodes.l2, this.l2);
 
       const v11 = this.l1.p;
       const v12 = Vector2.add(this.l1.p, this.l1.v);
@@ -135,8 +135,8 @@
     }
 
     initNodes(nodes) {
-      Sync.lineToLine(this.l1, nodes.l1);
-      Sync.lineToLine(this.l2, nodes.l2);
+      Sync.lineByLine(nodes.l1, this.l1);
+      Sync.lineByLine(nodes.l2, this.l2);
 
       const v11 = this.l1.p;
       const v12 = Vector2.add(this.l1.p, this.l1.v);
@@ -186,8 +186,8 @@
     }
 
     initNodes(nodes) {
-      Sync.lineToLine(this.l1, nodes.l1);
-      Sync.lineToLine(this.l2, nodes.l2);
+      Sync.lineByLine(nodes.l1, this.l1);
+      Sync.lineByLine(nodes.l2, this.l2);
 
       const v11 = this.l1.p;
       const v12 = Vector2.add(this.l1.p, this.l1.v);
