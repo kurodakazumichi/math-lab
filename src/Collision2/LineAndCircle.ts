@@ -7,7 +7,7 @@ import * as PointAndLine from './PointAndLine';
 
 /**
  * 直線と円が当たっているかどうか
- * @param line 直線１
+ * @param line 直線
  * @param circle 円
  */
 export function isHit(line:Line, circle:Circle) 
@@ -25,6 +25,7 @@ export function isHit(line:Line, circle:Circle)
 export interface IIntercectResult {
   hit:boolean;
   pos:Vector2[];
+  nearest:Vector2;
 }
 
 /**
@@ -38,10 +39,12 @@ export function intercect(line:Line, circle:Circle)
   const result:IIntercectResult = {
     hit: false,
     pos: [],
+    nearest: Vector2.zero, // 最近傍点
   }
 
   // 円の中心 と直線の最近傍点 p を求める
   const p = PointAndLine.getNearestNeighborPoint(circle.p, line);
+  result.nearest = p;
 
   // 円の中心から p に向かうベクトルを cp とする
   const cp = Vector2.sub(p, circle.p);
