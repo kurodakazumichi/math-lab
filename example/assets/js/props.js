@@ -46,9 +46,6 @@ props.Sync = {
   },
 
   /** Vector2をSomali.Lineへ同期 */
-  vecToLine: (v, shape) => {
-    return shape.points([0, 0, v.x, v.y]);
-  },
   lineByVec: (shape, v) => {
     return shape.points([0, 0, v.x, v.y]);
   },

@@ -88,7 +88,7 @@
 
       const rv = Vector2.right.times(this.circle.r).rotate(Util.deg2rad(27));
       const mp = Vector2.midpoint(Vector2.zero, rv);
-      Sync.vecToLine(rv, nodes.r);
+      Sync.lineByVec(nodes.r, rv);
       Sync.vecToPos(mp, nodes.rText);
 
       nodes.aux.points([this.circle.p.x, this.circle.p.y, this.col.nearest.x, this.col.nearest.y]);
