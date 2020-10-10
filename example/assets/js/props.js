@@ -74,9 +74,13 @@ props.Sync = {
     return shape.points([seg.p1.x, seg.p1.y, seg.p2.x, seg.p2.y]);
   },
 
+  /** 始点と終点を指定するとSomali.Arrowを引いてくれる */
+  arrowByP1P2: (shape, p1, p2) => {
+    return shape.points([p1.x, p1.y, p2.x, p2.y]);
+  },
+
   /** 始点とベクトルを指定すると、Somali.Arrowを引いてくれる */
   arrowByPV: (shape, p, v) => {
-    console.log(shape);
     return shape.points([p.x, p.y, p.x + v.x, p.y + v.y]);
   },  
 
