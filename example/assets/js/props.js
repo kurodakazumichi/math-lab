@@ -54,9 +54,6 @@ props.Sync = {
   },
 
   /** SegmentをSomali.Arrowへ同期 */
-  segToArrow: (seg, shape) => {
-    return shape.points([seg.p1.x, seg.p1.y, seg.p2.x, seg.p2.y]);
-  },
   arrowBySeg: (shape, seg) => {
     return shape.points([seg.p1.x, seg.p1.y, seg.p2.x, seg.p2.y]);
   },
