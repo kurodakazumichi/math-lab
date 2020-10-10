@@ -136,13 +136,6 @@ props.Sync = {
   },
 
   /** EllipseをSomali.Ellipseへ適用 */
-  ellipseToEllipse:(ellipse, shape) => {
-    return shape
-      .pos(ellipse.p.x, ellipse.p.y)
-      .rx(ellipse.rx)
-      .ry(ellipse.ry)
-      .rotation(-ellipse.angle);    
-  },
   ellipseByEllipse: (shape, ellipse) => {
     return shape
       .pos(ellipse.p.x, ellipse.p.y)
