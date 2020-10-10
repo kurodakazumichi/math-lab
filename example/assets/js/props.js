@@ -12,7 +12,20 @@ props.NodesUtil = {
     keys.map((key) => {
       (nodes[key]) && nodes[key].visible(false);
     })
-  }
+  },
+  hideAll: (nodes, ignore = ["grid"]) => {
+    Object.keys(nodes).map((key) => {
+      if (ignore.some(item => item === key)) return;
+      nodes[key].visible(false);
+    })
+  },
+  show: (nodes, keys) => {
+    keys.map((key) => {
+      (nodes[key]) && nodes[key].visible(true);
+    })
+  },
+
+  
 };
 
 /******************************************************************************
@@ -63,6 +76,11 @@ props.Sync = {
   lineByP1P2: (shape, p1, p2) => {
     return shape.points([p1.x, p1.y, p2.x, p2.y]);
   },
+
+  /** 始点とベクトルを指定すると、Somali.Lineを引いてくれる */
+  lineByPV: (shape, p, v) => {
+    return shape.points([p.x, p.y, p.x + v.x, p.y + v.y]);
+  },    
   
   /** Vector2をSomali.Arrowへ適用 */
   arrowByVec: (shape, v) => {
