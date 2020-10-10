@@ -11,8 +11,8 @@ class Graph1 extends Somali.Scene
     return {
       grid  : groups.grid(),
       theta : shapes.wedge().pos(0, 0).rotation(-64).angle(47),
-      v1    : Sync.vecToArrow(new Vector2(4, 1), shapes.arrow()),
-      v2    : Sync.vecToArrow(new Vector2(2, 4), shapes.arrow()),
+      v1    : Sync.arrowByVec(shapes.arrow(), new Vector2(4, 1)),
+      v2    : Sync.arrowByVec(shapes.arrow(), new Vector2(2, 4)),
       v1Text: shapes.text().text("v1").pos(4, 1),
       v2Text: shapes.text().text("v2").pos(2, 4),
       thetaText: shapes.text().text("θ").pos(0.5, 0.8),
@@ -29,8 +29,8 @@ class Graph2 extends Somali.Scene
   createNodes(shapes, groups) {
     return {
       grid  : groups.grid(),
-      v1    : Sync.vecToArrow(new Vector2(4, 1), shapes.arrow()),
-      v2    : Sync.vecToArrow(new Vector2(2, 4), shapes.arrow()),
+      v1    : Sync.arrowByVec(shapes.arrow(), new Vector2(4, 1)),
+      v2    : Sync.arrowByVec(shapes.arrow(), new Vector2(2, 4)),
       v1Text: shapes.text().text("v1(a, b)").pos(3, 1.7),
       v2Text: shapes.text().text("v2(c, d)").pos(2, 4),
     }
@@ -73,8 +73,8 @@ class Graph3 extends Somali.Scene
       alpha : shapes.wedge().pos(0, 0).fill(Somali.sColor.red).angle(76).rotation(-76).radius(2),
       beta  : shapes.wedge().pos(0, 0).fill(Somali.sColor.yellow).angle(34).rotation(-34).radius(1.5),
       theta : shapes.wedge().pos(0, 0).rotation(-75).angle(40).radius(1.2),
-      v1    : Sync.vecToArrow(new Vector2(3, 2), shapes.arrow()),
-      v2    : Sync.vecToArrow(new Vector2(1, 4), shapes.arrow()),
+      v1    : Sync.arrowByVec(shapes.arrow(), new Vector2(3, 2)),
+      v2    : Sync.arrowByVec(shapes.arrow(), new Vector2(1, 4)),
       alphaText: shapes.text().text("α").pos(0.8, 1.7),
       betaText: shapes.text().text("β").pos(1, 0.6),
       thetaText: shapes.text().text("θ").pos(0.2, 0.8),
@@ -163,8 +163,8 @@ class Graph4 extends Somali.Scene
       grid  : groups.grid(),
       alpha : shapes.wedge().pos(0, 0).fill(Somali.sColor.red).angle(76).rotation(-76).radius(2),
       beta  : shapes.wedge().pos(0, 0).fill(Somali.sColor.yellow).angle(34).rotation(-34).radius(1.5),
-      v1    : Sync.vecToArrow(new Vector2(3, 2), shapes.arrow()),
-      v2    : Sync.vecToArrow(new Vector2(1, 4), shapes.arrow()),
+      v1    : Sync.arrowByVec(shapes.arrow(), new Vector2(3, 2)),
+      v2    : Sync.arrowByVec(shapes.arrow(), new Vector2(1, 4)),
       alphaText: shapes.text().text("α").pos(0.8, 1.7),
       betaText: shapes.text().text("β").pos(1, 0.6),
       v1Text: shapes.text().text("v1(a, b)").pos(3, 2),

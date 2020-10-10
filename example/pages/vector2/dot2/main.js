@@ -26,8 +26,8 @@ class Graph1 extends Somali.Scene
       grid  : groups.grid(),
       area1: shapes.line().points([-1.25, 5, 1.25, -5, 5, -5, 5, 5]).closed(true).fill(Somali.sColor.blue).stroke("").opacity(0.25),
       area2: shapes.line().points([-1.25, 5, 1.25, -5, -5, -5, -5, 5]).closed(true).fill(Somali.sColor.red).stroke("").opacity(0.25),
-      a    : Sync.vecToArrow(this.params.a, shapes.arrow()).color(Somali.sColor.red),
-      b    : Sync.vecToArrow(this.params.b, shapes.arrow()),
+      a    : Sync.arrowByVec(shapes.arrow(), this.params.a).color(Somali.sColor.red),
+      b    : Sync.arrowByVec(shapes.arrow(), this.params.b),
       aText: shapes.text().text("a").pos(4, 1),
       bText: shapes.text().text("b").pos(2, 4),
       dot  : shapes.text().pos(0, 0)
@@ -35,7 +35,7 @@ class Graph1 extends Somali.Scene
   }
 
   update() {
-    Sync.vecToArrow(this.params.b, this.nodes.b);
+    Sync.arrowByVec(this.nodes.b, this.params.b);
     this.nodes.bText.pos(this.params.b.x, this.params.b.y);
     const dot = Vector2.dot(this.params.a, this.params.b);
     this.nodes.dot.text(`内積の値 = ${ Util.round(dot, 5)}`)
@@ -100,8 +100,8 @@ class Graph4 extends Somali.Scene {
     const { a, b } = this.params;
     return {
       grid  : groups.grid(),
-      a    : Sync.vecToArrow(a, shapes.arrow()).color(Somali.sColor.red),
-      b    : Sync.vecToArrow(b, shapes.arrow()),
+      a    : Sync.arrowByVec(shapes.arrow(), a).color(Somali.sColor.red),
+      b    : Sync.arrowByVec(shapes.arrow(), b),
       aText: shapes.text().text("a").pos(a.x, a.y),
       bText: shapes.text().text("b").pos(b.x, b.y),
       line : shapes.line().stroke(Somali.sColor.blue),
@@ -114,7 +114,7 @@ class Graph4 extends Somali.Scene {
   update() {
     const { a, b } = this.params;
 
-    Sync.vecToArrow(b, this.nodes.b);
+    Sync.arrowByVec(this.nodes.b, b);
     Sync.vecToPos(b, this.nodes.bText);
 
     // aを正規化して内積を取る

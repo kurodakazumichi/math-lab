@@ -66,7 +66,7 @@
     update() {
       this.nodes.line.points(this.line.points(100));
       Sync.vecToPos(this.line.p, this.nodes.point);
-      Sync.vecToArrow(this.line.v, this.nodes.arrow);
+      Sync.arrowByVec(this.nodes.arrow, this.line.v);
     }
   }
 
@@ -105,7 +105,7 @@
     update() {
       this.nodes.line.points(this.ray.points(100));
       Sync.vecToPos(this.ray.p, this.nodes.point);
-      Sync.vecToArrow(this.ray.v, this.nodes.arrow);
+      Sync.arrowByVec(this.nodes.arrow, this.ray.v);
     }
   }
 
@@ -144,7 +144,7 @@
     update() {
       this.nodes.line.points(this.seg.points);
       Sync.vecToPos(this.seg.p1, this.nodes.point);
-      Sync.vecToArrow(this.seg.v, this.nodes.arrow);
+      Sync.arrowByVec(this.nodes.arrow, this.seg.v);
     }
   }  
 

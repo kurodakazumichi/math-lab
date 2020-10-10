@@ -137,7 +137,7 @@
         A     : shapes.point().pos(0, 0),
         AText : shapes.text().text("A").pos(0, 0),
 
-        v     : Sync.vecToArrow(this.ray.v, shapes.arrow()).color(sColor.red),
+        v     : Sync.arrowByVec(shapes.arrow(), this.ray.v).color(sColor.red),
         vText : shapes.text().text("v").pos(this.ray.v.x, this.ray.v.y),
 
         B : shapes.text().text("B").offset(0.4, 0),

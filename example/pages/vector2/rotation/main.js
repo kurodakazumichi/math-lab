@@ -21,8 +21,8 @@
     createNodes(shapes, groups) {
       return {
         grid   : groups.grid(),
-        v1   : Sync.vecToArrow(this.v1, shapes.arrow()),
-        v2   : Sync.vecToArrow(this.v2, shapes.arrow()),
+        v1   : Sync.arrowByVec(shapes.arrow(), this.v1),
+        v2   : Sync.arrowByVec(shapes.arrow(), this.v2),
         v3   : shapes.arrow().color(sColor.red),
       }
     }
@@ -34,7 +34,7 @@
       const rad = Util.lerp(0, this.rad, this.timer);
 
       const v = this.v1.clone().rotate(rad);
-      Sync.vecToArrow(v, this.nodes.v3);
+      Sync.arrowByVec(this.nodes.v3, v);
 
       if (1 < this.timer) {
         this.timer = 0;
@@ -61,9 +61,9 @@
         grid     : groups.grid(),
         theta    : shapes.wedge().pos(0, 0).angle(120).rotation(-140),
         thetaText: shapes.text().text("θ").pos(0, 1),
-        av       : Sync.vecToArrow(this.v1, shapes.arrow()),
+        av       : Sync.arrowByVec(shapes.arrow(), this.v1),
         avText   : shapes.text().text("a").pos(3, 1),
-        bv       : Sync.vecToArrow(this.v2, shapes.arrow()),
+        bv       : Sync.arrowByVec(shapes.arrow(), this.v2),
         bvText   : shapes.text().text("b").pos(-2.8, 2),
       }
     }
@@ -88,7 +88,7 @@
         grid     : groups.grid(),
         alpha    : shapes.wedge().pos(0, 0).radius(1.5).angle(19).rotation(-19).fill(sColor.red),
         alphaText: shapes.text().text("α").pos(1.5, 0.55),
-        av       : Sync.vecToArrow(this.v1, shapes.arrow()),
+        av       : Sync.arrowByVec(shapes.arrow(), this.v1),
         avText   : shapes.text().text("a").pos(3, 1),
       }
     }
@@ -115,9 +115,9 @@
         alphaText: shapes.text().text("α").pos(1.5, 0.55),
         theta    : shapes.wedge().pos(0, 0).angle(60).rotation(-80),
         thetaText: shapes.text().text("θ").pos(0.5, 1),        
-        av       : Sync.vecToArrow(this.v1, shapes.arrow()),
+        av       : Sync.arrowByVec(shapes.arrow(), this.v1),
         avText   : shapes.text().text("a").pos(3, 1),
-        bv       : Sync.vecToArrow(this.v2, shapes.arrow()),
+        bv       : Sync.arrowByVec(shapes.arrow(), this.v2),
         bvText   : shapes.text().text("b").pos(0.5, 3.7),        
       }
     }

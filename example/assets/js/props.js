@@ -32,9 +32,6 @@ props.Sync = {
   },
 
   /** Vector2をSomali.Arrowへ適用 */
-  vecToArrow: (v, shape) => {
-    return shape.points([0, 0, v.x, v.y]);
-  },
   arrowByVec: (shape, v) => {
     return shape.points([0, 0, v.x, v.y]);
   },

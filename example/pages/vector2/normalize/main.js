@@ -27,12 +27,12 @@
     createNodes(shapes, groups) {
       return {
         grid  : groups.grid(),
-        vector: Sync.vecToArrow(this.params.v, shapes.arrow()),
+        vector: Sync.arrowByVec(shapes.arrow(), this.params.v),
       }
     }
 
     update() {
-      Sync.vecToArrow(this.params.v, this.nodes.vector);
+      Sync.arrowByVec(this.nodes.vector, this.params.v);
     }
   }
 

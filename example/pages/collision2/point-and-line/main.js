@@ -165,14 +165,14 @@
     }
 
     initNodes(nodes) {
-      Sync.vecToArrow(this.v1, nodes.v1);
-      Sync.vecToArrow(this.v2, nodes.v2);
+      Sync.arrowByVec(nodes.v1, this.v1);
+      Sync.arrowByVec(nodes.v2, this.v2);
       this.updateCross();
       this.updateSin();
 
       nodes.point.on("dragmove", (point) => {
         this.v2.set(point.x(), point.y());
-        Sync.vecToArrow(this.v2, this.nodes.v2);
+        Sync.arrowByVec(this.nodes.v2, this.v2);
 
         const deg = this.deg;
         this.nodes.text.text(`θ=${deg}`)
