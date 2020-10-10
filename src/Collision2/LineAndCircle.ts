@@ -46,7 +46,7 @@ export function intercect(line:Line, circle:Circle)
   const c = circle.p;
 
   // c と直線の最近傍点 h を求める
-  const h = PointAndLine.getNearestNeighborPoint(circle.p, line);
+  const h = PointAndLine.getNearestNeighborPoint(c, line);
   result.nearest = h;
 
   // c -> h に向かうベクトルを hp とする
