@@ -3,7 +3,6 @@
  *****************************************************************************/
 import Vector2 from '../Vector2';
 import { Circle } from '../Primitive2';
-import * as PointAndLine from './PointAndLine';
 
 /**
  * 円と円が当たっているかどうか
