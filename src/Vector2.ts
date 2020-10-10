@@ -214,4 +214,9 @@ export default class Vector2
   static lerp(v1:Vector2, v2:Vector2, t:number) {
     return v1.clone().lerp(v2, t);
   }
+
+  /** 中点 */
+  static midpoint(v1:Vector2, v2:Vector2) {
+    return v1.clone().add(v2).times(0.5);
+  }
 }
