@@ -94,15 +94,6 @@ props.Sync = {
   },
 
   /** BoxをSomali.Rectへ適用 */
-  boxToRect: (box, shape) => {
-    return shape
-      .pos(box.p.x, box.p.y)
-      .width(box.w)
-      .height(box.h)
-      .rotation(-box.angle)
-      .offset(-box.rx, box.ry)
-      ;
-  },
   rectByBox: (shape, box) => {
     return shape
       .pos(box.p.x, box.p.y)

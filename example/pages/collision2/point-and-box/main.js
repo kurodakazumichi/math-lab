@@ -23,7 +23,7 @@
       return {
         grid: groups.grid(),
         point: shapes.point(),
-        box  : Sync.boxToRect(this.box, shapes.rect()),
+        box  : Sync.rectByBox(shapes.rect(), this.box),
         star: shapes.star().opacity(0.5)
       }
     }
@@ -68,7 +68,7 @@
     }
 
     initNodes(nodes) {
-      Sync.boxToRect(this.box, nodes.box);
+      Sync.rectByBox(nodes.box, this.box);
       Sync.vecToPos(this.pos, nodes.p);
     }
 
@@ -186,7 +186,7 @@
     }
 
     initNodes(nodes) {
-      Sync.boxToRect(this.box, nodes.box);
+      Sync.rectByBox(nodes.box, this.box);
       Sync.vecToPos(this.pos, nodes.p);
       Sync.vecToPos(this.pos, nodes.P);
 
