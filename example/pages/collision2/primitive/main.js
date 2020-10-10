@@ -337,7 +337,7 @@
     }
 
     update() {
-      Sync.triToLine(this.shape, this.nodes.main);
+      Sync.lineByTri(this.nodes.main, this.shape);
     }
   } 
 

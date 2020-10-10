@@ -114,9 +114,6 @@ props.Sync = {
   },
 
   /** TriangleをSomali.Lineへ適用 */
-  triToLine: (tri, shape) => {
-    return shape.points(tri.points).closed(true);
-  },
   lineByTri: (shape, tri) => {
     return shape.points(tri.points).closed(true);
   },

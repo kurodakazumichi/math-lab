@@ -19,7 +19,7 @@
       return {
         grid: groups.grid(),
         point: shapes.point(),
-        tri  : Sync.triToLine(this.tri, shapes.line()),
+        tri  : Sync.lineByTri(shapes.line(), this.tri),
         star: shapes.star().opacity(0.5)
       }
     }
