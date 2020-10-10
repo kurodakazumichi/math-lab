@@ -257,7 +257,7 @@
     }
 
     update() {
-      Sync.rectToRect(this.shape, this.nodes.main);
+      Sync.rectByRect(this.nodes.main, this.shape);
       Sync.vecToPos(this.shape.p, this.nodes.point);
     }
   }    

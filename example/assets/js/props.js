@@ -86,9 +86,6 @@ props.Sync = {
   },
 
   /** RectをSomali.Rectへ適用 */
-  rectToRect: (rect, shape) => {
-    return shape.pos(rect.p1.x, rect.p1.y).width(rect.w).height(rect.h);
-  },
   rectByRect: (shape, rect) => {
     return shape.pos(rect.p1.x, rect.p1.y).width(rect.w).height(rect.h);
   },

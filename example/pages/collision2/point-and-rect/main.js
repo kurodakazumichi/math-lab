@@ -22,7 +22,7 @@
       return {
         grid: groups.grid(),
         point: shapes.point(),
-        circle: Sync.rectToRect(this.rect, shapes.rect()),
+        circle: Sync.rectByRect(shapes.rect(), this.rect),
         star: shapes.star().opacity(0.5)
       }
     }
@@ -70,7 +70,7 @@
     }
 
     initNodes(nodes) {
-      Sync.rectToRect(this.rect, nodes.rect);
+      Sync.rectByRect(nodes.rect, this.rect);
 
       Sync.vecToPos(this.pos, nodes.p);
       Sync.vecToPos(this.pos, nodes.pText);

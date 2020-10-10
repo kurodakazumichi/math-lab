@@ -65,7 +65,7 @@
     }
 
     initNodes(nodes) {
-      Sync.rectToRect(this.rect, nodes.rect);
+      Sync.rectByRect(nodes.rect, this.rect);
 
       nodes.cc.points([-3, 1, 1, 3, 3, -1, -1, -3]);
       nodes.a.pos(1, -3);
