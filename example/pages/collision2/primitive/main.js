@@ -219,7 +219,7 @@
     }
 
     update() {
-      Sync.ellipseToEllipse(this.shape, this.nodes.main);
+      Sync.ellipseByEllipse(this.nodes.main, this.shape);
       Sync.vecToPos(this.shape.p, this.nodes.point);
     }
   }    

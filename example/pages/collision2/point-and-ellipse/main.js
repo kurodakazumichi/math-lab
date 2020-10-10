@@ -24,7 +24,7 @@
         grid: groups.grid(),
         point: shapes.point(),
         star: shapes.star().opacity(0.5),
-        ellipse: Sync.ellipseToEllipse(this.ellipse, shapes.ellipse()),
+        ellipse: Sync.ellipseByEllipse(shapes.ellipse(), this.ellipse),
       }
     }
 
@@ -58,7 +58,7 @@
         point: shapes.point().pos(this.pos.x, this.pos.y),
 
         center: shapes.point().pos(this.ellipse.p.x, this.ellipse.p.y).fill(sColor.main),
-        ellipse: Sync.ellipseToEllipse(this.ellipse, shapes.ellipse()),
+        ellipse: Sync.ellipseByEllipse(shapes.ellipse(), this.ellipse),
 
         arrow: shapes.arrow().strokeWidth(1).dash(5),
       }
@@ -89,7 +89,7 @@
       this.phase = "transform";
       this.pos.set(1, 2);
       this.ellipse.p.set(1, 1);      
-      Sync.ellipseToEllipse(this.ellipse, this.nodes.ellipse);
+      Sync.ellipseByEllipse(this.nodes.ellipse, this.ellipse);
     }
 
     transformUpdate() {
@@ -183,7 +183,7 @@
       return {
         grid: groups.grid(),
         
-        ellipse: Sync.ellipseToEllipse(this.ellipse, shapes.ellipse()),
+        ellipse: Sync.ellipseByEllipse(shapes.ellipse(), this.ellipse),
 
         p: shapes.point().pos(1, 2),
         pText: shapes.text().text("P").pos(1, 2),
@@ -216,12 +216,10 @@
 
     createNodes(shapes, groups) {
 
-      const v50 = Vector2.right.times(3).rotate(Util.deg2rad(50));
-      const v100 = Vector2.right.times(2).rotate(Util.deg2rad(140));
       return {
         grid: groups.grid(),
         
-        ellipse: Sync.ellipseToEllipse(this.ellipse, shapes.ellipse()),
+        ellipse: Sync.ellipseByEllipse(shapes.ellipse(), this.ellipse),
 
         p: shapes.point().pos(0.8, 1),
         pText: shapes.text().text("P'").pos(0.8, 1),
