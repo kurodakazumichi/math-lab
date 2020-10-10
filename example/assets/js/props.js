@@ -21,6 +21,16 @@ props.NodesUtil = {
  *****************************************************************************/
 props.Sync = {
 
+  /** Vector2のポジションを同期 */
+  posByVec: (shape, v) => {
+    return shape.pos(v.x, v.y);
+  },
+
+  /** Vector2をSomali.Lineへ同期 */
+  lineByVec: (shape, v) => {
+    return shape.points([0, 0, v.x, v.y]);
+  },
+
   /** Primitive2.lineをSomali.Lineへ適用 */
   lineByLine: (shape, line) => {
     return shape.points(line.points(100));
@@ -31,13 +41,31 @@ props.Sync = {
     return shape.points(ray.points(100));
   },
 
-  /** Vector2をSomali.Arrowへ適用 */
-  arrowByVec: (shape, v) => {
-    return shape.points([0, 0, v.x, v.y]);
+  /** SegmentをSomali.Lineへ同期 */
+  lineBySeg: (shape, seg) => {
+    return shape.points([seg.p1.x, seg.p1.y, seg.p2.x, seg.p2.y]);
+  },  
+
+  /** TriangleをSomali.Lineへ適用 */
+  lineByTri: (shape, tri) => {
+    return shape.points(tri.points).closed(true);
   },
 
-  /** Vector2をSomali.Lineへ同期 */
-  lineByVec: (shape, v) => {
+  /** CapsuleをSomali.Lineへ適用 */
+  lineByCapsule: (shape, capsule) => {
+    return shape
+      .points(capsule.s.points)
+      .strokeWidth(capsule.r * 2, true)
+      .lineCap("round");
+  },
+
+  /** 始点と終点を指定するとSomali.Lineを引いてくれる */
+  lineByP1P2: (shape, p1, p2) => {
+    return shape.points([p1.x, p1.y, p2.x, p2.y]);
+  },
+  
+  /** Vector2をSomali.Arrowへ適用 */
+  arrowByVec: (shape, v) => {
     return shape.points([0, 0, v.x, v.y]);
   },
 
@@ -46,15 +74,11 @@ props.Sync = {
     return shape.points([seg.p1.x, seg.p1.y, seg.p2.x, seg.p2.y]);
   },
 
-  /** SegmentをSomali.Lineへ同期 */
-  lineBySeg: (shape, seg) => {
-    return shape.points([seg.p1.x, seg.p1.y, seg.p2.x, seg.p2.y]);
-  },
-
-  /** Vector2のポジションを同期 */
-  posByVec: (shape, v) => {
-    return shape.pos(v.x, v.y);
-  },
+  /** 始点とベクトルを指定すると、Somali.Arrowを引いてくれる */
+  arrowByPV: (shape, p, v) => {
+    console.log(shape);
+    return shape.points([p.x, p.y, p.x + v.x, p.y + v.y]);
+  },  
 
   /** CircleをSomali.Circleへ適用 */
   circleByCircle: (shape, circle) => {
@@ -77,19 +101,6 @@ props.Sync = {
       ;    
   },
 
-  /** TriangleをSomali.Lineへ適用 */
-  lineByTri: (shape, tri) => {
-    return shape.points(tri.points).closed(true);
-  },
-
-  /** CapsuleをSomali.Lineへ適用 */
-  lineByCapsule: (shape, capsule) => {
-    return shape
-      .points(capsule.s.points)
-      .strokeWidth(capsule.r * 2, true)
-      .lineCap("round");
-  },
-
   /** EllipseをSomali.Ellipseへ適用 */
   ellipseByEllipse: (shape, ellipse) => {
     return shape
@@ -98,17 +109,6 @@ props.Sync = {
       .ry(ellipse.ry)
       .rotation(-ellipse.angle);        
   },
-
-  /** 始点と終点を指定するとSomali.Lineを引いてくれる */
-  lineByP1P2: (shape, p1, p2) => {
-    return shape.points([p1.x, p1.y, p2.x, p2.y]);
-  },
-  
-  /** 始点とベクトルを指定すると、Somali.Arrowを引いてくれる */
-  arrowByPV: (shape, p, v) => {
-    console.log(shape);
-    return shape.points([p.x, p.y, p.x + v.x, p.y + v.y]);
-  }
 };
 
 /******************************************************************************
