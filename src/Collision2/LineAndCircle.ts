@@ -42,18 +42,21 @@ export function intercect(line:Line, circle:Circle)
     nearest: Vector2.zero, // 最近傍点
   }
 
-  // 円の中心 と直線の最近傍点 p を求める
-  const p = PointAndLine.getNearestNeighborPoint(circle.p, line);
-  result.nearest = p;
+  // 円の中心を c とする
+  const c = circle.p;
 
-  // 円の中心から p に向かうベクトルを cp とする
-  const cp = Vector2.sub(p, circle.p);
+  // c と直線の最近傍点 h を求める
+  const h = PointAndLine.getNearestNeighborPoint(circle.p, line);
+  result.nearest = h;
 
-  // cp の長さを t とする
-  const t = cp.magnitude;
+  // c -> h に向かうベクトルを hp とする
+  const hp = Vector2.sub(h, circle.p);
 
-  // t が 円の半径より大きければあたっていない
-  if (circle.r < t) return result;
+  // hp の長さを hp_len とする
+  const hp_len = hp.magnitude;
+
+  // hp_len が 円の半径より大きければあたっていない
+  if (circle.r < hp_len) return result;
 
   // ここにきたら直線と円はあたっている
   result.hit = true;
@@ -61,26 +64,25 @@ export function intercect(line:Line, circle:Circle)
   // 円と直線の交点を求めていく
 
   // まずは直線と円の交点が1つの場合を考える
-  // 直線と円が接している時、 t === r になる。
-  if (circle.r === t) 
+  // 直線と円が接している時、 hp_len === r であり、接点は中心と直線の最近傍点になる。
+  if (circle.r === hp_len) 
   {
-    // この時、直線と円の交点は、円の中心 c に cpを正規化し r 倍した位置にくる。
-    result.pos.push(Vector2.add(circle.p, cp.normalize.times(circle.r)));
+    result.pos.push(h);
     return result;
   }
 
   // 直線と円が交差している(接点が2つあると場合)
 
-  // p から 接点までの距離を s とおき、三平方の定理から s を導く
-  const s = Math.sqrt(circle.r**2 - t**2);
+  // h から 接点までの距離を t とおき、三平方の定理から t を導く
+  const t = Math.sqrt(circle.r**2 - hp_len**2);
 
-  // 直線の方向ベクトルを正規化したものを s倍したベクトルを sv とすると
+  // 直線の方向ベクトルを正規化したものを t倍したベクトルを tv とすると
   // 交点1：p + sv
   // 交点2：p - sv
-  const sv = line.v.normalize.times(s);
+  const tv = line.v.normalize.times(t);
 
-  result.pos.push(Vector2.add(p, sv));
-  result.pos.push(Vector2.sub(p, sv))
+  result.pos.push(Vector2.add(h, tv));
+  result.pos.push(Vector2.sub(h, tv))
 
   return result;
 }

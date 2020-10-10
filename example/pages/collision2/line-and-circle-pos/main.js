@@ -1,6 +1,6 @@
 {
   const { Vector2, Collision2, Util } = MathLab;
-  const { Line, Circle } = MathLab.Primitive2;
+  const { Line, Circle, Triangle } = MathLab.Primitive2;
   const { sColor } = Somali;
   const { Sync, NodesUtil } = props;
   const graphs = {};
@@ -54,13 +54,14 @@
       this.nodes.line.stroke(color);
       this.nodes.circle.stroke(color);
 
-      this.nodes.s1.visible(result.hit);
-      this.nodes.s2.visible(result.hit);
+      this.nodes.s1.visible(false);
+      this.nodes.s2.visible(false);
 
       const stars = [this.nodes.s1, this.nodes.s2];
 
       result.pos.map((pos, index) => {
         stars[index].pos(pos.x, pos.y);
+        stars[index].visible(true);
       });
     }
   }
@@ -99,6 +100,8 @@
 
         vn: shapes.arrow().color(sColor.yellow),
         vnText: shapes.text("n").offset(0, 0.6),
+
+        HP: shapes.line().stroke(sColor.blue),
       }
     }
 
@@ -128,17 +131,19 @@
 
       Sync.arrowByPV(nodes.vn, this.col.nearest, n);
       Sync.posByVec(nodes.vnText, Vector2.add(this.col.nearest, n));
+
+      Sync.lineByP1P2(nodes.HP, this.col.nearest, this.col.pos[0]);
     }
   }
 
-  graphs.Graph2 = class extends Graph2Base {
+  graphs.Graph2_1_1 = class extends Graph2Base {
     get option() {
-      return { id: "graph2_1", update: false}
+      return { id: "graph2_1_1", update: false}
     }
 
     initNodes(nodes) {
       super.initNodes(nodes);
-      return;
+      
       NodesUtil.hide(this.nodes, [
         "C",
         "CText",
@@ -155,7 +160,351 @@
         "r2Text",
         "vn",
         "vnText",
+        "HP",
       ]);
+    }
+  }
+
+  graphs.Graph2_1_2 = class extends Graph2Base {
+    get option() {
+      return { id: "graph2_1_2", update: false}
+    }
+
+    initNodes(nodes) {
+      super.initNodes(nodes);
+      
+      NodesUtil.hide(this.nodes, [
+        "C",
+        "CText",
+        "H",
+        "HText",
+        "CH",
+        "r1",
+        "r1Text",
+        "r2",
+        "r2Text",
+        "vn",
+        "vnText",
+        "HP",        
+      ]);
+    }
+  }
+
+  graphs.Graph2_1_3 = class extends Graph2Base {
+    get option() {
+      return { id: "graph2_1_3", update: false}
+    }
+
+    initNodes(nodes) {
+      super.initNodes(nodes);
+      
+      NodesUtil.hide(this.nodes, [
+        "r1",
+        "r1Text",
+        "r2",
+        "r2Text",
+        "vn",
+        "vnText",
+        "HP",
+      ]);
+    }
+  }
+
+  graphs.Graph2_1_4 = class extends Graph2Base {
+    get option() {
+      return { id: "graph2_1_4", update: false}
+    }
+
+    initNodes(nodes) {
+      super.initNodes(nodes);
+      
+      NodesUtil.hide(this.nodes, [
+        "r1",
+        "r1Text",
+        "r2",
+        "r2Text",
+        "HP",
+      ]);
+    }
+  }
+  
+  graphs.Graph2_1_5 = class extends Graph2Base {
+    get option() {
+      return { id: "graph2_1_5"}
+    }
+
+    initNodes(nodes) {
+      super.initNodes(nodes);
+      
+      NodesUtil.hide(this.nodes, [
+        "r1",
+        "r1Text",
+        "r2",
+        "r2Text",
+        "HP",
+      ]);
+    }
+
+    update() {
+      this.timer += 0.01;
+      
+
+      if (this.timer < 1) {
+        const n  = this.line.v.normalize;
+        const hp = Vector2.sub(this.col.pos[0], this.col.nearest);
+        const to = Vector2.lerp(n, hp, this.timer);
+        Sync.arrowByPV(this.nodes.vn, this.col.nearest, to);
+      }
+
+      if (1.5 < this.timer) {
+        this.timer = 0;
+      }
+    }
+  }
+
+  graphs.Graph2_1_6 = class extends Graph2Base {
+    get option() {
+      return { id: "graph2_1_6"}
+    }
+
+    initNodes(nodes) {
+      super.initNodes(nodes);
+      
+      NodesUtil.hide(this.nodes, [
+        "r1",
+        "r1Text",
+        "r2",
+        "r2Text",
+        "HP",
+      ]);
+    }
+
+    update() {
+      this.timer += 0.01;
+      
+
+      if (this.timer < 1) {
+        const n  = this.line.v.normalize;
+        const hp = Vector2.sub(this.col.pos[1], this.col.nearest);
+        const to = Vector2.lerp(n, hp, this.timer);
+        Sync.arrowByPV(this.nodes.vn, this.col.nearest, to);
+        Sync.posByVec(this.nodes.vnText, Vector2.add(this.col.nearest, to));
+      }
+
+      if (1.5 < this.timer) {
+        this.timer = 0;
+      }
+    }
+  }
+
+  graphs.Graph2_1_7 = class extends Graph2Base {
+    get option() {
+      return { id: "graph2_1_7", update: false}
+    }
+
+    initNodes(nodes) {
+      super.initNodes(nodes);
+      
+      NodesUtil.hide(this.nodes, [
+        "r1",
+        "r1Text",
+        "r2",
+        "r2Text",
+        "vn",
+        "vnText",
+      ]);
+    }
+  }
+
+  graphs.Graph2_2_1 = class extends Graph2Base {
+    get option() {
+      return { id: "graph2_2_1", update: false}
+    }
+
+    initNodes(nodes) {
+      super.initNodes(nodes);
+      
+      NodesUtil.hide(this.nodes, [
+        "CH",
+        "HP",
+      ]);
+    }
+  }
+
+  graphs.Graph2_2_2 = class extends Graph2Base {
+    get option() {
+      return { id: "graph2_2_2", update: false}
+    }
+
+    initNodes(nodes) {
+      super.initNodes(nodes);
+      
+      NodesUtil.hide(this.nodes, [
+        "HP",
+      ]);
+    }
+  }  
+  
+  graphs.Graph2_2_3 = class extends Graph2Base {
+    get option() {
+      return { id: "graph2_2_3", update: false}
+    }
+
+    initNodes(nodes) {
+      super.initNodes(nodes);
+      
+      NodesUtil.hide(this.nodes, [
+        "vn",
+        "vnText",
+      ]);
+    }
+  }
+
+  graphs.Graph2_2_4 = class extends Graph2Base {
+    get option() {
+      return { id: "graph2_2_4", update: false}
+    }
+
+    createNodes(shapes, groups) 
+    {
+      const nodes = super.createNodes(shapes, groups);
+      const triangle = shapes.line().fill(sColor.yellow).opacity(0.3);
+      Sync.lineByTri(triangle, new Triangle(this.circle.p, this.col.nearest, this.col.pos[0]));
+
+      nodes.triangle = triangle;
+      return nodes;
+
+    }
+
+    initNodes(nodes) {
+      super.initNodes(nodes);
+      
+      NodesUtil.hide(this.nodes, [
+        "vn",
+        "vnText",
+      ]);
+    }
+  }
+
+  graphs.Graph2_2_5 = class extends graphs.Graph2_2_4 {
+    get option() {
+      return {id:"graph2_2_5", update:false};
+    }
+  }
+  
+  graphs.Graph2_2_6 = class extends Graph2Base {
+    get option() {
+      return { id: "graph2_2_6", update: false}
+    }
+
+    initNodes(nodes) {
+      super.initNodes(nodes);
+      
+      NodesUtil.hide(this.nodes, [
+        "HP"
+      ]);
+
+      nodes.vnText.text("tn");
+      Sync.arrowByP1P2(nodes.vn, this.col.nearest, this.col.pos[0]);
+    }
+  }  
+
+  graphs.Graph2_2_7 = class extends Graph2Base {
+    get option() {
+      return { id: "graph2_2_7", update: false}
+    }
+
+    initNodes(nodes) {
+      super.initNodes(nodes);
+      
+      NodesUtil.hide(this.nodes, [
+        "HP"
+      ]);
+
+      Sync.posByVec(nodes.vnText, Vector2.midpoint(this.col.nearest, this.col.pos[1])).text("-tn");
+      Sync.arrowByP1P2(nodes.vn, this.col.nearest, this.col.pos[1]);
+    }
+  }
+
+  graphs.Graph2_2_8 = class extends Graph2Base {
+    get option() {
+      return { id: "graph2_2_8", update: false}
+    }
+
+    initNodes(nodes) {
+      super.initNodes(nodes);
+      
+      NodesUtil.hide(this.nodes, [
+        "HP"
+      ]);
+    }
+  }      
+
+  graphs.Graph3 = class extends Somali.Scene 
+  {
+    get option() {
+      return {id:"graph3", update: false}
+    }
+
+    constructor() {
+      super();
+      this.line = new Line(new Vector2(-1, -4), new Vector2(2, 1));
+      this.circle = new Circle(new Vector2(0, 0), 2.5);
+    }
+
+    createNodes(shapes, groups) {
+      return {
+        grid: groups.grid(),
+        line: shapes.line(),
+        circle: shapes.circle(),
+      }
+    }
+
+    initNodes(nodes) {
+      Sync.lineByLine(nodes.line, this.line);
+      Sync.circleByCircle(nodes.circle, this.circle);
+    }
+  }
+
+  graphs.Graph4 = class extends Somali.Scene 
+  {
+    get option() {
+      return {id:"graph4", update: false}
+    }
+
+    constructor() {
+      super();
+      this.line = new Line(new Vector2(-1, -5.2), new Vector2(1, 1));
+      this.circle = new Circle(new Vector2(0, 0), 3);
+      this.col = Collision2.LineAndCircle.intercect(this.line, this.circle);
+    }
+
+    createNodes(shapes, groups) {
+      return {
+        grid: groups.grid(),
+        line: shapes.line(),
+        circle: shapes.circle(),
+
+        C: shapes.point(),
+        CText: shapes.text("C"),
+        H: shapes.point(),
+        HText: shapes.text("H"),
+        CH: shapes.aux(),
+      }
+    }
+
+    initNodes(nodes) {
+
+      const c = this.circle.p;
+      const { nearest } = this.col;
+
+      Sync.lineByLine(nodes.line, this.line);
+      Sync.circleByCircle(nodes.circle, this.circle);
+      Sync.posByVec(nodes.C     , c)
+      Sync.posByVec(nodes.CText , c).offset(0.2, 0.5);;
+      Sync.posByVec(nodes.H     , nearest);
+      Sync.posByVec(nodes.HText , nearest);
+      Sync.lineByP1P2(nodes.CH, c, nearest);
     }
   }
 
