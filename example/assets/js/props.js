@@ -30,9 +30,6 @@ props.Sync = {
   },
 
   /** Primitive2.RayをSomali.Lineへ同期 */
-  rayToLine: (ray, shape) => {
-    return shape.points(ray.points(100));
-  },
   lineByRay: (shape, ray) => {
     return shape.points(ray.points(100));
   },
