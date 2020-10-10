@@ -69,9 +69,6 @@ props.Sync = {
   },
 
   /** CircleをSomali.Circleへ適用 */
-  circleToCircle: (circle, shape) => {
-    return shape.pos(circle.p.x, circle.p.y).radius(circle.r);
-  },
   circleByCircle: (shape, circle) => {
     return shape.pos(circle.p.x, circle.p.y).radius(circle.r);
   },

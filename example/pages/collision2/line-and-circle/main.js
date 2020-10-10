@@ -39,7 +39,7 @@
 
     initNodes(nodes) {
       Sync.lineToLine(this.line, nodes.line);
-      Sync.circleToCircle(this.circle, nodes.circle);
+      Sync.circleByCircle(nodes.circle, this.circle);
     }
 
     update() {
@@ -80,7 +80,7 @@
 
     initNodes(nodes) {
       Sync.lineToLine(this.line, nodes.line);
-      Sync.circleToCircle(this.circle, nodes.circle);
+      Sync.circleByCircle(nodes.circle, this.circle);
       Sync.vecToPos(this.circle.p, nodes.C);
       Sync.vecToPos(this.col.nearest, nodes.H);
       Sync.vecToPos(this.circle.p, nodes.cText);

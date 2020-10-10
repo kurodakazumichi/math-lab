@@ -41,7 +41,7 @@
 
     initNodes(nodes) {
       Sync.lineToLine(this.line, nodes.line);
-      Sync.circleToCircle(this.circle, nodes.circle);
+      Sync.circleByCircle(nodes.circle, this.circle);
     }
 
     update() {
@@ -109,7 +109,7 @@
       const n = this.line.v.normalize;
 
       Sync.lineByLine(nodes.line, this.line);
-      Sync.circleToCircle(this.circle, nodes.circle);
+      Sync.circleByCircle(nodes.circle, this.circle);
       Sync.posByVec(nodes.C     , c)
       Sync.posByVec(nodes.CText , c).offset(0.2, 0.5);;
       Sync.posByVec(nodes.H     , nearest);

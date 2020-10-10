@@ -32,12 +32,12 @@
     }
 
     initNodes(nodes) {
-      Sync.circleToCircle(this.circle1, nodes.circle1);
-      Sync.circleToCircle(this.circle2, nodes.circle2);
+      Sync.circleByCircle(nodes.circle1, this.circle1);
+      Sync.circleByCircle(nodes.circle2, this.circle2);
     }
 
     update() {
-      Sync.circleToCircle(this.circle1, this.nodes.circle1);
+      Sync.circleByCircle(this.nodes.circle1, this.circle1);
 
       const hit = Collision2.CircleAndCircle.isHit(this.circle1, this.circle2);
 

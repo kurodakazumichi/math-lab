@@ -179,7 +179,7 @@
     }
 
     update() {
-      Sync.circleToCircle(this.circle, this.nodes.circle);
+      Sync.circleByCircle(this.nodes.circle, this.circle);
       Sync.vecToPos(this.circle.p, this.nodes.point);
     }
   }  

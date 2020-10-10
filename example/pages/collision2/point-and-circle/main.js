@@ -20,7 +20,7 @@
       return {
         grid: groups.grid(),
         point: shapes.point(),
-        circle: Sync.circleToCircle(this.circle, shapes.circle()),
+        circle: Sync.circleByCircle(shapes.circle(), this.circle),
         star: shapes.star().opacity(0.5)
       }
     }
@@ -57,7 +57,7 @@
         p : shapes.pointer().pos(-4, 4), 
         pText: shapes.text().text("P"),
 
-        circle: Sync.circleToCircle(this.circle, shapes.circle()),
+        circle: Sync.circleByCircle(shapes.circle(), this.circle),
 
         r: shapes.line().points([1, 1, -2, 1]),
         rText: shapes.text().text("r").pos(-0.6, 1),
