@@ -115,7 +115,7 @@ class Graph4 extends Somali.Scene {
     const { a, b } = this.params;
 
     Sync.arrowByVec(this.nodes.b, b);
-    Sync.vecToPos(b, this.nodes.bText);
+    Sync.posByVec(this.nodes.bText, b);
 
     // aを正規化して内積を取る
     const n = a.normalize;
@@ -124,7 +124,7 @@ class Graph4 extends Somali.Scene {
     n.times(dot);
     
     const tpos = Vector2.add(b, n).times(0.5);
-    Sync.vecToPos(tpos, this.nodes.tText);
+    Sync.posByVec(this.nodes.tText, tpos);
 
 
     this.nodes.aux.points([0, 0, n.x, n.y]);

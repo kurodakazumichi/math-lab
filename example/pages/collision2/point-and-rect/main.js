@@ -14,8 +14,6 @@
       super();
       this.pos  = Vector2.zero;
       this.rect = new Rect(new Vector2(-2, 2), 4, 5);
-
-      console.log(this.rect);
     }
 
     createNodes(shapes, groups) {
@@ -50,8 +48,6 @@
       super();
       this.pos  = new Vector2(1, 3);
       this.rect = new Rect(new Vector2(-2, 2), 4, 5);
-
-      console.log(this.rect);
     }
 
     createNodes(shapes, groups) {
@@ -72,11 +68,11 @@
     initNodes(nodes) {
       Sync.rectByRect(nodes.rect, this.rect);
 
-      Sync.vecToPos(this.pos, nodes.p);
-      Sync.vecToPos(this.pos, nodes.pText);
+      Sync.posByVec(nodes.p, this.pos);
+      Sync.posByVec(nodes.pText, this.pos);
 
-      Sync.vecToPos(this.rect.p1, nodes.p1Text).offset(-0.7, 0.5);
-      Sync.vecToPos(this.rect.p3, nodes.p2Text).offset(-0.7, -0.1);
+      Sync.posByVec(nodes.p1Text, this.rect.p1).offset(-0.7, 0.5);
+      Sync.posByVec(nodes.p2Text, this.rect.p3).offset(-0.7, -0.1);
     }
 
   }

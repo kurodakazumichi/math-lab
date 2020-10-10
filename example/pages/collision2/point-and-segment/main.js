@@ -118,11 +118,11 @@
 
     initNodes(nodes) {
 
-      Sync.vecToPos(this.p, nodes.p);
-      Sync.vecToPos(this.p, nodes.pText);
+      Sync.posByVec(nodes.p, this.p);
+      Sync.posByVec(nodes.pText, this.p);
 
       Sync.arrowBySeg(nodes.va, this.seg);
-      Sync.vecToPos(this.seg.p2, nodes.vaText);
+      Sync.posByVec(nodes.vaText, this.seg.p2);
 
       nodes.vb.points([this.seg.p1.x, this.seg.p1.y, this.p.x, this.p.y]);
       nodes.vbText.pos(this.p.x, this.p.y);

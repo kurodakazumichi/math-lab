@@ -81,15 +81,15 @@
     initNodes(nodes) {
       Sync.lineByLine(nodes.line, this.line);
       Sync.circleByCircle(nodes.circle, this.circle);
-      Sync.vecToPos(this.circle.p, nodes.C);
-      Sync.vecToPos(this.col.nearest, nodes.H);
-      Sync.vecToPos(this.circle.p, nodes.cText);
-      Sync.vecToPos(this.col.nearest, nodes.hText);
+      Sync.posByVec(nodes.C, this.circle.p);
+      Sync.posByVec(nodes.H, this.col.nearest);
+      Sync.posByVec(nodes.cText, this.circle.p);
+      Sync.posByVec(nodes.hText, this.col.nearest);
 
       const rv = Vector2.right.times(this.circle.r).rotate(Util.deg2rad(27));
       const mp = Vector2.midpoint(Vector2.zero, rv);
       Sync.lineByVec(nodes.r, rv);
-      Sync.vecToPos(mp, nodes.rText);
+      Sync.posByVec(nodes.rText, mp);
 
       nodes.aux.points([this.circle.p.x, this.circle.p.y, this.col.nearest.x, this.col.nearest.y]);
     }

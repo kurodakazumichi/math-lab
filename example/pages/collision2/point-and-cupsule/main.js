@@ -69,8 +69,8 @@
 
     initNodes(nodes) {
       Sync.lineByCapsule(nodes.capsule, this.capsule);
-      Sync.vecToPos(this.capsule.s.p1, nodes.p1);
-      Sync.vecToPos(this.capsule.s.p2, nodes.p2);
+      Sync.posByVec(nodes.p1, this.capsule.s.p1);
+      Sync.posByVec(nodes.p2, this.capsule.s.p2);
 
       this.initNode_seg();
 
@@ -89,8 +89,8 @@
 
       const p = Vector2.lerp(p1, p2, Math.abs(Math.sin(this.timer)));
 
-      Sync.vecToPos(p, this.nodes.circle);
-      Sync.vecToPos(p, this.nodes.c);
+      Sync.posByVec(this.nodes.circle, p);
+      Sync.posByVec(this.nodes.c, p);
     }
   }
 
@@ -124,8 +124,8 @@
 
     initNodes(nodes) {
       Sync.lineByCapsule(nodes.capsule, this.capsule);
-      Sync.vecToPos(this.capsule.s.p1, nodes.p1);
-      Sync.vecToPos(this.capsule.s.p2, nodes.p2);
+      Sync.posByVec(nodes.p1, this.capsule.s.p1);
+      Sync.posByVec(nodes.p2, this.capsule.s.p2);
 
       this.initNode_seg();
 
@@ -187,7 +187,7 @@
       const n = Collision2.PointAndSegment
         .getNearestNeighborPoint(p, this.capsule.s);
 
-      Sync.vecToPos(n, this.nodes.hit);
+      Sync.posByVec(this.nodes.hit, n);
 
       this.nodes.toP.points([p.x, p.y, n.x, n.y]);
 
@@ -211,9 +211,9 @@
       const n = Collision2.PointAndSegment
         .getNearestNeighborPoint(p, this.capsule.s);
 
-      Sync.vecToPos(n, this.nodes.hit);
-      Sync.vecToPos(n, this.nodes.circle);
-      Sync.vecToPos(n, this.nodes.c);
+      Sync.posByVec(this.nodes.hit, n);
+      Sync.posByVec(this.nodes.circle, n);
+      Sync.posByVec(this.nodes.c, n);
 
       this.nodes.toP.points([p.x, p.y, n.x, n.y]);
 

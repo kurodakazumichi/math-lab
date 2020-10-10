@@ -52,9 +52,6 @@ props.Sync = {
   },
 
   /** Vector2のポジションを同期 */
-  vecToPos: (v, shape) => {
-    return shape.pos(v.x, v.y);
-  },
   posByVec: (shape, v) => {
     return shape.pos(v.x, v.y);
   },

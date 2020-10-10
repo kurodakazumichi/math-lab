@@ -97,11 +97,11 @@
 
       if (this.timer < 1.0) {
         const to1 = Vector2.lerp(this.ellipse.p, Vector2.zero, this.timer);
-        Sync.vecToPos(to1, this.nodes.ellipse);
-        Sync.vecToPos(to1, this.nodes.center);
+        Sync.posByVec(this.nodes.ellipse, to1);
+        Sync.posByVec(this.nodes.center, to1);
 
         const to2 = Vector2.lerp(this.pos, new Vector2(0, 1), this.timer);
-        Sync.vecToPos(to2, this.nodes.point); 
+        Sync.posByVec(this.nodes.point, to2); 
       }
 
       if (2.0 < this.timer) {
@@ -126,7 +126,7 @@
         this.nodes.ellipse.rotation(to);
 
         const to2 = Vector2.up.rotate(Util.deg2rad(-this.ellipse.angle - to));
-        Sync.vecToPos(to2, this.nodes.point); 
+        Sync.posByVec(this.nodes.point, to2); 
       }
 
       if (2.0 < this.timer) {

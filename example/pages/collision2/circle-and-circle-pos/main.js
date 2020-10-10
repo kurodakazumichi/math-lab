@@ -55,7 +55,7 @@
 
       result.pos.map((pos, index) => {
         stars[index].visible(true);
-        Sync.vecToPos(pos, stars[index]);
+        Sync.posByVec(stars[index], pos);
       })
     }
   }
