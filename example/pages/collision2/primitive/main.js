@@ -380,7 +380,7 @@
 
     update() {
       const { p1, p2 } = this.shape.s;
-      Sync.capsuleToLine(this.shape, this.nodes.main);
+      Sync.lineByCapsule(this.nodes.main, this.shape);
       Sync.vecToPos(this.shape.s.p1, this.nodes.point);
 
       this.nodes.line.points([p1.x, p1.y, p2.x, p2.y]);

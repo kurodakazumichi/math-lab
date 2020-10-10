@@ -20,7 +20,7 @@
     createNodes(shapes, groups) {
       return {
         grid   : groups.grid(),
-        capsule: Sync.capsuleToLine(this.capsule, shapes.line()).stroke(Somali.sColor.gray),
+        capsule: Sync.lineByCapsule(shapes.line(), this.capsule).stroke(Somali.sColor.gray),
         point  : shapes.point(),
         star   : shapes.star().opacity(0.7)
       }
@@ -68,7 +68,7 @@
     }
 
     initNodes(nodes) {
-      Sync.capsuleToLine(this.capsule, nodes.capsule);
+      Sync.lineByCapsule(nodes.capsule, this.capsule);
       Sync.vecToPos(this.capsule.s.p1, nodes.p1);
       Sync.vecToPos(this.capsule.s.p2, nodes.p2);
 
@@ -123,7 +123,7 @@
     }
 
     initNodes(nodes) {
-      Sync.capsuleToLine(this.capsule, nodes.capsule);
+      Sync.lineByCapsule(nodes.capsule, this.capsule);
       Sync.vecToPos(this.capsule.s.p1, nodes.p1);
       Sync.vecToPos(this.capsule.s.p2, nodes.p2);
 

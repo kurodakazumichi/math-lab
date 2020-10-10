@@ -122,12 +122,6 @@ props.Sync = {
   },
 
   /** CapsuleをSomali.Lineへ適用 */
-  capsuleToLine: (capsule, shape) => {
-    return shape
-      .points(capsule.s.points)
-      .strokeWidth(capsule.r * 2, true)
-      .lineCap("round");
-  },
   lineByCapsule: (shape, capsule) => {
     return shape
       .points(capsule.s.points)
