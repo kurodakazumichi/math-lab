@@ -289,6 +289,26 @@ export class Rect {
   get p4() {
     return new Vector2(this.p.x, this.p.y - this.h);
   }
+
+  /** p1からp2に向かうベクトル */
+  get v1to2() {
+    return Vector2.sub(this.p2, this.p1);
+  }
+
+  /** p2からp3に向かうベクトル */
+  get v2to3() {
+    return Vector2.sub(this.p3, this.p2);
+  }
+
+  /** p3からp4に向かうベクトル */
+  get v3to4() {
+    return Vector2.sub(this.p4, this.p3);
+  }
+
+  /** p4からp1に向かうベクトル */
+  get v4to1() {
+    return Vector2.sub(this.p1, this.p4);
+  }
 }
 
 //-----------------------------------------------------------------------------

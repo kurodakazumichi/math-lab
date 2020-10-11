@@ -13,6 +13,7 @@ import * as LineAndLine from './LineAndLine';
 import * as LineAndRay from './LineAndRay';
 import * as LineAndSegment from './LineAndSegment';
 import * as LineAndCircle from './LineAndCircle';
+import * as LineAndRect from './LineAndRect';
 
 import * as CircleAndCircle from './CircleAndCircle';
 
@@ -31,5 +32,6 @@ export {
   LineAndRay,
   LineAndSegment,
   LineAndCircle,
+  LineAndRect,
   CircleAndCircle,
 }
