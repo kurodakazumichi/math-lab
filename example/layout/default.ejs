@@ -1,3 +1,4 @@
+<% const version = '202010112322'; %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -20,11 +21,11 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@ProgPuyan" />
     
-    <script src="../../../assets/js/mathLab.js?v=<%= new Date().getTime(); %>"></script>
-    <link rel="stylesheet" href="../../../assets/css/default.css?v=<%= new Date().getTime(); %>">
+    <script src="../../../assets/js/mathLab.js?v=<%= version; %>"></script>
+    <link rel="stylesheet" href="../../../assets/css/default.css?v=<%= version; %>">
 
     <%# vender系のjs,cssの読み込み %>
-    <script src="../../../venders/somali/somali.js?v=<%= new Date().getTime(); %>"></script>
+    <script src="../../../venders/somali/somali.js?v=<%= version; %>"></script>
     <script src="../../../venders/highlight/highlight.pack.js"></script>
     <link rel="stylesheet" href="../../../venders/highlight/atom-one-dark.css">
 
@@ -42,7 +43,7 @@
       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
     </script>    
 
-    <script src="../../../assets/js/props.js?v=<%= new Date().getTime(); %>"></script>
+    <script src="../../../assets/js/props.js?v=<%= version; %>"></script>
   </head>
   <body>
     <header>
