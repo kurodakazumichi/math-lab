@@ -25,6 +25,8 @@ export function isHit(circle1:Circle, circle2:Circle)
 export interface IIntercectResult {
   hit:boolean;
   pos:Vector2[];
+  vh: Vector2,
+  vv: Vector2,
 }
 
 /**
@@ -38,17 +40,19 @@ export function intercect(circle1:Circle, circle2:Circle)
   const result:IIntercectResult = {
     hit: false,
     pos: [],
+    vh:Vector2.zero,
+    vv:Vector2.zero,
   }
 
-  // 円1の中心をA、円2の中心をB、交点の1つをCとする。
-  const A = circle1.p;
-  const B = circle2.p;
+  // 円1の中心をC1、円2の中心をC2、交点の1つをPとする。
+  const C1 = circle1.p;
+  const C2 = circle2.p;
 
-  // AからBに向かうベクトルをvABと定義する
-  const vAB = Vector2.sub(B, A);
+  // C1からC2に向かうベクトルを vC1C2と定義する
+  const vC1C2 = Vector2.sub(C2, C1);
 
-  // 辺ABの長さを a とする
-  const a = vAB.magnitude;
+  // 辺C1C2の長さを a とする
+  const a = vC1C2.magnitude;
 
   // a が 2円の半径の和より大きければ当たっていない
   const sumR = circle1.r + circle2.r;
@@ -62,52 +66,68 @@ export function intercect(circle1:Circle, circle2:Circle)
   // 円が内包されている時は接点は存在しない
   // 円が内包されている場合、a は 2円の半径の差より小さい
   const subR = Math.abs(circle1.r - circle2.r);
+  
   if (a < subR) {
     return result;
   }
 
   // 円が外接しているとき、a と 2つの円の半径の和は等しく、接点は１つだけになる。
+  if (a === sumR) {
+      // vC1C2 を正規化したベクトルを n とする
+      const n = vC1C2.normalize;
+
+      // 接点P は C1 に n を 円の半径の長さ分伸ばしたベクトルを足せばいい
+      const P = Vector2.add(circle1.p, n.times(circle1.r));
+      result.pos.push(P);
+  
+      return result;
+  }
+
   // また内接しているとき、a と ２つの円の半径の差は等しく、接点は１つだけになる。
-  if (a === sumR || a === subR) 
+  if (a === subR) 
   {
-    // vAB を正規化したベクトルを n とする
-    const n = vAB.normalize;
+    // vC1C2 を正規化したベクトルを n とする
+    const n = vC1C2.normalize;
 
-    // 大きい方の円を基準にする
-    const large = (circle1.r < circle2.r)? circle2 : circle1;
+    // C1の方が大きいかどうか
+    const isLarge = (circle1.r > circle2.r);
 
-    // 大きい方の円を基準歳、接点をCとすると
-    // C は A に n を 円1の半径の長さ分、マイナスに伸ばしたベクトルを足した位置
-    const C = Vector2.add(large.p, n.times(-large.r));
-    result.pos.push(C);
+    // 接点をPとすると
+    // C1の方が大きい場合、P は C1 + r1・n
+    // C1の方が小さい場合、P は C1 - r1・n
+    const P = Vector2.add(circle1.p, n.times(isLarge? circle1.r:-circle1.r));
+    result.pos.push(P);
 
     return result;
   }
 
-  // 三角形ABCの三辺は全て既知である。
-  // 辺ACの長さをb、辺BCの長さをcとする
+  // 三角形C1C2Pの三辺は全て既知である。
+  // 辺C1Pの長さをb、辺C2Pの長さをcとする
   const b = circle1.r;
   const c = circle2.r;
 
-  // 角A の cosA は余弦定理により
-  const cosA = (a**2 + b**2 - c**2) / (2 * a * b);
+  // 角C1 の cosθ は余弦定理により
+  const cos = (a**2 + b**2 - c**2) / (2 * a * b);
 
-  // CからABに垂線を落とした時に当たる位置を P とすると、APの長さを t とすると t は b * cosA
-  const t = b * cosA;
+  // PからC1C2に垂線を落とした時に当たる位置を H とし、C1Hの長さを rc とすると rc は b * cos
+  const rc = b * cos;
 
-  // 辺CPの長さを s とすると s は三平方の定理から s = √b^2 + t^2
-  const s = Math.sqrt(b**2 - t**2);
+  // 辺HPの長さを rs とすると rs は三平方の定理から rs = √b^2 - t^2
+  const rs = Math.sqrt(b**2 - rc**2);
 
-  // vABの正規化したベクトルを n1とする
-  const n1 = vAB.normalize;
+  // vC1C2の正規化したベクトルを n1とする
+  const n1 = vC1C2.normalize;
 
   // n1を左に90度回転させたベクトルを n2とする
   const n2 = new Vector2(-n1.y, n1.x);
 
-  // 交点であるCの座標は A + tn1 + sn2 となり
-  // もう一つの交点C'は A + tn1 - sn2 となる
-  const tn1 = n1.times(t);
-  const sn2 = n2.times(s);
+  // 交点であるPの座標は C1 + rc・n1 + rs・n2 となり
+  // もう一つの交点C'は C1 + rc・n1 - rs・n2 となる
+  const tn1 = n1.times(rc);
+  const sn2 = n2.times(rs);
+
+  result.vh = tn1;
+  result.vv = sn2;
 
   result.pos.push(circle1.p.clone().add(tn1).add(sn2));
   result.pos.push(circle1.p.clone().add(tn1).sub(sn2));
