@@ -270,6 +270,11 @@ export class Rect {
   get h() { return this._h; }
   set h(v){ this._h = v; }
 
+  /** 中心座標 */
+  get c() {
+    return new Vector2(this._p.x + this._w / 2, this._p.y - this._h / 2);
+  }
+
   /** 左上 */
   get p1() { 
     return this.p.clone();
@@ -308,6 +313,26 @@ export class Rect {
   /** p4からp1に向かうベクトル */
   get v4to1() {
     return Vector2.sub(this.p1, this.p4);
+  }
+
+  // 最小X
+  get minX() {
+    return this._p.x;
+  }
+
+  // 最大X
+  get maxX() {
+    return this._p.x + this._w;
+  }
+
+  // 最小Y
+  get minY() {
+    return this._p.y - this._h;
+  }
+
+  // 最大Y
+  get maxY() {
+    return this._p.y;
   }
 }
 

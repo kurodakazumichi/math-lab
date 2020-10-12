@@ -19,6 +19,8 @@ import * as LineAndTriangle from './LineAndTriangle';
 
 import * as CircleAndCircle from './CircleAndCircle';
 
+import * as RectAndRect from './RectAndRect';
+
 export {
   PointAndPoint,
   PointAndLine,
@@ -38,4 +40,5 @@ export {
   LineAndBox,
   LineAndTriangle,
   CircleAndCircle,
+  RectAndRect,
 }
