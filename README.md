@@ -42,3 +42,9 @@ venders
    ├ highlight.pack.js
    └ atom-one-dark.css
 ```
+
+# 本番用のpublicの作成手順
+1. `yarn build`する。
+2. example/layout 内でデバッグ用のjsを参照していたら xxxxx.min.js に書き換える
+3. example/layout/default.ejsの冒頭にあるバージョンを上げる
+4. `yarn build:example` をする
