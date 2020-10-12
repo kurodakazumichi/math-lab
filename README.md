@@ -36,6 +36,7 @@
 ```
 venders
 ├ somali
+│ └ somali.min.js (https://github.com/kurodakazumichi/Somali/raw/master/browser/somali.min.js)
 │ └ somali.js (https://github.com/kurodakazumichi/Somali/raw/master/browser/somali.js)
 └ highlight (https://highlightjs.org/download/)
    ├ highlight.pack.js
