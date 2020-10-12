@@ -1,0 +1,77 @@
+---
+title: 直線と三角形の衝突
+---
+<div id="graph1"></div>
+
+<p>
+  ここでは直線と三角形の衝突についてまとめていきます。
+</p>
+
+<p>
+  といきたいところなのですが、この直線と三角形の衝突判定は<a href="../line-and-rect/">直線と矩形の衝突</a>とほぼ同じ方法で判定できてしまいます。
+</p>
+
+<p>
+  矩形の場合は、<b>矩形の角4点全てが</b>直線の右側にあるか、左側にあるかを判定しました。
+</p>
+
+<p>
+  三角形の場合は、<b>三角形の頂点3つ全てが</b>直線の右側にあるか、左側にあるかを判定します。
+</p>
+
+<p>
+  <b>調べる頂点の数が変わるだけ</b>で衝突判定の基本の考え方も、計算方法も同じになります。
+</p>
+
+<p>
+  ほぼ同じ記事を書くのもしんどいので、詳しい判定方法については<a href="../line-and-rect/">直線と矩形の衝突</a>の記事をご覧ください。
+</p>
+
+<h2>サンプルコード</h2>
+
+<pre><code>/**
+  * 直線と三角形が当たっているかどうか
+  * @param line 直線
+  * @param triangle 三角形
+  */
+ export function isHit(line:Line, triangle:Triangle) 
+ {
+   // 三角形の3頂点を配列化
+   const points = [
+     triangle.p1,
+     triangle.p2,
+     triangle.p3,
+   ];
+ 
+   // 外積の符号を覚えておくための変数
+   let sign = 0;
+ 
+   // 角4点と直線の方向ベクトルの関係性を調べる
+   for(let i = 0; i < points.length; ++i) {
+ 
+     // 直線の向きベクトルを v1 とする
+     const v1 = line.v;
+ 
+     // 直線の任意の点から矩形の角に向かうベクトルをv2 とする
+     const v2 = Vector2.sub(points[i], line.p);
+ 
+     // 外積を取る
+     const cross = Vector2.cross(v1, v2);
+ 
+     // 外積の結果が0だったら衝突している
+     if (cross === 0) return true;
+ 
+     // 初回だけ外積の符号を記憶しておく
+     if (i == 0) {
+       sign = Math.sign(cross);
+     }
+ 
+     // 2点目以降、外積の符号が変わっていたら交差している
+     else {
+       if (sign !== Math.sign(cross)) return true;
+     }
+   }
+ 
+   // 外積の結果が全て同じ符号だったら衝突していない。
+   return false;  
+ }</code></pre>
