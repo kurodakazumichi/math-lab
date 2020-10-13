@@ -126,6 +126,16 @@ export default class Vector2
     return `(${this.x}, ${this.y})`;
   }
 
+  /** 内積 */
+  dot(v:Vector2) {
+    return Vector2.dot(this, v);
+  }
+
+  /** 外積 */
+  cross(v: Vector2) {
+    return Vector2.cross(this, v);
+  }
+
   //---------------------------------------------------------------------------
   // Static
   //---------------------------------------------------------------------------
