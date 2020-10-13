@@ -13,7 +13,7 @@ import { Capsule } from '../Primitive2';
 export function isHit(point:Vector2, capsule:Capsule) 
 {
   // カプセルと点の最近傍点を求める
-  const p = PointAndSegment.getNearestNeighborPoint(point, capsule.s);
+  const p = PointAndSegment.getNearestPoint(point, capsule.s);
 
   // 最近傍点から点に向かうベクトル
   const v = Vector2.sub(point, p);

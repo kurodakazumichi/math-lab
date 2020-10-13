@@ -229,4 +229,34 @@ export default class Vector2
   static midpoint(v1:Vector2, v2:Vector2) {
     return v1.clone().add(v2).times(0.5);
   }
+
+  /**
+   * 基点となるbaseと2点(p1, p2)の座標を与えると、θが鋭角かどうか返す関数
+   *    p2
+   *   /
+   *  /
+   * / θ
+   * -------------> p1
+   * base
+   */
+  static isAcuteAngle(base:Vector2, p1:Vector2, p2:Vector2) {
+    const v1 = Vector2.sub(p1, base);
+    const v2 = Vector2.sub(p2, base);
+    return (0 < v1.dot(v2))
+  }
+
+    /**
+   * 基点となるbaseと2点(p1, p2)の座標を与えると、θが鈍角かどうか返す関数
+   *    p2
+   *   /
+   *  /
+   * / θ
+   * -------------> p1
+   * base
+   */
+  static isObtuseAngle(base:Vector2, p1:Vector2, p2:Vector2) {
+    const v1 = Vector2.sub(p1, base);
+    const v2 = Vector2.sub(p2, base);
+    return (v1.dot(v2) < 0);
+  }
 }

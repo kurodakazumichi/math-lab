@@ -74,17 +74,6 @@ export class Ray extends Line
   //---------------------------------------------------------------------------
 
   /**
-   * 半直線上の座標を取得する。
-   * @param f 任意の数値
-   */
-  point(f:number) 
-  {
-    // 直線上の1点から直線の方向に任意の距離だけ進んだ場所の座標
-    // 視点から逆方向の座標を取得できないようにするため、fの絶対値を取る
-    return Vector2.add(this.p, this.v.normalize.times(Math.abs(f)));
-  }
-
-  /**
    * Rayの長さを指定し、その長さの場合のRayの始点から終点までの座標を1次元配列で取得する
    * @param length Rayの長さ
    */
@@ -125,7 +114,7 @@ export class Segment
   get p1() { return this._p; }
   get p2() { return Vector2.add(this._p, this.v); }
   get v() { return this._v; }
-  
+
   /**
    * 線分の始点と終点の座標を1次元配列で取得する
    */
@@ -133,6 +122,9 @@ export class Segment
     const { p1: s, p2: e } = this;
     return [s.x, s.y, e.x, e.y];
   }
+
+  /** SegmentをLineに変換する(Line継承しとけばよかった) */
+  toLine() { return new Line(this._p, this._v); }
 }
 
 //-----------------------------------------------------------------------------

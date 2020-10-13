@@ -47,7 +47,7 @@ export function intercect(point:Vector2, line:Line)
  * @param point 点
  * @param line 直線
  */
-export function getNearestNeighborPoint(point:Vector2, line:Line) 
+export function getNearestPoint(point:Vector2, line:Line) 
 {
   // 直線の向きを表すベクトルをd
   // 線分の任意の点から点に向かうベクトルをp
@@ -59,3 +59,41 @@ export function getNearestNeighborPoint(point:Vector2, line:Line)
   const dot = Vector2.dot(n, p);
   return Vector2.add(line.p, n.times(dot));
 }
+
+export interface IResultNearestDistance {
+  distance: number;  /** 距離 */
+  h: Vector2;        /** 点から直線に垂線を下した位置 */
+  t: number;         /** ベクトル係数 */
+}
+/**
+ * 点と直線の最短距離
+ * @param point 点
+ * @param line 直線
+ */
+export function getNearestDistance(point:Vector2, line:Line) 
+{
+  const result:IResultNearestDistance = {
+    distance: 0,
+    h: Vector2.zero,
+    t: 0,
+  };
+
+  // 点の位置を p1とする
+  const p1 = point;
+
+  // 線の基点を p2、方向ベクトルをv2 とする
+  const p2 = line.p;
+  const v2 = line.v;
+
+  // 点から線に垂線を落とした時の衝突点を H とすると
+  // H は v2 を t倍した位置にくる
+  // この t(ベクトル係数) は以下の計算で求まる
+  result.t = Vector2.dot(v2, p1.clone().sub(p2)) / v2.sqrMagnitude;
+  
+  // 最短距離は p1 と h の間の距離を求めればよい
+  const tv2 = Vector2.times(v2, result.t);
+  result.h   = Vector2.add(p2, tv2);
+  result.distance = Vector2.sub(result.h, p1).magnitude;
+
+  return result;
+};
