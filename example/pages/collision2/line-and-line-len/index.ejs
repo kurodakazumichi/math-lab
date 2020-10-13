@@ -1,0 +1,117 @@
+---
+title: 直線と直線の最短距離
+---
+<div id="graph1"></div>
+
+<p>
+  直線と直線の最短距離の求め方と自分で書いててもなんだこれはとなっている不思議な計算。
+</p>
+
+<p>
+  どうやら3D空間でねじれ関係にある直線の最短距離を求める計算だったようですが、2Dでも計算自体はできてしまうので一応やった結果。
+</p>
+
+<p>
+  とても複雑な計算をしたので思い出せるようにメモとして情報を残します。
+</p>
+
+<p>２つの直線$L1, L2$があるとする。それぞれの直線上の任意の点を$P1, P2$、方向ベクトルを$v_{1}, v_{2}$1(正規化したもの)とする。</p>
+<p>２つの直線の最短距離を結ぶ点を$Q1, Q2$とし $\vec{Q1Q2} = \vec{u}$ とする。</p>
+
+<p>直線の最短を結ぶ直線は、双方の直線と垂直じゃないといけない</p>
+
+<p>なので$\vec{u}$ は$\vec{v_{1}}, \vec{v_{2}}$ と垂直。</p>
+
+<p>これらの内積の結果は0になる</p>
+
+<p class="math">
+  ① $\vec{v_{1}} \cdot \vec{u} = 0$ <br>
+  ② $\vec{v_{2}} \cdot \vec{u} = 0$ <br>
+</p>
+
+<p>$Q1, Q2$ は以下のとおり</p>
+
+<p class="math">
+  $Q1 = P1 + t_{1}\vec{v_{1}}$<br>
+  $Q2 = P2 + t_{2}\vec{v_{2}}$<br>
+  また<br>
+  $\vec{u} = Q2 - Q1$
+</p>
+
+<p>①、②の式に代入する</p>
+
+<p class="math">
+  ① $\vec{v_{1}} \cdot ({Q2 - Q1})$<br>
+  $ = \vec{v_{1}} \cdot (P2 + t_{2}\vec{v_{2}} - P1 - t_{1}\vec{v_{1}})$<br>
+  $ = \vec{v_{1}} \cdot (P2 - P1 + t_{2}\vec{v_{2}} - t_{1}\vec{v_{1}})$<br>
+  $ = \vec{v_{1}} \cdot (P2 - P1) + \vec{v_{1}} \cdot (t_{2}\vec{v_{2}}) - \vec{v_{1}} \cdot (t_{1}\vec{v_{1}})$<br>
+  $ = \vec{v_{1}} \cdot (P2 - P1) + t_{2}(\vec{v_{1}} \cdot \vec{v_{2}}) - t_{1}(\vec{v_{1}} \cdot \vec{v_{1}})$<br>
+  v_{1}は正規化されてるので$(\vec{v_{1}} \cdot \vec{v_{1}} = 1)$<br>
+  $ = \vec{v_{1}} \cdot (P2 - P1) + t_{2}(\vec{v_{1}} \cdot \vec{v_{2}}) - t_{1}$<br><br>
+  
+  式が長いので以下のように別名をつける<br>
+  $ D1 = \vec{v_{1}} \cdot (P2 - P1)$<br>
+  $ Dv = \vec{v_{1}} \cdot \vec{v_{2}}$<br><br>
+
+  これで式を書き直すと<br>
+  $ D1 + t_{2}Dv - t_{1}$
+</p>
+
+<p class="math">
+  ② $\vec{v_{2}} \cdot ({Q2 - Q1})$<br>
+  $ = \vec{v_{2}} \cdot (P2 + t_{2}\vec{v_{2}} - P1 - t_{1}\vec{v_{1}})$<br>
+  $ = \vec{v_{2}} \cdot (P2 - P1 + t_{2}\vec{v_{2}} - t_{1}\vec{v_{1}})$<br>
+  $ = \vec{v_{2}} \cdot (P2 - P1) + \vec{v_{2}} \cdot (t_{2}\vec{v_{2}}) - \vec{v_{2}} \cdot (t_{1}\vec{v_{1}})$<br>
+  $ = \vec{v_{2}} \cdot (P2 - P1) + t_{2}(\vec{v_{2}} \cdot \vec{v_{2}}) - t_{1}(\vec{v_{2}} \cdot \vec{v_{1}})$<br>
+  v_{2}は正規化されてるので$(\vec{v_{2}} \cdot \vec{v_{2}} = 1)$<br>
+  $ = \vec{v_{2}} \cdot (P2 - P1) + t_{2} - t_{1}(\vec{v_{1}} \cdot \vec{v_{2}})$<br><br>
+</p>
+
+<p class="math">
+  式が長いので以下のように別名をつける<br>
+  $ D1 = \vec{v_{1}} \cdot (P2 - P1)$<br>
+  $ D2 = \vec{v_{2}} \cdot (P2 - P1)$<br>
+  $ Dv = \vec{v_{1}} \cdot \vec{v_{2}}$<br><br>
+
+  これで式を書き直すと<br>
+  ①$ D1 + t_{2}Dv - t_{1} = 0$<br>
+  ②$ D2 + t_{2} - t_{1}Dv = 0$
+</p>
+
+<p>①、②を連立方程式でとく</p>
+
+<p class="math">
+  ②$ D2 + t_{2} - t_{1}Dv = 0$<br>
+  $t_{2} = t_{1}Dv - D2$<br><br>
+  ①に代入<br>
+
+  $ D1 + (t_{1}Dv - D2)Dv - t_{1} = 0$<br>
+  $ D1 + t_{1}DvDv - D2Dv - t_{1} = 0$<br>
+  $ t_{1}DvDv - t_{1} + D1- D2Dv  = 0$<br>
+  $ t_{1}(DvDv - 1) + D1- D2Dv  = 0$<br>
+  $ t_{1}(DvDv - 1)  = -D1 + D2Dv$<br>
+  $ t_{1} = \frac{-D1 + D2Dv}{DvDv - 1}$<br>
+  $ t_{1} = \frac{-D1 + D2Dv}{-1 + DvDv }$<br>
+  $ t_{1} = \frac{D1 - D2Dv}{1 - DvDv }$<br>
+</p>
+
+<p class="math">
+  ①$ D1 + t_{2}Dv - t_{1} = 0$<br>
+  $t_{1} = D1 + t_{2}Dv$<br><br>
+  ②に代入<br>
+  $ D2 + t_{2} - t_{1}Dv = 0$<br>
+  $ D2 + t_{2} - (D1 + t_{2}Dv)Dv = 0$<br>
+  $ D2 + t_{2} - (D1Dv + t_{2}DvDv) = 0$<br>
+  $ D2 + t_{2} - D1Dv - t_{2}DvDv = 0$<br>
+  $ t_{2} - t_{2}DvDv + D2 - D1Dv= 0$<br>
+  $ t_{2}(1 - DvDv) + D2 - D1Dv= 0$<br>
+  $ t_{2}(1 - DvDv) = - D2 + D1Dv$<br>
+  $ t_{2} = \frac{- D2 + D1Dv}{1 - DvDv}$<br>
+  $ t_{2} = \frac{- D2 + D1Dv}{-DvDv + 1}$<br>
+  $ t_{2} = \frac{D2 - D1Dv}{DvDv - 1}$<br>
+</p>
+
+<p class="math">
+  $ t_{1} = \frac{D1 - D2Dv}{1 - DvDv }$<br>
+  $ t_{2} = \frac{D2 - D1Dv}{DvDv - 1}$<br>  
+</p>
