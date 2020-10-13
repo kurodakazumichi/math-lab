@@ -34,7 +34,7 @@
 
     update() {
       const nearest = Collision2.PointAndLine
-        .getNearestNeighborPoint(this.pos, this.line);
+        .getNearestPoint(this.pos, this.line);
 
       this.nodes.star.pos(nearest.x, nearest.y);
 
@@ -53,7 +53,7 @@
       const p = new Vector2(1, 3);
       const l = new Line(Vector2.zero, new Vector2(3, 1));
 
-      const near = Collision2.PointAndLine.getNearestNeighborPoint(p, l);
+      const near = Collision2.PointAndLine.getNearestPoint(p, l);
 
       return {
         grid   : groups.grid(),
@@ -77,7 +77,7 @@
       const p = new Vector2(1, 3);
       const l = new Line(new Vector2(-3, -1), new Vector2(3, 1));
 
-      const near = Collision2.PointAndLine.getNearestNeighborPoint(p, l);
+      const near = Collision2.PointAndLine.getNearestPoint(p, l);
 
       return {
         grid   : groups.grid(),
@@ -100,7 +100,7 @@
       const p = new Vector2(1, 3);
       const l = new Line(new Vector2(-3, -1), new Vector2(3, 1));
 
-      const near = Collision2.PointAndLine.getNearestNeighborPoint(p, l);
+      const near = Collision2.PointAndLine.getNearestPoint(p, l);
 
       const p2 = Vector2.add(l.p, l.v);
 
@@ -132,7 +132,7 @@
       this.l = new Line(new Vector2(-3, -1), new Vector2(3, 1));
 
       this.s = Vector2.add(this.l.p, this.l.v);
-      this.e = Collision2.PointAndLine.getNearestNeighborPoint(this.p, this.l);
+      this.e = Collision2.PointAndLine.getNearestPoint(this.p, this.l);
     }
 
     createNodes(shapes, groups) {
@@ -180,7 +180,7 @@
       const p = new Vector2(1, 3);
       const l = new Line(new Vector2(-3, -1), new Vector2(3, 1));
 
-      const near = Collision2.PointAndLine.getNearestNeighborPoint(p, l);
+      const near = Collision2.PointAndLine.getNearestPoint(p, l);
 
       const p2 = Vector2.add(l.p, l.v.normalize);
 
@@ -211,7 +211,7 @@
       const p = new Vector2(1, 3);
       const l = new Line(new Vector2(-3, -1), new Vector2(3, 1));
 
-      const near = Collision2.PointAndLine.getNearestNeighborPoint(p, l);
+      const near = Collision2.PointAndLine.getNearestPoint(p, l);
 
       const p2 = Vector2.add(l.p, l.v.normalize);
 
@@ -245,7 +245,7 @@
       const p = new Vector2(1, 3);
       const l = new Line(new Vector2(-3, -1), new Vector2(3, 1));
 
-      const near = Collision2.PointAndLine.getNearestNeighborPoint(p, l);
+      const near = Collision2.PointAndLine.getNearestPoint(p, l);
 
       const p2 = Vector2.add(l.p, l.v.normalize);
 
@@ -285,7 +285,7 @@
       const p = new Vector2(1, 3);
       const l = new Line(new Vector2(-3, -1), new Vector2(3, 1));
 
-      const near = Collision2.PointAndLine.getNearestNeighborPoint(p, l);
+      const near = Collision2.PointAndLine.getNearestPoint(p, l);
 
       const p2 = Vector2.add(l.p, l.v.normalize);
 

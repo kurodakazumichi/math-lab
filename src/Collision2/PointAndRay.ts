@@ -55,7 +55,7 @@ export function intercect(point:Vector2, ray:Ray)
  * @param point 点
  * @param ray 半直線
  */
-export function getNearestNeighborPoint(point:Vector2, ray:Ray) {
+export function getNearestPoint(point:Vector2, ray:Ray) {
   
   // 半直線の向きを表すベクトルをd
   // 半直線の始点から点に向かうベクトルをp

@@ -185,7 +185,7 @@
 
       // カプセルの線分との最近傍点
       const n = Collision2.PointAndSegment
-        .getNearestNeighborPoint(p, this.capsule.s);
+        .getNearestPoint(p, this.capsule.s);
 
       Sync.posByVec(this.nodes.hit, n);
 
@@ -209,7 +209,7 @@
 
       // カプセルの線分との最近傍点
       const n = Collision2.PointAndSegment
-        .getNearestNeighborPoint(p, this.capsule.s);
+        .getNearestPoint(p, this.capsule.s);
 
       Sync.posByVec(this.nodes.hit, n);
       Sync.posByVec(this.nodes.circle, n);

@@ -55,7 +55,7 @@ export function intercect(point:Vector2, segment:Segment)
  * @param point 点
  * @param segment 線分
  */
-export function getNearestNeighborPoint(point:Vector2, segment:Segment) {
+export function getNearestPoint(point:Vector2, segment:Segment) {
   // カプセルと点の最近傍点を求める
 
   // 線分の向きを表すベクトルをd

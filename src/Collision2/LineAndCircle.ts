@@ -13,7 +13,7 @@ import * as PointAndLine from './PointAndLine';
 export function isHit(line:Line, circle:Circle) 
 {
   // 円の中心と直線の最近傍点 p を求める
-  const p = PointAndLine.getNearestNeighborPoint(circle.p, line);
+  const p = PointAndLine.getNearestPoint(circle.p, line);
 
   // 円の中心から p までの距離を d として
   // d < 円の半径 r だったら当たっている
@@ -46,7 +46,7 @@ export function intercect(line:Line, circle:Circle)
   const c = circle.p;
 
   // c と直線の最近傍点 h を求める
-  const h = PointAndLine.getNearestNeighborPoint(c, line);
+  const h = PointAndLine.getNearestPoint(c, line);
   result.nearest = h;
 
   // c -> h に向かうベクトルを hp とする

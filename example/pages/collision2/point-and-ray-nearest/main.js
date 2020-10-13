@@ -35,7 +35,7 @@
 
     update() {
       const nearest = Collision2.PointAndRay
-        .getNearestNeighborPoint(this.pos, this.ray);
+        .getNearestPoint(this.pos, this.ray);
 
       this.nodes.star.pos(nearest.x, nearest.y);
 
@@ -90,7 +90,7 @@
 
     update() {
       const nearest = Collision2.PointAndRay
-        .getNearestNeighborPoint(this.pos, this.ray);
+        .getNearestPoint(this.pos, this.ray);
 
       this.nodes.star.pos(nearest.x, nearest.y);
 
@@ -154,7 +154,7 @@
 
     update() {
       const nearest = Collision2.PointAndRay
-        .getNearestNeighborPoint(this.pos, this.ray);
+        .getNearestPoint(this.pos, this.ray);
 
       this.nodes.aux.points([nearest.x, nearest.y, this.pos.x, this.pos.y]);
 
