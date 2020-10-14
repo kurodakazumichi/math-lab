@@ -4,6 +4,7 @@
 import Vector2 from '../Vector2';
 import { Ray } from '../Primitive2';
 import { Define } from '..';
+import { PointAndLine } from '.';
 
 /**
  * 点と半直線が当たっているかどうか
@@ -72,3 +73,37 @@ export function getNearestPoint(point:Vector2, ray:Ray) {
   const dot = Vector2.dot(n, p);
   return Vector2.add(ray.p, n.times(dot));
 }
+
+/**
+ * 点と半直線の最短距離を求める関数の戻り値
+ */
+export interface IResultNearestDistance {
+  distance: number;  /** 距離 */
+  h: Vector2;        /** 点から直線におろした垂線の足 */
+  t: number;         /** ベクトルの媒介変数 t */
+}
+
+/**
+ * 点と半直線の最短距離
+ * @param point 点
+ * @param ray 半直線
+ */
+export function getNearestDistance(point:Vector2, ray: Ray) 
+{
+  // 半直線を直線と見立てて点と直線の最短距離を取得する
+  const { distance, h, t } = PointAndLine.getNearestDistance(point, ray);
+
+  // 結果オブジェクトを仮決定
+  const result:IResultNearestDistance = {
+    distance, h, t
+  };
+
+  // 媒介変数 t が マイナスの場合は、点から半直線に落とした垂線の足は
+  // 半直線の外にいるので 始点との距離を計算する
+  if (t < 0) {
+    result.distance = Vector2.sub(ray.p, point).magnitude;
+    result.h        = ray.p.clone();
+  }
+
+  return result;
+};
