@@ -82,44 +82,46 @@ export function getNearestPoint(point:Vector2, segment:Segment) {
   return Vector2.add(segment.p1, n.times(dot));
 }
 
+
+/**
+ * 点と線分の最短距離を求める関数の戻り値
+ */
 export interface IResultNearestDistance {
-  distance: number; /** 距離 */
-  h: Vector2;       /** 点と線分の最短距離を結ぶ直線の端 */
-  t: number;        /** ベクトル係数 */
+  distance: number;  /** 距離 */
+  h: Vector2;        /** 点から線分の最短距離を結ぶ線の足 */
+  t: number;         /** ベクトルの媒介変数 t */
 }
 
 /**
- * 点と線分の最短距離を求める
+ * 点と線分の最短距離
+ * @param point 点
+ * @param line 直線
  */
 export function getNearestDistance(point:Vector2, segment:Segment) 
 {
-  const result:IResultNearestDistance = {
-    distance: 0,
-    h: Vector2.zero,
-    t: 0,
-  }
+  // 線分を直線にみたてて、点と直線の最短距離を求める
+  const {
+    distance, 
+    h, 
+    t
+  } = PointAndLine.getNearestDistance(point, segment.toLine());
 
-  // 線分を直線と見立てて点と線分の最短距離を取る
-  const nd = PointAndLine.getNearestDistance(point, segment.toLine());
-  
-  // ベクトル係数を結果に含める
-  result.t = nd.t;
-  
-  // 線分の始点が最短距離になる場合
-  if (Vector2.isAcuteAngle(segment.p1, segment.p2, point) == false) {
+  // 結果オブジェクトを仮決定
+  const result:IResultNearestDistance = {
+    distance, h, t
+  };
+
+  // 媒介変数 t がマイナスなら線分の始点との最短距離を取る
+  if (t < 0) {
     result.distance = Vector2.sub(point, segment.p1).magnitude;
     result.h = segment.p1.clone();
-    return result;
   }
 
-  // 線分の終点が最短距離になる場合
-  if (Vector2.isAcuteAngle(segment.p2, segment.p1, point) === false) {
+  // 媒介変数 t が 1を超えていたら線分の終端との最短距離を取る
+  if (1 < t) {
     result.distance = Vector2.sub(point, segment.p2).magnitude;
     result.h = segment.p2.clone();
-    return result;
   }
-
-  result.distance = nd.distance;
-  result.h = nd.h;
+  
   return result;
-}
+};
