@@ -204,9 +204,9 @@
         Q2: shapes.text("Q2").offset(-0.2, -0.25),
 
         tv1: shapes.arrow().color(sColor.blue).strokeWidth(6),
-        tv1Text: shapes.text("t・v1").fill(sColor.blue).offsetY(0.5),
+        tv1Text: shapes.text("t1・v1").fill(sColor.blue).offsetY(0.5),
         tv2: shapes.arrow().color(sColor.blue).strokeWidth(6),
-        tv2Text: shapes.text("t・v2").fill(sColor.blue),
+        tv2Text: shapes.text("t2・v2").fill(sColor.blue),
 
         v1: shapes.arrow().color(sColor.yellow),
         v2: shapes.arrow().color(sColor.yellow),
