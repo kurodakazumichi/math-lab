@@ -51,8 +51,7 @@
 
     initNodes(nodes) {
       this.col = Collision2.LineAndLine.getNearestDistance2(this.l1, this.l2);
-      this.t1 = this.col.t1;
-      this.t2 = this.col.t2;
+
 
       Sync.lineByLine(nodes.l1, this.l1);
       Sync.lineByLine(nodes.l2, this.l2);
@@ -76,6 +75,11 @@
       Sync.arrowByP1P2(nodes.tv2, this.l2.p, this.col.p2);
       Sync.posByVec(nodes.tv2Text, Vector2.midpoint(this.l2.p, this.col.p2));
 
+    }
+
+    update() {
+      this.t1 = this.col.t1;
+      this.t2 = this.col.t2;
     }
   }  
 
