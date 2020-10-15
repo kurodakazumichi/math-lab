@@ -76,7 +76,7 @@ export function intercect(l1:Line, l2:Line)
 /**
  * ２直線の最短距離を求める関数の戻り値を定義
  */
-interface IResultDistance {
+export interface IResultDistance {
   distance:number, /** 直線間の距離 */
   p1:Vector2, /** 直線１上の垂線の足 */
   p2:Vector2, /** 直線２上の垂線の足 */
@@ -85,9 +85,44 @@ interface IResultDistance {
 }
 
 /**
- * ２直線の最短距離を求める
+ * 2直線の最短距離を求める
+ * @param l1 直線１
+ * @param l2 直線２
  */
-export function getNearestDistance(l1:Line, l2:Line): IResultDistance 
+export function getNearestDistance(l1:Line, l2:Line): IResultDistance {
+  // ２直線が平行だったら、点と直線の最短距離に帰結
+  if (Vector2.isParallel(l1.v, l2.v)) {
+    const res = PointAndLine.getNearestDistance(l1.p, l2);
+
+    return {
+      distance: res.distance,
+      p1: l1.p.clone(),
+      p2: res.h,
+      t1: 0,
+      t2: res.t,
+    }
+  }
+
+  const v1 = l1.v;
+  const v2 = l2.v;
+  const v = Vector2.sub(l1.p, l2.p);
+
+  const t1 = v.cross(v2) / v2.cross(v1);
+  const t2 = v.times(-1).cross(v1) / v1.cross(v2);  
+
+  const p1 = Vector2.add(l1.p, Vector2.times(l1.v, t1));
+  const p2 = Vector2.add(l2.p, Vector2.times(l2.v, t2));
+
+  return {
+    distance: Vector2.sub(p1, p2).magnitude,
+    p1, p2, t1, t2
+  };
+}
+
+/**
+ * ２直線の最短距離を求める2
+ */
+export function getNearestDistance2(l1:Line, l2:Line): IResultDistance 
 {
   // ２直線が平行だったら、点と直線の最短距離に帰結
   if (Vector2.isParallel(l1.v, l2.v)) {
@@ -102,70 +137,27 @@ export function getNearestDistance(l1:Line, l2:Line): IResultDistance
     }
   }
 
-  // ２直線がねじれ(2Dでねじれなんてあるの？という感が否めない)
-  const DV1V2 = l1.v.dot(l2.v);
-  const DV1V1 = l1.v.sqrMagnitude;
-  const DV2V2 = l2.v.sqrMagnitude;
-  const v = Vector2.sub(l1.p, l2.p);
+  // 2直線が交差しているときの最短距離、及び媒介変数 t を求める計算(最短距離は基本0)
+  const p1 = l1.p;
+  const p2 = l2.p;
+  const v1 = l1.v;
+  const v2 = l2.v;
+  const D12 = v1.dot(v2);
+  const D11 = v1.sqrMagnitude;
+  const D22 = v2.sqrMagnitude;
+  const P12 = Vector2.sub(p1, p2);
 
-  const t1 = (DV1V2 * l2.v.dot(v) - DV2V2 * l1.v.dot(v)) / (DV1V1 * DV2V2 - DV1V2 * DV1V2);
-  const p1 = Vector2.add(l1.p, Vector2.times(l1.v, t1));
-  const t2 = l2.v.dot(Vector2.sub(p1, l2.p)) / DV2V2;
-  const p2 = Vector2.add(l2.p, Vector2.times(l2.v, t2));
+  // 媒介変数 t と 衝突点 q1, q2 の算出
+  const t1 = (D12 * v2.dot(P12) - D22 * v1.dot(P12)) / (D11 * D22 - D12 * D12);
+  const q1 = Vector2.add(p1, Vector2.times(v1, t1));
+  const t2 = v2.dot(Vector2.sub(q1, p2)) / D22;
+  const q2 = Vector2.add(p2, Vector2.times(v2, t2));
   
   return {
-    distance: Vector2.sub(p2, p1).magnitude,
-    p1,
-    p2,
+    distance: Vector2.sub(q2, q1).magnitude,
+    p1:q1,
+    p2:q2,
     t1, 
     t2,
   };
-}
-
-export interface IResultSortest {
-  distance: number,
-  p1: Vector2,
-  p2: Vector2,
-}
-
-/**
- * 直線と直線の最近傍点
- * @param l1 直線１
- * @param l2 直線２
- */
-export function getNearestDistanceAndPos(l1:Line, l2:Line) {
-
-  const result:IResultSortest = {
-    distance: 0,
-    p1:Vector2.zero,
-    p2:Vector2.zero
-  };
-
-  // 平行だったら、直線間の距離はどこでも同じなので直線上の任意の点を基準にして算出する
-  if (Vector2.isParallel(l1.v, l2.v)) {
-    const nearest = PointAndLine.getNearestPoint(l1.p, l2);
-    result.distance = Vector2.sub(l1.p, nearest).magnitude;
-    result.p1.copy(l1.p);
-    result.p2.copy(nearest);
-    return result;
-  }
-
-  const v1 = l1.v.normalize;
-  const v2 = l2.v.normalize;
-  const vP1P2 = Vector2.sub(l2.p, l1.p);
-
-  const D1 = Vector2.dot(v1, vP1P2);
-  const D2 = Vector2.dot(v1, vP1P2);
-  const Dv = Vector2.dot(v1, v2);
-
-  const t1 = (D1 - D2 * Dv ) / (1.0 - Dv * Dv);
-  const t2 = (D2 - D1 * Dv) / (Dv * Dv - 1.0);
-
-  const p1 = Vector2.add(l1.p, Vector2.times(v1, t1));
-  const p2 = Vector2.add(l2.p, Vector2.times(v2, t2));
-
-  result.p1.copy(p1);
-  result.p2.copy(p2);
-  result.distance = Vector2.sub(p1, p2).magnitude;
-  return result;
 }
