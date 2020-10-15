@@ -135,6 +135,29 @@
     }
   }
 
+  graphs.Graph2_3_1 = class extends Graph2Base {
+    get option() { return {id:"graph2_3_1", gui:true}}
+
+    constructor() {
+      super();
+      this.l1.v.set(6, -6);
+      this.l2.v.set(4.5, 2);
+      this.t1 = 0;
+      this.t2 = 0;
+    }
+
+    initGui(gui) {
+      gui.add(this, "t1").step(0.01).listen();
+      gui.add(this, "t2").step(0.01).listen();
+    }
+
+    initNodes(nodes) {
+      super.initNodes(nodes);
+      this.t1 = this.col.t1;
+      this.t2 = this.col.t2;
+    }
+  }  
+
   graphs.Graph2_4 = class extends Graph2Base {
     get option() { return {id:"graph2_4", update:false}}
 
