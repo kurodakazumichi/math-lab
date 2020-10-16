@@ -2,7 +2,7 @@
  * 矩形(回転あり)と矩形(回転あり)の衝突
  *****************************************************************************/
 import { Box } from '../Primitive2';
-import { PointAndBox, CircleAndCircle } from '.';
+import { PointAndBox } from '.';
 import { Vector2 } from '..';
 
 /**

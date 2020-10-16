@@ -49,3 +49,7 @@ venders
 2. example/layout 内でデバッグ用のjsを参照していたら xxxxx.min.js に書き換える
 3. example/layout/default.ejsの冒頭にあるバージョンを上げる
 4. `yarn build:example` をする
+
+# 開発時のコマンド
+1. yarn build:dev --watch
+2. yarn example
