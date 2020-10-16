@@ -25,6 +25,7 @@ import * as SegmentAndSegment from './SegmentAndSegment';
 import * as CircleAndCircle from './CircleAndCircle';
 
 import * as RectAndRect from './RectAndRect';
+import * as BoxAndBox from './BoxAndBox';
 
 export {
   PointAndPoint,
@@ -49,4 +50,5 @@ export {
   SegmentAndSegment,
   CircleAndCircle,
   RectAndRect,
+  BoxAndBox,
 }
