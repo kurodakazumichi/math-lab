@@ -1,0 +1,75 @@
+---
+title: 半直線と半直線の衝突
+---
+<div id="graph1"></div>
+
+<h2>解説(下書き)</h2>
+
+<p>
+  半直線同士の衝突は、いったん半直線を直線とみたてて判定する。
+</p>
+
+<p>半直線同士が平行な場合と衝突していないものとして扱います。</p>
+
+
+<h2>衝突判定方法</h2>
+<p>
+  <a href="../line-and-line-dist0/">直線と直線の最短距離 簡易版</a>にて解説した方法で、直線と直線の最短距離を求めつつ媒介変数 $t_{1}, t_{2}$ を求めます。
+</p>
+
+<p>
+  半直線同士が交差する場合、$t_{1}, t_{2}$ がプラスの値になります。
+</p>
+
+<p class="math">
+  $0 &lt;= t_{1} かつ 0 &lt;= t_{2}$ であれば、半直線は衝突している。
+</p>
+
+<h2>サンプルコード</h2>
+
+<pre><code>/**
+  * intercect の戻り値の型
+  */
+ export interface IResultIntercect {
+   hit        : boolean; /** 当たっているかどうか(平行の場合はあたっていない) */
+   distance   : number;  /** 半直線間の最短距離 */
+   p1         : Vector2; /** 交点１(平行の場合は半直線１の始点) */
+   p2         : Vector2; /** 交点２(平行の場合は半直線１の始点からおろした垂線の足) */
+   t1         : number;  /** 媒介変数 t1 */
+   t2         : number;  /** 媒介変数 t2 */
+ }
+ 
+ /**
+  * 半直線と半直線の衝突
+  * @param ray1 半直線１
+  * @param ray2 半直線２
+  */
+ export function intercect(ray1:Ray, ray2:Ray):IResultIntercect {
+ 
+   // 半直線を直線と見立てて最短距離を取得する
+   const { distance, p1, p2, t1, t2 } = LineAndLine.getNearestDistance(ray1, ray2);
+ 
+   // 半直線同士が交差しているかの判定
+   let hit;
+   
+   // 平行の場合
+   if (Vector2.isParallel(ray1.v, ray2.v)){
+     hit = false;
+   }
+ 
+   // 交差している場合
+   else {
+     // 媒介変数 t1, t2 がプラスであれば当たっている
+     hit = (0 <= t1 && 0 <= t2)
+   }
+ 
+   return {
+     hit,
+     distance,
+     p1, 
+     p2, 
+     t1, 
+     t2,
+   }
+ }
+ </code></pre>
