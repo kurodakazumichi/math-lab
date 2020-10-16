@@ -17,6 +17,7 @@ import * as LineAndRect from './LineAndRect';
 import * as LineAndBox from './LineAndBox';
 import * as LineAndTriangle from './LineAndTriangle';
 import * as LineAndCapsule from './LineAndCapsule';
+import * as LineAndEllipse from './LineAndEllipse';
 
 import * as RayAndRay from './RayAndRay';
 
@@ -46,6 +47,7 @@ export {
   LineAndBox,
   LineAndTriangle,
   LineAndCapsule,
+  LineAndEllipse,
   RayAndRay,
   SegmentAndSegment,
   CircleAndCircle,
