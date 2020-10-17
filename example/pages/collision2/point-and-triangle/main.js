@@ -12,7 +12,7 @@
     constructor() {
       super();
       this.pos  = Vector2.zero;
-      this.tri  = new Triangle(new Vector2(1, 3), new Vector2(2, -2), new Vector2(-3, -4));
+      this.tri  = new Triangle(new Vector2(1, 3), new Vector2(-3, -4), new Vector2(2, -2));
     }
 
     createNodes(shapes, groups) {
