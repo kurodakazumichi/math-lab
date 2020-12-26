@@ -65,7 +65,7 @@ export interface IResultIntercect {
 export function intercect(ray:Ray, segment:Segment):IResultIntercect {
 
   // 半直線を直線と見立てて最短距離を取得する
-  const { p1, p2, t1, t2 } = LineAndLine.getNearestDistance(ray, segment.toLine());
+  const { p1, t1, t2 } = LineAndLine.getNearestDistance(ray, segment.toLine());
 
   // 半直線同士が交差しているかの判定
   let hit;
